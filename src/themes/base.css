@@ -1,0 +1,75 @@
+@import "./animations.css";
+
+@tailwind base;
+
+@layer base {
+  body,
+  html {
+    @apply m-0 h-full w-full !p-0 text-[16px] font-medium leading-1 tracking-[-0.2px];
+  }
+
+  #__next {
+    height: 100%;
+  }
+
+  p {
+    line-height: 160%;
+    margin-block: 0;
+  }
+
+  textarea {
+    @apply font-default;
+  }
+
+  h1 {
+    @apply text-style-h1;
+  }
+  h2 {
+    @apply text-style-h2;
+  }
+  h3 {
+    @apply text-style-h3;
+  }
+  h4 {
+    @apply text-style-h4;
+  }
+  h5 {
+    @apply text-style-h5;
+  }
+  h6 {
+    @apply text-style-h6;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+  input[type="color"]::-webkit-color-swatch {
+    border: none;
+  }
+
+  [type="checkbox"]:focus,
+  [type="radio"]:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  .list-disc > li:before {
+    content: "";
+    margin-left: -8px;
+  }
+}
+
+@tailwind components;
+@tailwind utilities;
+
+.scroll-lock {
+  overflow: hidden;
+}
