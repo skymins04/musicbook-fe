@@ -65,6 +65,18 @@
     content: "";
     margin-left: -8px;
   }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    @apply h-[30%] rounded-full bg-gray-200 dark:bg-gray-800;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
 }
 
 @tailwind components;
