@@ -1,5 +1,5 @@
 import { Brightness6, Brightness6Outlined } from "@mui/icons-material";
-import { MenuItem } from ".";
+import { MenuItem } from "..";
 import { useGetColorMode } from "@/hooks";
 
 export const DarkModeMenuItem = () => {

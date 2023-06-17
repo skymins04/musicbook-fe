@@ -1,5 +1,5 @@
 import { Forum, ForumOutlined } from "@mui/icons-material";
-import { MenuItem } from ".";
+import { MenuItem } from "..";
 
 export const FeedbackMenuItem = () => {
   return (

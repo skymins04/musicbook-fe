@@ -1,5 +1,5 @@
 import { Settings, SettingsOutlined } from "@mui/icons-material";
-import { MenuItem } from ".";
+import { MenuItem } from "..";
 
 export const SettingsMenuItem = () => {
   return (

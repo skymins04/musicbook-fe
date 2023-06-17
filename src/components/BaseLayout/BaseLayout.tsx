@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useState } from "react";
-import { CommonDrawer, Header, Logo } from "..";
+import { CommonDrawer, Header, Logo, Spotlight } from "..";
 import { TopNotice } from "../TopNotice/TopNotice";
 import classNames from "classnames";
 import { useBreakpointSmaller, useGlobalDisclosure } from "@/hooks";
@@ -19,13 +19,18 @@ export const BaseLayout = ({ children }: BaseLayoutProps) => {
     "drawer",
     false
   );
+  const { data: isOpenSearchSpotlight, setData: setIsOpenSearchSpotlight } =
+    useGlobalDisclosure("search-spotlight", false);
   const { setData: setIsDrawerMinified } = useGlobalDisclosure(
     "drawer-minified",
     false
   );
   const isTablet = useBreakpointSmaller("tablet");
 
-  const handleClickCloseDrawer = () => setIsOpenDrawer(false);
+  const handleClickCloseDrawer = () => {
+    setIsOpenDrawer(false);
+    setIsOpenSearchSpotlight(false);
+  };
 
   useEffect(() => {
     setIsOpenDrawer(false);
@@ -47,10 +52,10 @@ export const BaseLayout = ({ children }: BaseLayoutProps) => {
         </div>
       </div>
       <ScreenGuard
+        isShow={isOpenDrawer || isOpenSearchSpotlight}
         className={classNames(
           "fixed left-0",
-          notice ? "top-[32px] !h-[calc(100vh-32px)]" : "top-0 !h-[100vh]",
-          isOpenDrawer ? "block" : "hidden"
+          notice ? "top-[32px] !h-[calc(100vh-32px)]" : "top-0 !h-[100vh]"
         )}
         onClick={handleClickCloseDrawer}
       />
@@ -61,7 +66,7 @@ export const BaseLayout = ({ children }: BaseLayoutProps) => {
           isOpenDrawer ? "left-0" : "-left-[300px]"
         )}
       >
-        <div className="h-full w-full overflow-auto overflow-x-hidden ">
+        <div className="w-full h-full overflow-auto overflow-x-hidden ">
           <CommonDrawer />
         </div>
         <div className="absolute left-0 top-0 flex h-[56px] w-[300px] items-center justify-start gap-8 pl-10">
@@ -81,6 +86,10 @@ export const BaseLayout = ({ children }: BaseLayoutProps) => {
           </Link>
         </div>
       </div>
+      <Spotlight
+        isShow={isOpenSearchSpotlight}
+        onClose={() => setIsOpenSearchSpotlight(false)}
+      />
     </>
   );
 };

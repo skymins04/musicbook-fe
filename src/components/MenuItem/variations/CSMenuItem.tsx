@@ -1,5 +1,5 @@
 import { HelpOutline, HelpOutlineOutlined } from "@mui/icons-material";
-import { MenuItem } from ".";
+import { MenuItem } from "..";
 
 export const CSMenuItem = () => {
   return (

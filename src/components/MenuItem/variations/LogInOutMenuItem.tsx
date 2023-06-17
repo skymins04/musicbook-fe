@@ -1,5 +1,5 @@
 import { Login, Logout } from "@mui/icons-material";
-import { MenuItem } from ".";
+import { MenuItem } from "..";
 import { useBoolean } from "@/hooks";
 
 export const LogInOutMenuItem = () => {
