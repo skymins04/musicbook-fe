@@ -6,20 +6,13 @@ const meta: Meta<typeof Spotlight> = {
   title: "Common/Spotlight",
   component: Spotlight,
   tags: ["autodocs"],
-  argTypes: {
-    className: {
-      control: { type: "text" },
-    },
-  },
+  argTypes: {},
 };
 
 export default meta;
 type Story = StoryObj<typeof Spotlight>;
 
 export const Default: Story = {
-  args: {
-    className: "",
-  },
   render: (args) => {
     return <Spotlight {...args} />;
   },
