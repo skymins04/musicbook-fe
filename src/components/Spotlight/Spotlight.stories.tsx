@@ -13,7 +13,7 @@ export default meta;
 type Story = StoryObj<typeof Spotlight>;
 
 export const Default: Story = {
-  render: (args) => {
-    return <Spotlight {...args} />;
+  render: () => {
+    return <Spotlight />;
   },
 };
