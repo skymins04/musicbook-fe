@@ -1,56 +1,32 @@
 import useSWR from "swr";
-import { ApiClient, PagenationResponse } from "../client";
+import { ApiClient } from "../client";
 
-export type MelonSongSearchSort = "weight" | "hit" | "date" | "ganada";
-export type MelonSongSearchSection = "all" | "song" | "artist" | "album";
+type FetcherArgs = readonly [string, string];
 
-type FetcherArgs = readonly [
-  [string, string],
-  string,
-  number,
-  MelonSongSearchSort,
-  MelonSongSearchSection
-];
+export type GetMelonSongResponse = {
+  songId: number;
+  songTitle: string;
+  albumTitle: string;
+  artistName: string;
+  category: string;
+  releasedAt: string;
+  artistThumbnail: string;
+  thumbnail: {
+    "200": string;
+    "500": string;
+    "1000": string;
+  };
+  lyrics: string;
+};
 
-export type GetMelonSongResponse = PagenationResponse<
-  { sort: MelonSongSearchSort },
-  {
-    songId: number;
-    songTitle: string;
-    artist: string;
-    album: {
-      title: string;
-      id: number;
-    };
-  }
->;
-
-const fetcher = async ([
-  [method, url],
-  q,
-  page,
-  sort,
-  section,
-]: FetcherArgs) => {
+const fetcher = async ([method, url]: FetcherArgs) => {
   const result = await ApiClient.request({
     method,
     url,
-    params: { q, page, sort, section },
   });
-  return result.data;
+  return result.data.data;
 };
 
-export const useGetMelonSong = (
-  q: string,
-  options?: {
-    page?: number;
-    sort?: MelonSongSearchSort;
-    section?: MelonSongSearchSection;
-  }
-) => {
-  const { page = 1, sort = "hit", section = "all" } = options || {};
-  return useSWR<GetMelonSongResponse>(
-    [["GET", "/melon/song"], q, page, sort, section],
-    fetcher
-  );
+export const useGetMelonSong = (id: number) => {
+  return useSWR<GetMelonSongResponse>(["GET", `/melon/song/${id}`], fetcher);
 };
