@@ -28,17 +28,17 @@ export const DrawerButton = ({
     <button
       {...options}
       className={classNames(
-        "group flex w-full select-none rounded-6 text-gray-700 duration-100 hover:cursor-pointer hover:bg-gray-200 focus:outline-none dark:text-white dark:hover:bg-gray-800",
+        "group flex w-full select-none rounded-6 text-gray-600 duration-100 hover:cursor-pointer hover:bg-gray-200 focus:outline-none dark:text-white dark:hover:bg-gray-800",
         isMinified
           ? "h-[74px] flex-col items-center justify-center gap-[5px] px-10"
           : "items-center justify-start gap-16 p-8",
         className
       )}
     >
-      <div className="flex h-24 w-24 items-center justify-center text-24 group-hover:hidden">
+      <div className="flex items-center justify-center w-24 h-24 text-24 group-hover:hidden">
         {icon}
       </div>
-      <div className="hidden h-24 w-24 items-center justify-center text-24 group-hover:flex">
+      <div className="items-center justify-center hidden w-24 h-24 text-24 group-hover:flex">
         {hoveredIcon || icon}
       </div>
 

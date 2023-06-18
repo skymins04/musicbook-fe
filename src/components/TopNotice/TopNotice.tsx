@@ -42,7 +42,7 @@ export const TopNotice = ({
       {children && (
         <div
           className={classNames(
-            "relative h-32 w-full bg-[#5dff47] px-64 py-3 font-bold text-gray-700",
+            "relative h-32 w-full bg-[#5dff47] px-64 py-3 font-bold text-gray-600",
             className
           )}
         >
@@ -66,7 +66,7 @@ export const TopNotice = ({
             )}
           </div>
           <IconButton
-            className="!absolute !right-10 !top-[50%] !h-32 !translate-y-[-50%] !text-gray-700"
+            className="!absolute !right-10 !top-[50%] !h-32 !translate-y-[-50%] !text-gray-600"
             variant="ghost"
             icon={<Close />}
             aria-label="공지 닫기"

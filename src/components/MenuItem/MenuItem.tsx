@@ -27,7 +27,7 @@ export const MenuItem = ({
   return (
     <div
       className={classNames(
-        " group flex h-max w-full items-stretch justify-between gap-10 px-[22px] py-8 text-gray-700 duration-100 hover:cursor-pointer hover:bg-gray-200 dark:text-white hover:dark:bg-gray-800",
+        " group flex h-max w-full items-stretch justify-between gap-10 px-[22px] py-8 text-gray-600 duration-100 hover:cursor-pointer hover:bg-gray-200 dark:text-white hover:dark:bg-gray-800",
         className
       )}
       onClick={onClick}

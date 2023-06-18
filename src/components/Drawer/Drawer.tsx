@@ -59,7 +59,7 @@ export const Drawer = ({
         <>
           <Divider />
           <div className="w-full px-10 text-12">
-            <div className="flex items-center justify-start gap-10 text-gray-700 dark:text-white">
+            <div className="flex items-center justify-start gap-10 text-gray-600 dark:text-white">
               <Link href="#">이용약관</Link>
               <Link href="#">개인정보처리방침</Link>
             </div>

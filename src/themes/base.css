@@ -77,6 +77,10 @@
   *::-webkit-scrollbar-track {
     background: transparent;
   }
+
+  * {
+    box-sizing: content-box;
+  }
 }
 
 @tailwind components;
@@ -84,4 +88,11 @@
 
 .scroll-lock {
   overflow: hidden;
+}
+
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-results-decoration {
+  display: none;
 }
