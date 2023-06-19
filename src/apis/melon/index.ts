@@ -1,3 +1,3 @@
-export * from "./getMelonSongSearch";
-export * from "./getMelonSong";
-export * from "./getMelonAlbum";
+export * from "./GETMelonSongSearch";
+export * from "./GETMelonSong";
+export * from "./GETMelonAlbum";

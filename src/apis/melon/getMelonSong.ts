@@ -1,6 +1,6 @@
 import { musicbookAxios } from "..";
 
-export type GetMelonSongResponse = {
+export type GETMelonSongResponse = {
   songId: number;
   songTitle: string;
   albumTitle: string;
@@ -16,9 +16,9 @@ export type GetMelonSongResponse = {
   lyrics: string;
 };
 
-export const getMelonSong = async (
+export const GETMelonSong = async (
   id: number
-): Promise<GetMelonSongResponse> => {
+): Promise<GETMelonSongResponse> => {
   const result = await musicbookAxios.request({
     method: "GET",
     url: `/melon/song/${id}`,
