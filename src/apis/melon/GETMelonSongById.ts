@@ -16,13 +16,10 @@ export type GETMelonSongResponse = {
   lyrics: string;
 };
 
-export const GETMelonSong = async (
+export const GETMelonSongById = async (
   id: number
 ): Promise<GETMelonSongResponse> => {
-  const result = await musicbookAxios.request({
-    method: "GET",
-    url: `/melon/song/${id}`,
-  });
+  const result = await musicbookAxios.get(`/melon/song/${id}`);
 
   return result.data.data;
 };

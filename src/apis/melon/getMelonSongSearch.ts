@@ -1,10 +1,10 @@
 import { PagenationResponse, musicbookAxios } from "..";
 
-export type MelonSongSearchSort = "weight" | "hit" | "date" | "ganada";
-export type MelonSongSearchSection = "all" | "song" | "artist" | "album";
+export type GETMelonSongSearchSort = "weight" | "hit" | "date" | "ganada";
+export type GETMelonSongSearchSection = "all" | "song" | "artist" | "album";
 
 export type GETMelonSongSearchResponse = PagenationResponse<
-  { sort: MelonSongSearchSort },
+  { sort: GETMelonSongSearchSort },
   {
     songId: number;
     songTitle: string;
@@ -20,14 +20,12 @@ export const GETMelonSongSearch = async (
   q: string,
   options?: {
     page?: number;
-    sort?: MelonSongSearchSort;
-    section?: MelonSongSearchSection;
+    sort?: GETMelonSongSearchSort;
+    section?: GETMelonSongSearchSection;
   }
 ): Promise<GETMelonSongSearchResponse> => {
   const { page = 1, sort = "hit", section = "all" } = options || {};
-  const result = await musicbookAxios.request({
-    method: "GET",
-    url: "/melon/song",
+  const result = await musicbookAxios.get("/melon/song", {
     params: { q, page, sort, section },
   });
 

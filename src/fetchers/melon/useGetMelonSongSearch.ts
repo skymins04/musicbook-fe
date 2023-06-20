@@ -1,8 +1,8 @@
 import useSWR from "swr";
 import {
   GETMelonSongSearchResponse,
-  MelonSongSearchSection,
-  MelonSongSearchSort,
+  GETMelonSongSearchSection,
+  GETMelonSongSearchSort,
   GETMelonSongSearch,
 } from "@/apis";
 
@@ -10,8 +10,8 @@ type FetcherArgs = readonly [
   [string, string],
   string,
   number,
-  MelonSongSearchSort,
-  MelonSongSearchSection
+  GETMelonSongSearchSort,
+  GETMelonSongSearchSection
 ];
 
 const fetcher = async ([
@@ -28,8 +28,8 @@ export const useGetMelonSongSearch = (
   q: string,
   options?: {
     page?: number;
-    sort?: MelonSongSearchSort;
-    section?: MelonSongSearchSection;
+    sort?: GETMelonSongSearchSort;
+    section?: GETMelonSongSearchSection;
   }
 ) => {
   const { page = 1, sort = "hit", section = "all" } = options || {};

@@ -11,10 +11,7 @@ export const PATCHUserMe = async (options?: {
     formData.append(key, itm);
   }
 
-  await musicbookAxios.request({
-    method: "PATCH",
-    url: "/user/me",
-    data: formData,
+  await musicbookAxios.patch("/user/me", formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },

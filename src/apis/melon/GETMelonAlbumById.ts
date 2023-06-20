@@ -12,13 +12,10 @@ export type GETMelonAlbumResponse = {
   };
 };
 
-export const GETMelonAlbum = async (
+export const GETMelonAlbumById = async (
   id: number
 ): Promise<GETMelonAlbumResponse> => {
-  const result = await musicbookAxios.request({
-    method: "GET",
-    url: `/melon/album/${id}`,
-  });
+  const result = await musicbookAxios.get(`/melon/album/${id}`);
 
   return result.data.data;
 };
