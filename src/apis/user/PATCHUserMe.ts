@@ -1,10 +1,12 @@
 import { musicbookAxios } from "../client";
 
-export const PATCHUserMe = async (options?: {
+export type PATCHUserMeOptions = {
   displayName?: string;
   description?: string;
   profileImg?: File;
-}) => {
+};
+
+export const PATCHUserMe = async (options?: PATCHUserMeOptions) => {
   const formData = new FormData();
 
   for (const [key, itm] of Object.entries(options || {})) {

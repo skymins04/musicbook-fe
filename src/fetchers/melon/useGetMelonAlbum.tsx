@@ -1,9 +1,10 @@
 import useSWR from "swr";
-import { GETMelonAlbumResponse, GETMelonAlbum } from "@/apis";
+import { GETMelonAlbumResponse, GETMelonAlbumById } from "@/apis";
 
 type FetcherArgs = readonly [[string, string], number];
 
-const fetcher = async ([[method, url], id]: FetcherArgs) => GETMelonAlbum(id);
+const fetcher = async ([[method, url], id]: FetcherArgs) =>
+  GETMelonAlbumById(id);
 
 export const useGetMelonAlbum = (id: number) => {
   return useSWR<GETMelonAlbumResponse, any, FetcherArgs>(
