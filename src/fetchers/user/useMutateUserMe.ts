@@ -10,7 +10,7 @@ const fetcher = async (
   await PATCHUserMe(arg);
 };
 
-export const useMutateUserMe = useSWRMutation<
+export const useMutateUserMe = () => useSWRMutation<
   any,
   any,
   FetcherKey,

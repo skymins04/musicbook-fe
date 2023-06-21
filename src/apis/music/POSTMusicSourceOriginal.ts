@@ -1,6 +1,6 @@
 import { musicbookAxios } from "../client";
 
-export const POSTMusicSourceOriginal = async (options: {
+export type POSTMusicSourceOriginalOptions = {
   title: string;
   artistName: string;
   artistThumbnail?: File;
@@ -8,7 +8,11 @@ export const POSTMusicSourceOriginal = async (options: {
   albumTitle?: string;
   albumThumbnail?: string;
   lyrics?: string;
-}) => {
+};
+
+export const POSTMusicSourceOriginal = async (
+  options: POSTMusicSourceOriginalOptions
+) => {
   const formData = new FormData();
   for (const [key, value] of Object.entries(options)) {
     formData.append(key, value);

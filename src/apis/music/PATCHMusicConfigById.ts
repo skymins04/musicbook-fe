@@ -5,5 +5,5 @@ export const PATCHMusicConfigById = async (
   musicId: string,
   options: Partial<MusicConfig>
 ) => {
-  return musicbookAxios.patch(`/music/${musicId}/config`, options);
+  await musicbookAxios.patch(`/music/${musicId}/config`, options);
 };

@@ -8,14 +8,18 @@ export type GETMusicSearchResponse = PagenationResponse<
   Music
 >;
 
-export const GETMusicSearch = async (options?: {
+export type GETMusicSearchOptions = {
   q?: string;
   page?: number;
   perPage?: number;
   sort?: GETMusicSearchSort;
   category?: string;
   bookId?: string;
-}): Promise<GETMusicSearchResponse> => {
+};
+
+export const GETMusicSearch = async (
+  options?: GETMusicSearchOptions
+): Promise<GETMusicSearchResponse> => {
   const {
     q,
     page = 1,

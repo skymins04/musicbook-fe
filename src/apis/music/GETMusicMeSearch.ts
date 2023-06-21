@@ -24,7 +24,7 @@ export const GETMusicMeSearch = async (options?: {
     category,
     bookId,
   } = options || {};
-  const result = await musicbookAxios.get("/music", {
+  const result = await musicbookAxios.get("/music/me", {
     params: {
       q,
       page,

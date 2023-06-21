@@ -2,8 +2,10 @@ import { appendFlattenObjectToFormData } from "@/utils/appendFlattenObjectToForm
 import { musicbookAxios } from "../client";
 import { MusicFormData } from "./music";
 
+export type POSTMusicType = "Melon" | "Original";
+
 export const POSTMusic = async (
-  type: "Melon" | "Original",
+  type: POSTMusicType,
   sourceId: string,
   options?: MusicFormData
 ) => {

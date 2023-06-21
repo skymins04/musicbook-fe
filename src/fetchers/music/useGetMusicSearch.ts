@@ -1,0 +1,34 @@
+import {
+  GETMusicSearch,
+  GETMusicSearchOptions,
+  GETMusicSearchSort,
+} from "@/apis";
+import useSWR from "swr";
+
+type FetcherKey = readonly [
+  [string, string],
+  string?,
+  number?,
+  number?,
+  GETMusicSearchSort?,
+  string?,
+  string?
+];
+
+const fetcher = ([
+  [method, url],
+  q,
+  page,
+  perPage,
+  sort,
+  category,
+  bookId,
+]: FetcherKey) => GETMusicSearch({ q, page, perPage, sort, category, bookId });
+
+export const useGetMusicById = (options?: GETMusicSearchOptions) => {
+  const { q, page, perPage, sort, category, bookId } = options || {};
+  return useSWR(
+    [["GET", "/music"], q, page, perPage, sort, category, bookId],
+    fetcher
+  );
+};
