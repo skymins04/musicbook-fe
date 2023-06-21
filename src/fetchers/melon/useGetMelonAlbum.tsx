@@ -8,7 +8,7 @@ const fetcher = async ([[method, url], id]: FetcherArgs) =>
 
 export const useGetMelonAlbum = (id: number) => {
   return useSWR<GETMelonAlbumResponse, any, FetcherArgs>(
-    [["GET", `/melon/album/${id}`], id],
+    [["GET", '/melon/album/${id}'], id],
     fetcher
   );
 };

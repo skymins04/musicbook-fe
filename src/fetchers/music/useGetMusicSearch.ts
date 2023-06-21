@@ -25,7 +25,7 @@ const fetcher = ([
   bookId,
 ]: FetcherKey) => GETMusicSearch({ q, page, perPage, sort, category, bookId });
 
-export const useGetMusicById = (options?: GETMusicSearchOptions) => {
+export const useGetMusicSearch = (options?: GETMusicSearchOptions) => {
   const { q, page, perPage, sort, category, bookId } = options || {};
   return useSWR(
     [["GET", "/music"], q, page, perPage, sort, category, bookId],

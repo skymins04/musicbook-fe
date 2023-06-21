@@ -1,21 +1,21 @@
 import { PagenationResponse, musicbookAxios } from "../client";
 import { Music } from "./music";
 
-export type GETMusicMeSearchSort = "NEWEST" | "SUGGEST" | "POPULAR";
+export type GETMyMusicSearchSort = "NEWEST" | "SUGGEST" | "POPULAR";
 
-export type GETMusicMeSearchResponse = PagenationResponse<
-  { sort: GETMusicMeSearchSort },
+export type GETMyMusicSearchResponse = PagenationResponse<
+  { sort: GETMyMusicSearchSort },
   Music
 >;
 
-export const GETMusicMeSearch = async (options?: {
+export const GETMyMusicSearch = async (options?: {
   q?: string;
   page?: number;
   perPage?: number;
-  sort?: GETMusicMeSearchSort;
+  sort?: GETMyMusicSearchSort;
   category?: string;
   bookId?: string;
-}): Promise<GETMusicMeSearchResponse> => {
+}): Promise<GETMyMusicSearchResponse> => {
   const {
     q,
     page = 1,

@@ -1,12 +1,12 @@
 export * from "./book";
 
 export * from "./GETBookSearch";
-export * from "./GETBookMe";
-export * from "./PATCHBookMe";
+export * from "./GETMyBook";
+export * from "./PATCHMyBook";
 export * from "./DELETEBookLikeById";
-export * from "./GETBookMeConfig";
-export * from "./PATCHBookMeConfig";
-export * from "./GETBookMeLikeCount";
+export * from "./GETMyBookConfig";
+export * from "./PATCHMyBookConfig";
+export * from "./GETMyBookLikeCount";
 export * from "./GETBookById";
 export * from "./GETBookLikeCountById";
 export * from "./POSTBookLikeById";

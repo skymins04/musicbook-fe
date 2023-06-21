@@ -4,7 +4,7 @@ export * from "./GETMusicSearch";
 export * from "./POSTMusic";
 export * from "./POSTMusicSourceOriginal";
 export * from "./POSTMusicSourceMelon";
-export * from "./GETMusicMeSearch";
+export * from "./GETMyMusicSearch";
 export * from "./GETMusicById";
 export * from "./PATCHMusicById";
 export * from "./DELETEMusicById";

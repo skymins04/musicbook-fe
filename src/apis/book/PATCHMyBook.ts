@@ -1,13 +1,15 @@
 import { musicbookAxios } from "../client";
 
-export const PATCHBookMe = async (options: {
+export type PATCHMyBookOptions = {
   customId?: string;
   title?: string;
   description?: string;
   requestCommandPrefix?: string;
   thumbnail?: File;
   background?: File;
-}) => {
+};
+
+export const PATCHMyBook = async (options: PATCHMyBookOptions) => {
   const formData = new FormData();
   for (const [key, value] of Object.entries(options)) {
     formData.append(key, value);

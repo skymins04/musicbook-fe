@@ -8,7 +8,7 @@ const fetcher = async ([[method, url], id]: FetcherArgs) =>
 
 export const useGetMelonSong = (id: number) => {
   return useSWR<GETMelonSongResponse, any, FetcherArgs>(
-    [["GET", `/melon/song/${id}`], id],
+    [["GET", '/melon/song/${id}'], id],
     fetcher
   );
 };

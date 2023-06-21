@@ -7,4 +7,4 @@ const fetcher = ([[method, url], musicId]: FetcherKey) =>
   GETMusicLikeCountById(musicId);
 
 export const useGetMusicLikeCountById = (musicId: string) =>
-  useSWR([["GET", `/music/${musicId}/like`], musicId], fetcher);
+  useSWR([["GET", '/music/${musicId}/like'], musicId], fetcher);
