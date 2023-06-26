@@ -1,4 +1,4 @@
-import { appendFlattenObjectToFormData } from "@/utils/appendFlattenObjectToFormData";
+import { appendFlattenObjectToFormData } from "@/utils";
 import { MusicFormData } from "./music";
 import { musicbookAxios } from "../client";
 
