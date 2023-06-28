@@ -1,5 +1,6 @@
+import { IMAGES } from "@/constants";
+
 export default function Index() {
-  return (
-    <h1>hello world</h1>
-  );
+  console.log(IMAGES.COMMON.DEFAULT_THUMBNAIL);
+  return <h1>hello world</h1>;
 }
