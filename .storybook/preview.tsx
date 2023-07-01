@@ -1,6 +1,7 @@
-import React from "react";
 import type { Preview } from "@storybook/react";
 import "../src/themes/base.css";
+import { useEffect } from "react";
+import React from "react";
 
 const preview: Preview = {
   parameters: {
@@ -15,3 +16,32 @@ const preview: Preview = {
 };
 
 export default preview;
+
+export const decorators = [
+  (Story, context) => {
+    const colorMode = context.globals.colorMode;
+
+    useEffect(() => {
+      const nodes = document.querySelectorAll("body");
+      for (const node of nodes) {
+        node.classList.remove(colorMode === "light" ? "dark" : "light");
+        node.classList.add(colorMode === "light" ? "light" : "dark");
+      }
+    }, [colorMode]);
+    return <Story />;
+  },
+];
+
+export const globalTypes = {
+  colorMode: {
+    name: "Color Mode",
+    defaultValue: "light",
+    toolbar: {
+      items: [
+        { title: "Light", value: "light" },
+        { title: "Dark", value: "dark" },
+      ],
+      dynamicTitle: true,
+    },
+  },
+};
