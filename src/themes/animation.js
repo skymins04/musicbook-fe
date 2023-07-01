@@ -60,6 +60,16 @@ module.exports = {
     transform: 'transform',
   },
   keyframes: {
+    spin: {
+      "0%": {
+        transform: "rotate(0deg)",
+        transformOrigin: "center center",
+      },
+      "100%": {
+        transform: "rotate(360deg)",
+        transformOrigin: "center center",
+      }
+    },
     progressAnimation: {
       '0%': {
         strokeDashoffset: 100,

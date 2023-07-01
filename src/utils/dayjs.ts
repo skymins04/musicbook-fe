@@ -4,6 +4,4 @@ import tz from "dayjs/plugin/timezone";
 
 dayjs.extend(utc);
 dayjs.extend(tz);
-dayjs.tz.setDefault('Asia/Seoul');
-
-export const dayJs = dayjs;
+dayjs.tz.setDefault("Asia/Seoul");
