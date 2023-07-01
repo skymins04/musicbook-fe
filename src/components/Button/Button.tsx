@@ -22,7 +22,7 @@ export type ButtonProps = {
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const buttonBaseStyle =
-  "flex justify-center items-center gap-8 rounded-6 duration-200 font-normal";
+  "flex justify-center items-center gap-8 rounded-6 duration-200 font-normal focus:outline-none";
 
 const buttonBaseInteractStyle =
   "disabled:cursor-not-allowed disabled:opacity-40";
