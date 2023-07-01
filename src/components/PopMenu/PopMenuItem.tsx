@@ -17,7 +17,7 @@ export const PopMenuItem = ({
     <button
       {...props}
       className={classNames(
-        "group flex h-[40px] items-center justify-start px-[22px] text-gray-800 duration-200 hover:bg-gray-100 focus:outline-none active:bg-gray-200 dark:text-white dark:hover:bg-gray-800 dark:active:bg-gray-900",
+        "group flex h-[40px] items-center justify-start px-[22px] font-normal text-gray-800 duration-200 hover:bg-gray-100 focus:outline-none active:bg-gray-200 dark:text-white dark:hover:bg-gray-800 dark:active:bg-gray-900",
         className
       )}
     >
