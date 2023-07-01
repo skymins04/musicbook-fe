@@ -98,7 +98,7 @@ const buttonColorVariantHoverActiveStyleMap: Record<
   secondary: {
     solid: "hover:bg-gray-300 active:bg-gray-400 disabled:!bg-gray-200",
     ghost:
-      "hover:bg-blackAlpha-200 active:bg-gray-400/20 disabled:!bg-transparent dark:hover:bg-whiteAlpha-200",
+      "hover:bg-blackAlpha-200 active:bg-gray-400/20 dark:active:bg-gray-400/20 disabled:!bg-transparent dark:hover:bg-whiteAlpha-200",
     outlined:
       "hover:bg-blackAlpha-200 active:bg-gray-400/20 dark:active:bg-gray-400/20 disabled:!bg-transparent dark:hover:bg-whiteAlpha-200",
     text: "",
