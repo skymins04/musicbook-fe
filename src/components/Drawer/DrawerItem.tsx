@@ -33,7 +33,10 @@ export const DrawerItem = ({
       {...props}
       onClick={isShow ? onClick : undefined}
       className={classNames(
-        "group box-border flex w-full items-center rounded-6 bg-white font-normal text-gray-700 duration-200 hover:bg-gray-100 active:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800 dark:active:bg-gray-900",
+        "group box-border flex w-full items-center rounded-6 bg-white font-normal text-gray-700 duration-200 dark:bg-gray-700 dark:text-white",
+        isShow
+          ? "hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-gray-800 dark:active:bg-gray-900"
+          : "cursor-default",
         isMinified
           ? "h-[74px] flex-col justify-center gap-[5px] px-12 !text-12"
           : "h-[40px] flex-row justify-start gap-16 px-8 !text-16",

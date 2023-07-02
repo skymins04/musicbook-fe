@@ -42,7 +42,10 @@ export const PopMenuItem = ({
       {...props}
       onClick={isShow ? onClick : undefined}
       className={classNames(
-        "group flex h-[40px] min-w-[200px] items-center justify-start gap-10 px-[22px] font-normal text-gray-800 duration-200 hover:bg-gray-100 focus:outline-none active:bg-gray-200 dark:text-white dark:hover:bg-gray-800 dark:active:bg-gray-900",
+        "group flex h-[40px] min-w-[200px] items-center justify-start gap-10 px-[22px] font-normal text-gray-800 duration-200 focus:outline-none dark:text-white",
+        isShow
+          ? "hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-gray-800 dark:active:bg-gray-900"
+          : "cursor-default",
         className
       )}
     >

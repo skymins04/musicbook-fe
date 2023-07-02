@@ -8,6 +8,7 @@ import { Home, HomeOutlined } from "@mui/icons-material";
 import { DrawerMinifiedHidden } from "./DrawerMinifiedHidden";
 import { Divider } from "../Divider";
 import { useState } from "react";
+import { DrawerSubtitle } from "./DrawerSubtitle";
 
 const meta: Meta<typeof Drawer> = {
   title: "Common/Drawer",
@@ -50,6 +51,7 @@ export const Default: Story = {
           </DrawerItem>
           <DrawerMinifiedHidden>
             <Divider />
+            <DrawerSubtitle isShow={isShow}>서브타이틀</DrawerSubtitle>
             <DrawerItem
               isShow={isShow}
               icon={<HomeOutlined />}
