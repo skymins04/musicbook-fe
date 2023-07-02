@@ -8,3 +8,4 @@ export * from "./Skeleton";
 export * from "./Avatar";
 export * from "./ProfileImage";
 export * from "./Dimmer";
+export * from "./Dialog";

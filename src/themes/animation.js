@@ -9,9 +9,10 @@ module.exports = {
     "notify-fade": "fade linear 0.2s forwards",
     "slide-up": "slide_up 1s forwards",
     jump: "jump 2s ease infinite",
-    "fade-in": "fade_in 0.5s ease-in forwards",
-    "fade-out": "fade_out 0.5s ease-out forwards",
+    "fade-in": "fade_in 0.2s ease-in-out forwards",
+    "fade-out": "fade_out 0.2s ease-in-out forwards",
     skeletonLoading: "skeletonLoading 2s linear infinite",
+    popUp: "popUp 0.2s ease-in-out forwards",
   },
   transitionDelay: {
     75: "75ms",
@@ -61,6 +62,18 @@ module.exports = {
     transform: "transform",
   },
   keyframes: {
+    popUp: {
+      "0%": {
+        opacity: "0",
+        transform: "scale(0.9)",
+        transformOrigin: "center center",
+      },
+      "100%": {
+        opacity: "1",
+        transform: "scale(1)",
+        transformOrigin: "center center",
+      },
+    },
     skeletonLoading: {
       "0%": {
         left: "-300%",

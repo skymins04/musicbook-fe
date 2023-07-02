@@ -13,9 +13,13 @@ type Story = StoryObj<typeof Dimmer>;
 
 export const Default: Story = {
   args: {
-    className: "",
+    className: "!relative h-[200px]",
   },
   render(args) {
-    return <Dimmer {...args} />;
+    return (
+      <div className="h-[500px] w-full">
+        <Dimmer {...args} />
+      </div>
+    );
   },
 };
