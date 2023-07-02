@@ -7,6 +7,8 @@ import {
   SettingsRemote,
   SettingsRemoteOutlined,
 } from "@mui/icons-material";
+import { Button } from "../Button";
+import { useState } from "react";
 
 const meta: Meta<typeof PopMenu> = {
   title: "Common/PopMenu",
@@ -22,17 +24,24 @@ export const Default: Story = {
     className: "",
   },
   render(args) {
+    const [isShow, setIsShow] = useState(false);
     return (
-      <PopMenu {...args}>
-        <PopMenuItem>hello</PopMenuItem>
-        <PopMenuItem
-          leftIcon={<SettingsRemoteOutlined />}
-          hoveredLeftIcon={<SettingsRemote />}
-          rightIcon={<Launch sx={{ fontSize: "100%" }} />}
-        >
-          리모컨 열기
-        </PopMenuItem>
-      </PopMenu>
+      <div className="flex flex-col items-start justify-start gap-10">
+        <Button onClick={() => setIsShow((state) => !state)}>
+          toggle skeleton
+        </Button>
+        <PopMenu {...args}>
+          <PopMenuItem isShow={isShow}>hello</PopMenuItem>
+          <PopMenuItem
+            isShow={isShow}
+            leftIcon={<SettingsRemoteOutlined />}
+            hoveredLeftIcon={<SettingsRemote />}
+            rightIcon={<Launch sx={{ fontSize: "100%" }} />}
+          >
+            리모컨 열기
+          </PopMenuItem>
+        </PopMenu>
+      </div>
     );
   },
 };

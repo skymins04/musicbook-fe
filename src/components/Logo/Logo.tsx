@@ -1,5 +1,7 @@
 import { IMAGES } from "@/constants";
 import classNames from "classnames";
+import { Skeleton } from "../Skeleton";
+import { useState } from "react";
 
 export type LogoSize = "xs" | "sm" | "md" | "lg";
 
@@ -8,6 +10,7 @@ export type LogoProps = {
   isShowText?: boolean;
   size?: LogoSize;
   className?: string;
+  innnerClassName?: string;
 };
 
 const LogoWrapperStyleMap: Record<LogoSize, string> = {
@@ -36,43 +39,70 @@ export const Logo = ({
   isShowText = true,
   size = "lg",
   className,
+  innnerClassName,
 }: LogoProps) => {
+  const [isLoadedIcon, setIsLoadedIcon] = useState(false);
+  const [isLoadedIconDark, setIsLoadedIconDark] = useState(false);
+  const [isLoadedText, setIsLoadedText] = useState(false);
+  const [isLoadedTextDark, setIsLoadedTextDark] = useState(false);
+
+  const isLoaded =
+    isLoadedIcon && isLoadedIconDark && isLoadedText && isLoadedTextDark;
+
   return (
-    <div
-      className={classNames(
-        "flex items-center justify-start",
-        LogoWrapperStyleMap[size],
-        className
-      )}
-    >
-      {isShowIcon && (
-        <>
-          <img
-            className={classNames("block dark:hidden", LogoIconStyleMap[size])}
-            src={IMAGES.COMMON.LOGO_ICON}
-            alt=""
-          />
-          <img
-            className={classNames("hidden dark:block", LogoIconStyleMap[size])}
-            src={IMAGES.COMMON.LOGO_ICON_DARK}
-            alt=""
-          />
-        </>
-      )}
-      {isShowText && (
-        <>
-          <img
-            className={classNames("block dark:hidden", LogoTextStyleMap[size])}
-            src={IMAGES.COMMON.LOGO_TEXT}
-            alt=""
-          />
-          <img
-            className={classNames("hidden dark:block", LogoTextStyleMap[size])}
-            src={IMAGES.COMMON.LOGO_TEXT_DARK}
-            alt=""
-          />
-        </>
-      )}
-    </div>
+    <Skeleton isShow={isLoaded} className={className}>
+      <div
+        className={classNames(
+          "flex items-center justify-start",
+          LogoWrapperStyleMap[size],
+          innnerClassName
+        )}
+      >
+        {isShowIcon && (
+          <>
+            <img
+              className={classNames(
+                "block dark:hidden",
+                LogoIconStyleMap[size]
+              )}
+              src={IMAGES.COMMON.LOGO_ICON}
+              onLoad={() => setIsLoadedIcon(true)}
+              alt="노래책"
+            />
+            <img
+              className={classNames(
+                "hidden dark:block",
+                LogoIconStyleMap[size]
+              )}
+              src={IMAGES.COMMON.LOGO_ICON_DARK}
+              onLoad={() => setIsLoadedIconDark(true)}
+              alt="노래책"
+            />
+          </>
+        )}
+        {isShowText && (
+          <>
+            <img
+              className={classNames(
+                "block dark:hidden",
+                LogoTextStyleMap[size]
+              )}
+              src={IMAGES.COMMON.LOGO_TEXT}
+              onLoad={() => setIsLoadedText(true)}
+              alt="노래책"
+            />
+            <img
+              className={classNames(
+                "hidden dark:block",
+                LogoTextStyleMap[size]
+              )}
+              src={IMAGES.COMMON.LOGO_TEXT_DARK}
+              onLoad={() => setIsLoadedTextDark(true)}
+              alt="노래책"
+            />
+          </>
+        )}
+      </div>
+    </Skeleton>
   );
 };

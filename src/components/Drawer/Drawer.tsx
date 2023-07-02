@@ -2,6 +2,7 @@ import { useGlobalDisclosure } from "@/hooks";
 import classNames from "classnames";
 import { Children, ReactNode, cloneElement, isValidElement } from "react";
 import { Divider } from "../Divider";
+import { Skeleton } from "../Skeleton";
 
 export type DrawerBaseProps = {
   isAllowMinified?: boolean;
@@ -10,12 +11,14 @@ export type DrawerBaseProps = {
 export type DrawerProps = {
   className?: string;
   children: ReactNode;
+  isShow?: boolean;
 } & DrawerBaseProps;
 
 export const Drawer = ({
   className,
   children,
   isAllowMinified,
+  isShow,
 }: DrawerProps) => {
   const childrenWithProps = Children.map(children, (child) => {
     if (isValidElement(child)) {
@@ -47,12 +50,18 @@ export const Drawer = ({
           <Divider />
           <div className="box-border flex w-full flex-col items-start justify-center gap-[5px] px-10 text-12 font-normal">
             <div className="flex w-full items-center justify-start gap-10">
-              <a href="#">이용약관</a>
-              <a href="#">개인정보처리방침</a>
+              <Skeleton isAllowDuration isShow={isShow}>
+                <a href="#">이용약관</a>
+              </Skeleton>
+              <Skeleton isAllowDuration isShow={isShow}>
+                <a href="#">개인정보처리방침</a>
+              </Skeleton>
             </div>
-            <span className="w-full break-all text-gray-500">
-              © 2023. 노래책 MUSICBOOK. All Rights Reserved.{" "}
-            </span>
+            <Skeleton isAllowDuration isShow={isShow}>
+              <span className="w-full break-all text-gray-500">
+                © 2023. 노래책 MUSICBOOK. All Rights Reserved.
+              </span>
+            </Skeleton>
           </div>
         </>
       )}
