@@ -5,3 +5,5 @@ export * from "./Divider";
 export * from "./AspectRatio";
 export * from "./Drawer";
 export * from "./Skeleton";
+export * from "./Avatar";
+export * from "./ProfileImage";
