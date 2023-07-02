@@ -5,8 +5,8 @@ export type User = {
   email: string;
   description: string;
   createdAt: string;
-  updatedAt: string;
-  deletedAt: string;
+  updatedAt: string | null;
+  deletedAt: string | null;
   twitch?: {
     twitchId: string;
     twitchLogin: string;

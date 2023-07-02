@@ -30,7 +30,7 @@ export const Avatar = ({
       />
       {!isError && (
         <AspectRatio
-          className="!absolute left-0 top-0 h-full w-full rounded-full duration-200 group-hover:bg-blackAlpha-200"
+          className="!absolute left-0 top-0 h-full w-full rounded-full duration-200 group-hover:bg-blackAlpha-200 dark:group-hover:bg-blackAlpha-500"
           ratio={1}
         />
       )}

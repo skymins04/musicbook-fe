@@ -50,8 +50,8 @@ export type MusicSourceOriginal = {
   albumThumbnail: string;
   lyrics: string;
   createdAt: string;
-  updatedAt: string;
-  deletedAt: string;
+  updatedAt: string | null;
+  deletedAt: string | null;
 };
 
 export type MusicSourceMelon = {
@@ -67,8 +67,8 @@ export type MusicSourceMelon = {
   lyrics: string;
   releasedAt: string;
   createdAt: string;
-  updatedAt: string;
-  deletedAt: string;
+  updatedAt: string | null;
+  deletedAt: string | null;
 };
 
 export type MusicLike = {
@@ -83,22 +83,22 @@ export type Music = {
   title: string;
   category: string;
   description: string;
-  previewURL: string;
-  previewType: PreviewType;
-  mrURL: string;
-  mrType: MrType;
+  previewURL: string | null;
+  previewType: PreviewType | null;
+  mrURL: string | null;
+  mrType: MrType | null;
   likeCount: number;
   isAllowRequest: boolean;
   isHide: boolean;
   isPaid: boolean;
   createdAt: string;
-  updatedAt: string;
-  deletedAt: string;
+  updatedAt: string | null;
+  deletedAt: string | null;
   broadcaster: User;
   book?: Book;
-  musicSourceOriginal: MusicSourceOriginal;
-  musicSourceMelon: MusicSourceMelon;
-  musicLikes: MusicLike[];
+  musicSourceOriginal: MusicSourceOriginal | null;
+  musicSourceMelon: MusicSourceMelon | null;
+  musicLikes?: MusicLike[];
 };
 
 export type MusicConfig = {

@@ -9,3 +9,4 @@ export * from "./Avatar";
 export * from "./ProfileImage";
 export * from "./Dimmer";
 export * from "./Dialog";
+export * from "./MusicCard";
