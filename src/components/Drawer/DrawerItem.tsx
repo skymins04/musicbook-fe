@@ -40,7 +40,7 @@ export const DrawerItem = ({
         className
       )}
     >
-      <Skeleton isShow={isShow} isKeepWidth isAllowDuration>
+      <Skeleton isShow={isShow} isKeepWidth>
         <div className="min-w-24 relative flex h-24 w-24 items-center justify-center text-24 group-hover:hidden">
           {icon}
         </div>

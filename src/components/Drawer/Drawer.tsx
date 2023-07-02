@@ -48,17 +48,17 @@ export const Drawer = ({
       {!isMinified && (
         <>
           <Divider />
-          <div className="box-border flex w-full flex-col items-start justify-center gap-[5px] px-10 text-12 font-normal">
-            <div className="flex w-full items-center justify-start gap-10">
-              <Skeleton isAllowDuration isShow={isShow}>
+          <div className="box-border flex w-full flex-col items-start justify-center gap-[5px] px-10 text-12 font-normal duration-200">
+            <div className="flex w-full items-center justify-start gap-10 text-gray-800 dark:text-white">
+              <Skeleton isShow={isShow}>
                 <a href="#">이용약관</a>
               </Skeleton>
-              <Skeleton isAllowDuration isShow={isShow}>
+              <Skeleton isShow={isShow}>
                 <a href="#">개인정보처리방침</a>
               </Skeleton>
             </div>
-            <Skeleton isAllowDuration isShow={isShow}>
-              <span className="w-full break-all text-gray-500">
+            <Skeleton isShow={isShow}>
+              <span className="w-full break-all text-gray-500 dark:text-gray-400">
                 © 2023. 노래책 MUSICBOOK. All Rights Reserved.
               </span>
             </Skeleton>
