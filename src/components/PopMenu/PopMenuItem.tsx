@@ -46,7 +46,7 @@ export const PopMenuItem = ({
         className
       )}
     >
-      <Skeleton isShow={isShow} isAllowDuration>
+      <Skeleton isShow={isShow}>
         <div className={classNames("flex group-hover:hidden", leftIconStyle)}>
           {leftIcon}
         </div>
@@ -54,10 +54,10 @@ export const PopMenuItem = ({
           {hoveredLeftIcon || leftIcon}
         </div>
       </Skeleton>
-      <Skeleton width="100px" height="16px" isShow={isShow} isAllowDuration>
+      <Skeleton width="100px" height="16px" isShow={isShow}>
         {children}
       </Skeleton>
-      <Skeleton isShow={isShow} isAllowDuration className="ml-auto">
+      <Skeleton isShow={isShow} className="ml-auto">
         <div className={classNames("flex group-hover:hidden", rightIconStyle)}>
           {rightIcon}
         </div>
