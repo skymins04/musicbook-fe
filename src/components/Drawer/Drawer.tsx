@@ -2,7 +2,7 @@ import { useGlobalDisclosure } from "@/hooks";
 import classNames from "classnames";
 import { Children, ReactNode, cloneElement, isValidElement } from "react";
 import { Divider } from "../Divider";
-import { Skeleton } from "../Skeleton";
+import { Skeleton, SkeletonBaseProps } from "../Skeleton";
 
 export type DrawerBaseProps = {
   isAllowMinified?: boolean;
@@ -11,8 +11,8 @@ export type DrawerBaseProps = {
 export type DrawerProps = {
   className?: string;
   children: ReactNode;
-  isShow?: boolean;
-} & DrawerBaseProps;
+} & SkeletonBaseProps &
+  DrawerBaseProps;
 
 export const Drawer = ({
   className,

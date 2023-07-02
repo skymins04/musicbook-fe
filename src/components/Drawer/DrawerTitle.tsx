@@ -2,24 +2,24 @@ import classNames from "classnames";
 import { ReactNode } from "react";
 import { Skeleton, SkeletonBaseProps } from "../Skeleton";
 
-export type DrawerSubtitleProps = {
+export type DrawerTitleProps = {
   className?: string;
   children: ReactNode;
 } & SkeletonBaseProps;
 
-export const DrawerSubtitle = ({
+export const DrawerTitle = ({
   className,
-  isShow,
   children,
-}: DrawerSubtitleProps) => {
+  isShow,
+}: DrawerTitleProps) => {
   return (
-    <h2
+    <h1
       className={classNames(
-        "pb-4 pl-8 pt-8 text-16 font-bold text-gray-700 duration-200 dark:text-white",
+        "pl-8 text-20 font-bold text-gray-700 duration-200 dark:text-white",
         className
       )}
     >
       <Skeleton isShow={isShow}>{children}</Skeleton>
-    </h2>
+    </h1>
   );
 };

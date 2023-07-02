@@ -9,6 +9,7 @@ import { DrawerMinifiedHidden } from "./DrawerMinifiedHidden";
 import { Divider } from "../Divider";
 import { useState } from "react";
 import { DrawerSubtitle } from "./DrawerSubtitle";
+import { DrawerTitle } from "./DrawerTitle";
 
 const meta: Meta<typeof Drawer> = {
   title: "Common/Drawer",
@@ -42,6 +43,10 @@ export const Default: Story = {
         </div>
 
         <Drawer {...args} isShow={isShow}>
+          <DrawerMinifiedHidden>
+            <DrawerTitle isShow={isShow}>메인타이틀</DrawerTitle>
+            <Divider />
+          </DrawerMinifiedHidden>
           <DrawerItem
             isShow={isShow}
             icon={<HomeOutlined />}

@@ -2,13 +2,13 @@ import { DetailsHTMLAttributes, ReactNode } from "react";
 import { DrawerBaseProps } from "./Drawer";
 import classNames from "classnames";
 import { useGlobalDisclosure } from "@/hooks";
-import { Skeleton } from "../Skeleton";
+import { Skeleton, SkeletonBaseProps } from "../Skeleton";
 
 export type DrawerItemProps = {
   icon?: ReactNode;
   hoveredIcon?: ReactNode;
-  isShow?: boolean;
-} & DrawerBaseProps &
+} & SkeletonBaseProps &
+  DrawerBaseProps &
   DetailsHTMLAttributes<HTMLButtonElement>;
 
 export const DrawerItem = ({

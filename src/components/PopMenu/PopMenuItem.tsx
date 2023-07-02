@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { DetailsHTMLAttributes, ReactNode } from "react";
-import { Skeleton } from "../Skeleton";
+import { Skeleton, SkeletonBaseProps } from "../Skeleton";
 
 export type PopMenuItemProps = {
   leftIcon?: ReactNode;
@@ -9,8 +9,8 @@ export type PopMenuItemProps = {
   hoveredRightIcon?: ReactNode;
   leftIconClassName?: string;
   rightIconClassName?: string;
-  isShow?: boolean;
-} & DetailsHTMLAttributes<HTMLButtonElement>;
+} & SkeletonBaseProps &
+  DetailsHTMLAttributes<HTMLButtonElement>;
 
 const popMenuLeftIconBaseStyle =
   "relative h-[24px] w-[24px] min-w-[24px] items-center justify-center";

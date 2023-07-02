@@ -1,16 +1,19 @@
 import classNames from "classnames";
 import { ReactNode } from "react";
 
+export type SkeletonBaseProps = {
+  isShow?: boolean;
+};
+
 export type SkeletonProps = {
   width?: string | number;
   height?: string | number;
   className?: string;
   innerClassName?: string;
-  isShow?: boolean;
   isKeepWidth?: boolean;
   isAllowDuration?: boolean;
   children: ReactNode;
-};
+} & SkeletonBaseProps;
 
 export const Skeleton = ({
   width,
