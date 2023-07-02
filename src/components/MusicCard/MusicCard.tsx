@@ -36,7 +36,7 @@ export const MusicCard = ({
   return (
     <button
       className={classNames(
-        "relative flex w-full items-stretch justify-center rounded-6 shadow-md duration-200 hover:scale-[1.02] hover:shadow-lg focus:outline-none",
+        "relative flex w-full items-stretch justify-center rounded-6 shadow-md duration-200 hover:scale-[1.005] hover:shadow-lg focus:outline-none",
         type === "grid" && "max-w-[200px] flex-col",
         className
       )}
