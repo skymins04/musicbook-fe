@@ -7,3 +7,4 @@ export * from "./Drawer";
 export * from "./Skeleton";
 export * from "./Avatar";
 export * from "./ProfileImage";
+export * from "./Dimmer";
