@@ -3,9 +3,7 @@ const {
   textStyle,
   textEllipsis,
 } = require("./src/themes/typography");
-const {
-  theme: { colors },
-} = require("@chakra-ui/react");
+const colors = require("./src/themes/colors");
 const screens = require("./src/themes/screens");
 const layouts = require("./src/themes/layouts");
 const border = require("./src/themes/border");
