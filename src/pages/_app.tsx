@@ -1,4 +1,4 @@
-import { ProviderRoot } from "@/providers";
+import { ProviderRoot } from "@providers";
 import "@/themes/base.css";
 import type { AppProps } from "next/app";
 

@@ -2,6 +2,7 @@ import type { Preview } from "@storybook/react";
 import "../src/themes/base.css";
 import { useEffect } from "react";
 import React from "react";
+import { ProviderRoot } from "../src/providers";
 
 const preview: Preview = {
   parameters: {
@@ -28,7 +29,11 @@ export const decorators = [
         node.classList.add(colorMode === "light" ? "light" : "dark");
       }
     }, [colorMode]);
-    return <Story />;
+    return (
+      <ProviderRoot>
+        <Story />
+      </ProviderRoot>
+    );
   },
 ];
 
