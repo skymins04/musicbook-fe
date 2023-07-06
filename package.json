@@ -19,15 +19,10 @@
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/line-clamp": "^0.4.4",
     "@tailwindcss/typography": "^0.5.9",
-    "@types/node": "20.2.6",
-    "@types/react": "18.2.10",
-    "@types/react-dom": "18.2.4",
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
     "classnames": "^2.3.2",
     "dayjs": "^1.11.8",
-    "eslint": "8.42.0",
-    "eslint-config-next": "13.4.4",
     "next": "13.4.4",
     "postcss": "8.4.24",
     "postcss-import": "^15.1.0",
@@ -37,7 +32,6 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.44.3",
     "resize-observer-polyfill": "^1.5.1",
-    "storybook-tailwind-dark-mode": "^1.0.22",
     "swr": "^2.1.5",
     "tailwind-scrollbar": "^3.0.4",
     "tailwindcss": "3.3.2",
@@ -52,7 +46,13 @@
     "@storybook/nextjs": "^7.0.20",
     "@storybook/react": "^7.0.20",
     "@storybook/testing-library": "^0.0.14-next.2",
+    "@types/node": "20.2.6",
+    "@types/react": "18.2.10",
+    "@types/react-dom": "18.2.4",
+    "eslint": "8.42.0",
+    "eslint-config-next": "13.4.4",
     "eslint-plugin-storybook": "^0.6.12",
-    "storybook": "^7.0.20"
+    "storybook": "^7.0.20",
+    "storybook-tailwind-dark-mode": "^1.0.22"
   }
 }
