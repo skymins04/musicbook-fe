@@ -11,3 +11,4 @@ export * from "./Dimmer";
 export * from "./Dialog";
 export * from "./MusicCard";
 export * from "./Header";
+export * from "./PopMenuButton";
