@@ -47,7 +47,10 @@ export const Logo = ({
   const [isLoadedTextDark, setIsLoadedTextDark] = useState(false);
 
   const isLoaded =
-    isLoadedIcon && isLoadedIconDark && isLoadedText && isLoadedTextDark;
+    (isLoadedIcon || !isShowIcon) &&
+    (isLoadedIconDark || !isShowIcon) &&
+    (isLoadedText || !isShowText) &&
+    (isLoadedTextDark || !isShowText);
 
   return (
     <Skeleton isShow={isLoaded} className={className}>
