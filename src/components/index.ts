@@ -12,3 +12,5 @@ export * from "./Dialog";
 export * from "./MusicCard";
 export * from "./Header";
 export * from "./PopMenuButton";
+export * from "./TopNotice";
+export * from "./Form";

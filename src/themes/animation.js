@@ -13,6 +13,7 @@ module.exports = {
     "fade-out": "fade_out 0.2s ease-in-out forwards",
     skeletonLoading: "skeletonLoading 2s linear infinite",
     popUp: "popUp 0.2s ease-in-out forwards",
+    noticeScroll: "noticeScroll 10s linear infinite",
   },
   transitionDelay: {
     75: "75ms",
@@ -62,6 +63,14 @@ module.exports = {
     transform: "transform",
   },
   keyframes: {
+    noticeScroll: {
+      "0%": {
+        transform: "translateX(0)",
+      },
+      "100%": {
+        transform: "translateX(calc(-100% - 48px))",
+      },
+    },
     popUp: {
       "0%": {
         opacity: "0",
