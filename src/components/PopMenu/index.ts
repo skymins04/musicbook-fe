@@ -1,2 +1,2 @@
 export * from "./PopMenu";
-export * from "./PopMenuItem";
+export * from "./PopMenuButton";

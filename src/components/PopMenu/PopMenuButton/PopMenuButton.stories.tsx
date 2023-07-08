@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { PopMenuButton } from "./PopMenuButton";
-import { Button, PopMenuItem } from "..";
+import { Button, PopMenuItem } from "@components";
 import { Brightness6, Brightness6Outlined } from "@mui/icons-material";
 
 const meta: Meta<typeof PopMenuButton> = {
-  title: "Common/PopMenuButton",
+  title: "Common/PopMenu/PopMenuButton",
   component: PopMenuButton,
   tags: ["autodocs"],
 };

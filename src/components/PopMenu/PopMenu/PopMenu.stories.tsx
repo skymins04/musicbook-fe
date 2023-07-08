@@ -7,11 +7,11 @@ import {
   SettingsRemote,
   SettingsRemoteOutlined,
 } from "@mui/icons-material";
-import { Button } from "../Button";
+import { Button } from "@components";
 import { useState } from "react";
 
 const meta: Meta<typeof PopMenu> = {
-  title: "Common/PopMenu",
+  title: "Common/PopMenu/PopMenu",
   component: PopMenu,
   tags: ["autodocs"],
 };

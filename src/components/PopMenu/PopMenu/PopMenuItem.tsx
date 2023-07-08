@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { DetailsHTMLAttributes, ReactNode } from "react";
-import { Skeleton, SkeletonBaseProps } from "../Skeleton";
+import { Skeleton, SkeletonBaseProps } from "@components";
 
 export type PopMenuItemProps = {
   leftIcon?: ReactNode;
