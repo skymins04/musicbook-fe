@@ -42,7 +42,7 @@ export const PopMenuItem = ({
       {...props}
       onClick={isShow ? onClick : undefined}
       className={classNames(
-        "group flex h-[40px] min-w-[200px] items-center justify-start gap-10 px-[22px] font-normal text-gray-800 duration-200 focus:outline-none dark:text-white",
+        "group box-border flex h-[40px] w-full items-center justify-start gap-10 px-[22px] font-normal text-gray-800 duration-200 focus:outline-none dark:text-white",
         isShow
           ? "hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-gray-800 dark:active:bg-gray-900"
           : "cursor-default",
@@ -60,14 +60,20 @@ export const PopMenuItem = ({
       <Skeleton width="100px" height="16px" isShow={isShow}>
         {children}
       </Skeleton>
-      <Skeleton isShow={isShow} className="ml-auto">
-        <div className={classNames("flex group-hover:hidden", rightIconStyle)}>
-          {rightIcon}
-        </div>
-        <div className={classNames("hidden group-hover:flex", rightIconStyle)}>
-          {hoveredRightIcon || rightIcon}
-        </div>
-      </Skeleton>
+      {(rightIcon || hoveredRightIcon) && (
+        <Skeleton isShow={isShow} className="ml-auto">
+          <div
+            className={classNames("flex group-hover:hidden", rightIconStyle)}
+          >
+            {rightIcon}
+          </div>
+          <div
+            className={classNames("hidden group-hover:flex", rightIconStyle)}
+          >
+            {hoveredRightIcon || rightIcon}
+          </div>
+        </Skeleton>
+      )}
     </button>
   );
 };
