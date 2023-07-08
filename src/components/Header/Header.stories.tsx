@@ -16,6 +16,10 @@ export const Default: Story = {
     className: "",
   },
   render(args) {
-    return <Header {...args} />;
+    return (
+      <div className="h-[300px] w-full">
+        <Header {...args} />
+      </div>
+    );
   },
 };
