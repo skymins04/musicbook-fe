@@ -13,3 +13,4 @@ export * from "./MusicCard";
 export * from "./Header";
 export * from "./TopNotice";
 export * from "./Form";
+export * from "./Search";
