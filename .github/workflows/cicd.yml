@@ -25,6 +25,7 @@ jobs:
       - name: Create .env file
         run: |
           echo RELEASE_ENV=\"${{ secrets.RELEASE_ENV }}\" >> .env
+          echo DOMAIN=\"${{ secrets.DOMAIN }}\" >> .env
           # Add other variables as needed
 
       - name: Build and push Docker image
