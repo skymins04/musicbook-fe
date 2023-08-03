@@ -2,6 +2,7 @@
   "name": "musicbook-fe",
   "version": "0.1.0",
   "private": true,
+  "sideEffects": false,
   "scripts": {
     "dev": "next dev -p 4000",
     "build": "next build",

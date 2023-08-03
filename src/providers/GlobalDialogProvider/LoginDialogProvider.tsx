@@ -1,5 +1,9 @@
-import { LoginDialog } from "@components/Dialog/LoginDialog";
 import { useGlobalDisclosure } from "@hooks/useGlobalDisclosure";
+import dynamic from "next/dynamic";
+
+const LoginDialog = dynamic(() =>
+  import("@components/Dialog/LoginDialog").then((mod) => mod.LoginDialog)
+);
 
 export const LoginDialogProvider = () => {
   const { data, setData } = useGlobalDisclosure("login-dialog", false);
