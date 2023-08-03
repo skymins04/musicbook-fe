@@ -9,7 +9,7 @@ type FetcherArg = {
 };
 
 const fetcher = async (
-  key: FetcherKey,
+  _: FetcherKey,
   { arg: { type, sourceId, options } }: { arg: FetcherArg }
 ) => POSTMusic(type, sourceId, options);
 

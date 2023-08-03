@@ -5,7 +5,7 @@ type FetcherKey = readonly [[string, string]];
 type FetcherArg = { musicId: string };
 
 const fetcher = async (
-  key: FetcherKey,
+  _: FetcherKey,
   { arg: { musicId } }: { arg: FetcherArg }
 ) => POSTMusicLikeById(musicId);
 

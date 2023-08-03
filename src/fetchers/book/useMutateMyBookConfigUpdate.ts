@@ -4,7 +4,7 @@ import useSWRMutation from "swr/mutation";
 type FetcherKey = readonly [[string, string]];
 type FetcherArg = Partial<BookConfig>;
 
-const fetcher = async (key: FetcherKey, { arg }: { arg: FetcherArg }) =>
+const fetcher = async (_: FetcherKey, { arg }: { arg: FetcherArg }) =>
   PATCHMyBookConfig(arg);
 
 export const useMutateMyBookConfigUpdate = () =>

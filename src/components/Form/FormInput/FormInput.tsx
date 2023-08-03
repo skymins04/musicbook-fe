@@ -45,9 +45,9 @@ const inputRightIconPaddingSizeMap: Record<FormInputSize, string> = {
 const inputClearButtonBaseStyle =
   "rounded-full bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-600 absolute top-[50%] -translate-y-[50%] flex justify-center items-center";
 const inputIconBaseStyle =
-  "absolute top-[50%] -translate-y-[50%] flex justify-stretch items-stretch flex group-hover:hidden";
+  "flex absolute top-[50%] -translate-y-[50%] flex justify-center items-center flex group-hover:hidden";
 const inputHoveredIconBaseStyle =
-  "absolute top-[50%] -translate-y-[50%] flex justify-stretch items-stretch hidden group-hover:flex";
+  "flex absolute top-[50%] -translate-y-[50%] flex justify-center items-center hidden group-hover:flex";
 
 const inputRightIconSizeMap: Record<FormInputSize, string> = {
   xs: "w-[22px] h-[22px] text-[22px] right-0",
@@ -95,7 +95,8 @@ export const FormInput = ({
       {onClear && (
         <button
           className={classNames(
-            inputClearButtonBaseStyle,
+            "!flex",
+            inputIconBaseStyle,
             inputRightIconSizeMap[size]
           )}
           onClick={(e) => {
@@ -104,7 +105,10 @@ export const FormInput = ({
             onClear();
           }}
         >
-          <Close sx={{ fontSize: "100%" }} />
+          <Close
+            className={classNames(inputClearButtonBaseStyle)}
+            sx={{ fontSize: "16px" }}
+          />
         </button>
       )}
       {isShowLeftIconArea && (

@@ -46,7 +46,7 @@ export const MusicCard = ({
           "overflow-hidden !rounded-none",
           type === "grid"
             ? "!rounded-t-6"
-            : "!w-[20%] !min-w-[100px] !rounded-l-6"
+            : "!w-[20%] !min-w-[100px] !max-w-[150px] !rounded-l-6"
         )}
         src={musicAlbumThumbnail}
         alt={`${music.title} - ${music.book?.title}`}
@@ -80,7 +80,7 @@ export const MusicCard = ({
         >
           <Skeleton isShow={isShow}>{music.title}</Skeleton>
         </div>
-        <div className="box-border flex w-full items-stretch justify-between gap-8">
+        <div className="box-border flex items-stretch justify-between w-full gap-8">
           {isShowBookThumbnail && (
             <Link
               className="h-[36px] w-[36px]"
@@ -98,7 +98,7 @@ export const MusicCard = ({
               />
             </Link>
           )}
-          <div className="flex w-full flex-col items-start justify-center gap-4 text-12 font-normal text-gray-500 duration-200 dark:text-gray-400">
+          <div className="flex flex-col items-start justify-center w-full gap-4 font-normal text-gray-500 duration-200 text-12 dark:text-gray-400">
             <Skeleton isShow={isShow}>
               <Link
                 href="#"

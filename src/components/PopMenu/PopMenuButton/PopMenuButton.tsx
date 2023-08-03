@@ -21,6 +21,7 @@ type PopMenuDirection =
 export type PopMenuButtonProps = {
   className?: string;
   popMenuClassName?: string;
+  popMenuWrapperClassName?: string;
   btn: ReactElement;
   menuItems: ReactNode;
   menuDirection?: PopMenuDirection;
@@ -41,6 +42,7 @@ const PopMenuDirectionMap: Record<PopMenuDirection, string> = {
 export const PopMenuButton = ({
   className,
   popMenuClassName,
+  popMenuWrapperClassName,
   btn,
   menuItems,
   menuDirection = "bottom-left",
@@ -55,18 +57,19 @@ export const PopMenuButton = ({
     <>
       {isOpen && (
         <div
-          className="fixed top-0 left-0 z-10 w-full h-full"
+          className="fixed top-0 left-0 z-30 w-full h-full"
           onClick={() => setIsOpen.off()}
         ></div>
       )}
-      <div className={classNames("relative z-20 h-max w-max", className)}>
+      <div className={classNames("relative z-30 h-max w-max", className)}>
         {button}
         <PopMenu
-          className={classNames(
+          className={classNames(popMenuClassName)}
+          wrapperClassName={classNames(
             "pointer-events-none absolute w-max scale-90 opacity-0 !duration-200",
             isOpen && "!pointer-events-auto !flex !scale-100 !opacity-100",
             PopMenuDirectionMap[menuDirection],
-            popMenuClassName
+            popMenuWrapperClassName
           )}
         >
           {menuItems}

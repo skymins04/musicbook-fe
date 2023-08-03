@@ -2,11 +2,9 @@ import classNames from "classnames";
 import { Avatar, Button, Logo, PopMenuButton } from "..";
 import { Menu, MoreVert, Search } from "@mui/icons-material";
 import Link from "next/link";
-import { useGlobalDisclosure } from "@hooks/useGlobalDisclosure";
-import { useGetUserMe } from "@fetchers/user";
-import { useBoolean } from "@hooks/useBoolean";
-import { AvatarPopMenuItems } from "./AvatarPopMenuItems";
-import { EtcPopMenuItems } from "./EtcPopMenuItems";
+import { useGlobalDisclosure, useBoolean, useBreakpointSmaller } from "@hooks";
+import { useGetUserMe } from "@fetchers";
+import { EtcPopMenuItems, AvatarPopMenuItems } from "@components";
 
 export type HeaderProps = {
   className?: string;
@@ -14,7 +12,13 @@ export type HeaderProps = {
 
 export const Header = ({ className }: HeaderProps) => {
   const [isShowAvatar, setShowAvatar] = useBoolean(false);
-  const { toggle: toggleDrawer } = useGlobalDisclosure("drawer", false);
+  const isTablet = useBreakpointSmaller("tablet");
+  const { toggle: toggleOpenDrawer } = useGlobalDisclosure("drawer", false);
+  const { toggle: toggleMinifiedDrawer } = useGlobalDisclosure(
+    "drawer-minified",
+    false
+  );
+  const toggleDrawer = isTablet ? toggleOpenDrawer : toggleMinifiedDrawer;
   const { on: showSearchSpotlight } = useGlobalDisclosure(
     "search-spotlight",
     false
@@ -26,7 +30,7 @@ export const Header = ({ className }: HeaderProps) => {
   return (
     <div
       className={classNames(
-        "box-border flex h-[56px] w-full items-stretch justify-between bg-white px-12 duration-200 dark:bg-gray-700",
+        "z-20 box-border flex h-[56px] w-full items-stretch justify-between bg-white px-12 duration-200 dark:bg-gray-700",
         className
       )}
     >
@@ -57,20 +61,6 @@ export const Header = ({ className }: HeaderProps) => {
           className="box-border !w-[40px]"
           onClick={showSearchSpotlight}
         />
-        <PopMenuButton
-          btn={
-            <Button
-              variant="ghost"
-              color="secondary"
-              size="md"
-              leftIcon={<MoreVert sx={{ fontSize: "100%" }} />}
-              className="box-border !w-[40px] mobile:hidden"
-            />
-          }
-          menuItems={<EtcPopMenuItems />}
-          menuDirection="bottom-left"
-          popMenuClassName="!w-[200px]"
-        />
         {user ? (
           <PopMenuButton
             btn={
@@ -85,17 +75,34 @@ export const Header = ({ className }: HeaderProps) => {
             menuItems={<AvatarPopMenuItems />}
             menuDirection="bottom-left"
             popMenuClassName="!w-[200px]"
+            popMenuWrapperClassName="h-max max-h-[calc(100vh-84px-10px)]"
           />
         ) : (
-          <Button
-            variant="solid"
-            color="primary"
-            size="md"
-            className="ml-8 mobile:hidden"
-            onClick={showLoginDialog}
-          >
-            로그인
-          </Button>
+          <>
+            <PopMenuButton
+              btn={
+                <Button
+                  variant="ghost"
+                  color="secondary"
+                  size="md"
+                  leftIcon={<MoreVert sx={{ fontSize: "100%" }} />}
+                  className="box-border !w-[40px] mobile:hidden"
+                />
+              }
+              menuItems={<EtcPopMenuItems />}
+              menuDirection="bottom-left"
+              popMenuClassName="!w-[200px]"
+            />
+            <Button
+              variant="solid"
+              color="primary"
+              size="md"
+              className="ml-8 mobile:hidden"
+              onClick={showLoginDialog}
+            >
+              로그인
+            </Button>
+          </>
         )}
       </div>
     </div>

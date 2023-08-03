@@ -5,7 +5,7 @@ type FetcherKey = [[string, string]];
 type FetcherArg = { musicId: string; options: Partial<MusicConfig> };
 
 const fetcher = async (
-  [[method, url]]: FetcherKey,
+  _: FetcherKey,
   { arg: { musicId, options } }: { arg: FetcherArg }
 ) => {
   await PATCHMusicConfigById(musicId, options);

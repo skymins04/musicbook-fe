@@ -1,6 +1,5 @@
-import { IMAGES } from "@/constants";
+import { BaseLayout } from "@components/BaseLayout";
 
 export default function Index() {
-  console.log(IMAGES.COMMON.DEFAULT_THUMBNAIL);
-  return <h1>hello world</h1>;
+  return <BaseLayout />;
 }

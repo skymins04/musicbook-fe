@@ -6,3 +6,4 @@ export * from "./music";
 export * from "./book";
 export * from "./request";
 export * from "./widget";
+export * from "./notice";

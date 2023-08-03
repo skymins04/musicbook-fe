@@ -14,6 +14,7 @@ type Story = StoryObj<typeof Dimmer>;
 export const Default: Story = {
   args: {
     className: "!relative h-[200px]",
+    isOpen: true,
   },
   render(args) {
     return (

@@ -2,15 +2,34 @@ import { Close } from "@mui/icons-material";
 import { Button } from "..";
 import classNames from "classnames";
 import { useEffect, useRef, useState } from "react";
+import { useGetNotice } from "@fetchers/notice";
+import { useBoolean } from "@hooks/useBoolean";
 
-export const TopNotice = () => {
-  const [notice, setNotice] = useState(
-    "이건 매우 긴 한줄 공지 텍스트입니다. 이건 매우 긴 한줄 공지 텍스트입니다. 이건 매우 긴 한줄 공지 텍스트입니다. 이건 매우 긴 한줄 공지 텍스트입니다."
-  );
+export type TopNoticeProps = {
+  onClose?: () => void;
+  onOpen?: () => void;
+};
+
+export const TopNotice = ({ onClose, onOpen }: TopNoticeProps) => {
+  const [isOpen, setIsOpen] = useBoolean(false);
   const [isOverflow, setIsOverflow] = useState(false);
 
   const wrapperRef = useRef<HTMLAnchorElement>(null);
   const contentsRef = useRef<HTMLSpanElement>(null);
+
+  const { data } = useGetNotice();
+
+  const handleCloseNotice = () => {
+    setIsOpen.off();
+    onClose && onClose();
+  };
+
+  useEffect(() => {
+    if (data) {
+      setIsOpen.on();
+      onOpen && onOpen();
+    }
+  }, [data]);
 
   useEffect(() => {
     if (window && wrapperRef.current && contentsRef.current) {
@@ -30,39 +49,46 @@ export const TopNotice = () => {
   }, [wrapperRef.current, contentsRef.current]);
 
   return (
-    <div
-      className={classNames(
-        "duration:200 relative box-border h-max w-full bg-teal-500 px-48 py-6 font-normal text-white dark:bg-teal-200 dark:text-gray-800"
-      )}
-    >
-      <a
-        href="#"
-        referrerPolicy="no-referrer"
-        className={classNames(
-          "flex w-full items-center gap-48 overflow-hidden whitespace-nowrap",
-          isOverflow ? "justify-start" : "justify-center"
-        )}
-        ref={wrapperRef}
-      >
-        <span
-          ref={contentsRef}
+    <>
+      {isOpen && (
+        <div
           className={classNames(
-            "inline-block whitespace-nowrap",
-            isOverflow ? "animate-noticeScroll" : "mx-auto"
+            "duration:200 relative box-border h-max w-full bg-teal-500 px-[72px] py-6 font-normal text-white dark:bg-teal-200 dark:text-gray-800 tablet:px-48"
           )}
         >
-          {notice}
-        </span>
-        {isOverflow && (
-          <span className="inline-block animate-noticeScroll">{notice}</span>
-        )}
-      </a>
-      <Button
-        variant="ghost"
-        size="xs"
-        className="duration:200 absolute right-4 top-[50%] !box-border !w-24 -translate-y-[50%] !text-white dark:!text-gray-800"
-        leftIcon={<Close sx={{ fontSize: "100%" }} />}
-      />
-    </div>
+          <a
+            href={data?.link}
+            referrerPolicy="no-referrer"
+            className={classNames(
+              "flex w-full items-center gap-48 overflow-hidden whitespace-nowrap",
+              isOverflow ? "justify-start" : "justify-center"
+            )}
+            ref={wrapperRef}
+          >
+            <span
+              ref={contentsRef}
+              className={classNames(
+                "inline-block whitespace-nowrap",
+                isOverflow ? "animate-noticeScroll" : "mx-auto"
+              )}
+            >
+              {data?.message}
+            </span>
+            {isOverflow && (
+              <span className="inline-block animate-noticeScroll">
+                {data?.message}
+              </span>
+            )}
+          </a>
+          <Button
+            variant="ghost"
+            size="xs"
+            className="duration:200 absolute right-12 top-[50%] !box-border !w-24 -translate-y-[50%] !text-white dark:!text-gray-800"
+            leftIcon={<Close sx={{ fontSize: "100%" }} />}
+            onClick={handleCloseNotice}
+          />
+        </div>
+      )}
+    </>
   );
 };

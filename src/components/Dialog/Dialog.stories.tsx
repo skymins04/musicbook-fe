@@ -4,7 +4,7 @@ import { Dialog } from "./Dialog";
 import { Button } from "../Button";
 
 const meta: Meta<typeof Dialog> = {
-  title: "Common/Dialog",
+  title: "Common/Dialog/Dialog",
   component: Dialog,
   tags: ["autodocs"],
 };
@@ -18,6 +18,8 @@ export const Default: Story = {
     dimmerClassName: "absolute",
     wrapperClassName: "absolute",
     header: "다이얼로그 제목",
+    isDimmer: true,
+    isOpen: true,
   },
   render(args) {
     return (

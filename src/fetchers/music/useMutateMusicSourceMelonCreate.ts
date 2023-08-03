@@ -5,7 +5,7 @@ type FetcherKey = readonly [[string, string]];
 type FetcherArg = { melonSongId: string };
 
 const fetcher = async (
-  key: FetcherKey,
+  _: FetcherKey,
   { arg: { melonSongId } }: { arg: FetcherArg }
 ) => POSTMusicSourceMelon(melonSongId);
 

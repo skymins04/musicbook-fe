@@ -3,18 +3,30 @@ import { ReactNode } from "react";
 
 export type PopMenuProps = {
   className?: string;
+  wrapperClassName?: string;
   children: ReactNode;
 };
 
-export const PopMenu = ({ className, children }: PopMenuProps) => {
+export const PopMenu = ({
+  className,
+  wrapperClassName,
+  children,
+}: PopMenuProps) => {
   return (
     <div
       className={classNames(
-        "flex flex-col items-stretch justify-center gap-10 rounded-12 bg-white py-10 shadow-md duration-200 dark:bg-gray-700",
-        className
+        "overflow-y-auto overflow-x-hidden rounded-12 bg-white dark:bg-gray-700",
+        wrapperClassName
       )}
     >
-      {children}
+      <div
+        className={classNames(
+          "flex h-max flex-col items-stretch justify-center gap-4 py-10 shadow-md duration-200",
+          className
+        )}
+      >
+        {children}
+      </div>
     </div>
   );
 };

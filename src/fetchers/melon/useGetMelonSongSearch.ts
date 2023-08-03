@@ -14,13 +14,7 @@ type FetcherArgs = readonly [
   GETMelonSongSearchSection
 ];
 
-const fetcher = async ([
-  [method, url],
-  q,
-  page,
-  sort,
-  section,
-]: FetcherArgs) => {
+const fetcher = async ([, q, page, sort, section]: FetcherArgs) => {
   return await GETMelonSongSearch(q, { page, sort, section });
 };
 

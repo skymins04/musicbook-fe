@@ -1,8 +1,9 @@
 import { DetailsHTMLAttributes, ReactNode } from "react";
 import { DrawerBaseProps } from "./Drawer";
 import classNames from "classnames";
-import { useGlobalDisclosure } from "@/hooks";
+import { useBreakpointSmaller, useGlobalDisclosure } from "@/hooks";
 import { Skeleton, SkeletonBaseProps } from "../Skeleton";
+import Link from "next/link";
 
 export type DrawerItemProps = {
   icon?: ReactNode;
@@ -10,6 +11,10 @@ export type DrawerItemProps = {
 } & SkeletonBaseProps &
   DrawerBaseProps &
   DetailsHTMLAttributes<HTMLButtonElement>;
+
+export type DrawerLinkItemProps = {
+  href: string;
+} & DrawerItemProps;
 
 export const DrawerItem = ({
   className,
@@ -21,12 +26,15 @@ export const DrawerItem = ({
   onClick,
   ...props
 }: DrawerItemProps) => {
+  const isTablet = useBreakpointSmaller("tablet");
   const { data: isMinifiedDrawer } = useGlobalDisclosure(
     "drawer-minified",
     false
   );
 
-  const isMinified = isAllowMinified && isMinifiedDrawer;
+  const isMinified = isTablet
+    ? isAllowMinified
+    : isAllowMinified && isMinifiedDrawer;
 
   return (
     <button
@@ -44,10 +52,10 @@ export const DrawerItem = ({
       )}
     >
       <Skeleton isShow={isShow} isKeepWidth>
-        <div className="min-w-24 relative flex h-24 w-24 items-center justify-center text-24 group-hover:hidden">
+        <div className="relative flex items-center justify-center w-24 h-24 min-w-24 text-24 group-hover:hidden">
           {icon}
         </div>
-        <div className="min-w-24 relative hidden h-24 w-24 items-center justify-center text-24 group-hover:flex">
+        <div className="relative items-center justify-center hidden w-24 h-24 min-w-24 text-24 group-hover:flex">
           {hoveredIcon || icon}
         </div>
       </Skeleton>
@@ -55,10 +63,20 @@ export const DrawerItem = ({
         width="100%"
         height="16px"
         isShow={isShow}
-        className={classNames(isMinified ? "!text-center" : "!text-left")}
+        className={classNames(
+          isMinified ? "whitespace-nowrap !text-center" : "!text-left"
+        )}
       >
         {children}
       </Skeleton>
     </button>
+  );
+};
+
+export const DrawerLinkItem = ({ href, ...props }: DrawerLinkItemProps) => {
+  return (
+    <Link href={href} className="w-full h-max">
+      <DrawerItem {...props} />
+    </Link>
   );
 };

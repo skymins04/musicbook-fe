@@ -7,7 +7,7 @@ type FetcherArg = {
 };
 
 const fetcher = async (
-  key: FetcherKey,
+  _: FetcherKey,
   { arg: { bookId } }: { arg: FetcherArg }
 ) => POSTBookLikeById(bookId);
 

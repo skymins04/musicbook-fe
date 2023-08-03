@@ -7,7 +7,7 @@ import useSWRMutation from "swr/mutation";
 type FetcherKey = readonly [[string, string]];
 
 const fetcher = async (
-  key: FetcherKey,
+  _: FetcherKey,
   { arg }: { arg: POSTMusicSourceOriginalOptions }
 ) => POSTMusicSourceOriginal(arg);
 

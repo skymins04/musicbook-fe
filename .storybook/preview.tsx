@@ -29,8 +29,9 @@ export const decorators = [
         node.classList.add(colorMode === "light" ? "light" : "dark");
       }
     }, [colorMode]);
+
     return (
-      <ProviderRoot>
+      <ProviderRoot theme={colorMode}>
         <Story />
       </ProviderRoot>
     );

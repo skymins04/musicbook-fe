@@ -2,6 +2,7 @@ import { IMAGES } from "@/constants";
 import classNames from "classnames";
 import { Skeleton } from "../Skeleton";
 import { useState } from "react";
+import Image from "next/image";
 
 export type LogoSize = "xs" | "sm" | "md" | "lg";
 
@@ -47,10 +48,8 @@ export const Logo = ({
   const [isLoadedTextDark, setIsLoadedTextDark] = useState(false);
 
   const isLoaded =
-    (isLoadedIcon || !isShowIcon) &&
-    (isLoadedIconDark || !isShowIcon) &&
-    (isLoadedText || !isShowText) &&
-    (isLoadedTextDark || !isShowText);
+    ((isLoadedIcon || !isShowIcon) && (isLoadedText || !isShowText)) ||
+    ((isLoadedIconDark || !isShowIcon) && (isLoadedTextDark || !isShowText));
 
   return (
     <Skeleton isShow={isLoaded} className={className}>
@@ -63,46 +62,62 @@ export const Logo = ({
       >
         {isShowIcon && (
           <>
-            <img
+            <div
               className={classNames(
-                "block dark:hidden",
+                "relative block dark:hidden",
                 LogoIconStyleMap[size]
               )}
-              src={IMAGES.COMMON.LOGO_ICON}
-              onLoad={() => setIsLoadedIcon(true)}
-              alt="노래책"
-            />
-            <img
+            >
+              <Image
+                fill
+                src={IMAGES.COMMON.LOGO_ICON}
+                onLoadingComplete={() => setIsLoadedIcon(true)}
+                alt="노래책"
+              />
+            </div>
+            <div
               className={classNames(
-                "hidden dark:block",
+                "relative hidden dark:block",
                 LogoIconStyleMap[size]
               )}
-              src={IMAGES.COMMON.LOGO_ICON_DARK}
-              onLoad={() => setIsLoadedIconDark(true)}
-              alt="노래책"
-            />
+            >
+              <Image
+                fill
+                src={IMAGES.COMMON.LOGO_ICON_DARK}
+                onLoadingComplete={() => setIsLoadedIconDark(true)}
+                alt="노래책"
+              />
+            </div>
           </>
         )}
         {isShowText && (
           <>
-            <img
+            <div
               className={classNames(
-                "block dark:hidden",
+                "relative block dark:hidden",
                 LogoTextStyleMap[size]
               )}
-              src={IMAGES.COMMON.LOGO_TEXT}
-              onLoad={() => setIsLoadedText(true)}
-              alt="노래책"
-            />
-            <img
+            >
+              <Image
+                fill
+                src={IMAGES.COMMON.LOGO_TEXT}
+                onLoadingComplete={() => setIsLoadedText(true)}
+                alt="노래책"
+              />
+            </div>
+            <div
               className={classNames(
-                "hidden dark:block",
+                "relative hidden dark:block",
                 LogoTextStyleMap[size]
               )}
-              src={IMAGES.COMMON.LOGO_TEXT_DARK}
-              onLoad={() => setIsLoadedTextDark(true)}
-              alt="노래책"
-            />
+            >
+              <Image
+                fill
+                src={IMAGES.COMMON.LOGO_TEXT_DARK}
+                onLoadingComplete={() => setIsLoadedTextDark(true)}
+                alt="노래책"
+              />
+            </div>
           </>
         )}
       </div>

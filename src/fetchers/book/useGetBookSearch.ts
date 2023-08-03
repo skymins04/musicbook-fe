@@ -9,7 +9,7 @@ type FetcherKey = readonly [
   GETBookSearchSort
 ];
 
-const fetcher = async ([[method, url], q, page, perPage, sort]: FetcherKey) =>
+const fetcher = async ([, q, page, perPage, sort]: FetcherKey) =>
   GETBookSearch({ q, page, perPage, sort });
 
 export const useGetBookSearch = () =>

@@ -5,7 +5,7 @@
 @layer base {
   body,
   html {
-    @apply m-0 h-full w-full !p-0 text-[16px] font-medium leading-1 tracking-[-0.2px];
+    @apply m-0 h-full w-full overflow-hidden !p-0 text-[16px] font-medium leading-1 tracking-[-0.2px];
   }
 
   #__next {
@@ -67,11 +67,11 @@
   }
 
   *::-webkit-scrollbar {
-    width: 8px;
+    width: 12px;
   }
 
   *::-webkit-scrollbar-thumb {
-    @apply h-[30%] rounded-full bg-gray-200 dark:bg-gray-800;
+    @apply h-[30%] rounded-full border-[2px] border-solid border-[transparent] bg-gray-200 bg-clip-padding dark:bg-gray-800;
   }
 
   *::-webkit-scrollbar-track {
