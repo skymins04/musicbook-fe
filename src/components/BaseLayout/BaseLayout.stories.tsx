@@ -1,26 +1,21 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { BaseLayout, BaseLayoutDrawer, BaseLayoutContents } from ".";
-import { CommonDrawer } from "../Drawer";
+
+import { BaseLayout } from "./BaseLayout";
 
 const meta: Meta<typeof BaseLayout> = {
   title: "Common/BaseLayout",
   component: BaseLayout,
   tags: ["autodocs"],
-  argTypes: {},
 };
 
 export default meta;
 type Story = StoryObj<typeof BaseLayout>;
 
 export const Default: Story = {
-  render: () => {
-    return (
-      <BaseLayout>
-        <BaseLayoutDrawer>
-          <CommonDrawer isShowMinified />
-        </BaseLayoutDrawer>
-        <BaseLayoutContents>hello world</BaseLayoutContents>
-      </BaseLayout>
-    );
+  args: {
+    // className: "",
+  },
+  render() {
+    return <BaseLayout />;
   },
 };

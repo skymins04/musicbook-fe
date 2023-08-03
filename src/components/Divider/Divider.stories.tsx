@@ -6,11 +6,6 @@ const meta: Meta<typeof Divider> = {
   title: "Common/Divider",
   component: Divider,
   tags: ["autodocs"],
-  argTypes: {
-    className: {
-      control: { type: "text" },
-    },
-  },
 };
 
 export default meta;
@@ -19,5 +14,8 @@ type Story = StoryObj<typeof Divider>;
 export const Default: Story = {
   args: {
     className: "",
+  },
+  render(args) {
+    return <Divider {...args} />;
   },
 };

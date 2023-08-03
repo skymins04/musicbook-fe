@@ -1,1 +1,1 @@
-export * from "./ColorModeProvider";
+export * from "./ProviderRoot";

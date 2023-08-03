@@ -1,56 +1,59 @@
-import { useGlobalDisclosure } from "@/hooks";
+import { useBreakpointSmaller, useGlobalDisclosure } from "@/hooks";
 import classNames from "classnames";
 import {
   Children,
-  ReactElement,
   ReactNode,
   cloneElement,
   isValidElement,
   useEffect,
 } from "react";
 import { Divider } from "../Divider";
-import Link from "next/link";
+import { Skeleton, SkeletonBaseProps } from "../Skeleton";
 
-export type DrawerCommonProps = {
-  className?: string;
-  isShowMinified?: boolean;
+export type DrawerBaseProps = {
+  isAllowMinified?: boolean;
 };
 
 export type DrawerProps = {
-  children?: ReactNode;
-} & DrawerCommonProps;
+  className?: string;
+  children: ReactNode;
+} & SkeletonBaseProps &
+  DrawerBaseProps;
 
 export const Drawer = ({
   className,
-  isShowMinified,
   children,
+  isAllowMinified,
+  isShow = true,
 }: DrawerProps) => {
   const childrenWithProps = Children.map(children, (child) => {
     if (isValidElement(child)) {
-      return cloneElement(child as ReactElement<DrawerCommonProps>, {
-        isShowMinified,
-      });
+      return cloneElement<any>(child, { isAllowMinified, isShow });
     }
     return child;
   });
 
-  useEffect(() => {
-    console.log("drawer", isShowMinified, childrenWithProps);
-  }, [isShowMinified]);
+  const isTablet = useBreakpointSmaller("tablet");
+  const { data: isMinifiedDrawer, setData: setMinifiedDrawer } =
+    useGlobalDisclosure("drawer-minified", false);
+  const { setData: setOpenDrawer } = useGlobalDisclosure("drawer", false);
 
-  const { data: isDrawerMinified } = useGlobalDisclosure(
-    "drawer-minified",
-    false
-  );
-  const isMinified = isDrawerMinified && isShowMinified;
+  const isMinified = isTablet
+    ? isAllowMinified
+    : isAllowMinified && isMinifiedDrawer;
+
+  useEffect(() => {
+    setMinifiedDrawer(false);
+    setOpenDrawer(false);
+  }, [isTablet]);
 
   return (
     <div
       className={classNames(
-        "flex h-max flex-col items-stretch justify-start bg-white duration-100 dark:bg-gray-700",
+        "box-border flex h-max flex-col items-stretch justify-start bg-white duration-200 dark:bg-gray-700",
         isMinified
           ? "w-[74px] min-w-[74px] px-[5px] py-[13px]"
-          : "w-[300px] min-w-[300px] gap-10 px-10 py-20",
+          : "w-[min(300px,calc(100vw-30px))] min-w-[min(300px,calc(100vw-30px))] gap-10 px-10 py-20",
         className
       )}
     >
@@ -58,14 +61,20 @@ export const Drawer = ({
       {!isMinified && (
         <>
           <Divider />
-          <div className="w-full px-10 text-12">
-            <div className="flex items-center justify-start gap-10 text-gray-700 dark:text-white">
-              <Link href="#">이용약관</Link>
-              <Link href="#">개인정보처리방침</Link>
+          <div className="box-border flex w-full flex-col items-start justify-center gap-[5px] px-10 text-12 font-normal duration-200">
+            <div className="flex items-center justify-start w-full gap-10 text-gray-800 duration-200 dark:text-white">
+              <Skeleton isShow={isShow}>
+                <a href="#">이용약관</a>
+              </Skeleton>
+              <Skeleton isShow={isShow}>
+                <a href="#">개인정보처리방침</a>
+              </Skeleton>
             </div>
-            <div className="mt-8 text-gray-500 dark:text-gray-400">
-              © 2023. 노래책 MUSICBOOK. All Rights Reserved.
-            </div>
+            <Skeleton isShow={isShow}>
+              <span className="w-full text-gray-500 break-all duration-200 dark:text-gray-400">
+                © 2023. 노래책 MUSICBOOK. All Rights Reserved.
+              </span>
+            </Skeleton>
           </div>
         </>
       )}

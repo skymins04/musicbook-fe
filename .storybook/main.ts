@@ -9,7 +9,6 @@ const config: StorybookConfig = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
-    "storybook-dark-mode",
   ],
   framework: {
     name: "@storybook/nextjs",
@@ -19,7 +18,23 @@ const config: StorybookConfig = {
     autodocs: "tag",
   },
   webpackFinal: async (config) => {
-    config!.resolve!.alias!["@"] = path.resolve(__dirname, "../src/");
+    [
+      "apis",
+      "components",
+      "constants",
+      "fetchers",
+      "hooks",
+      "pages",
+      "providers",
+      "themes",
+      "utils",
+      "",
+    ].forEach((name) => {
+      config!.resolve!.alias![`@${name}`] = path.resolve(
+        __dirname,
+        `../src/${name}`
+      );
+    });
     return config;
   },
 };

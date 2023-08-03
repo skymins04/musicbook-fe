@@ -8,7 +8,7 @@ export const Divider = ({ className }: DividerProps) => {
   return (
     <hr
       className={classNames(
-        "w-full border-gray-200 dark:border-gray-800",
+        "w-full border-gray-200 duration-200 dark:border-gray-800",
         className
       )}
     />

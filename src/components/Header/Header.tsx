@@ -1,101 +1,109 @@
-import {
-  Button,
-  IconButton,
-  Menu,
-  MenuButton,
-  MenuList,
-} from "@chakra-ui/react";
-import { Menu as MenuIcon, MoreVert, Search } from "@mui/icons-material";
 import classNames from "classnames";
-import {
-  CSMenuItem,
-  DarkModeMenuItem,
-  Divider,
-  FeedbackMenuItem,
-  LogInOutMenuItem,
-  Logo,
-  SettingsMenuItem,
-} from "..";
-import { useBreakpointSmaller, useGlobalDisclosure } from "@/hooks";
+import { Avatar, Button, Logo, PopMenuButton } from "..";
+import { Menu, MoreVert, Search } from "@mui/icons-material";
 import Link from "next/link";
+import { useGlobalDisclosure, useBoolean, useBreakpointSmaller } from "@hooks";
+import { useGetUserMe } from "@fetchers";
+import { EtcPopMenuItems, AvatarPopMenuItems } from "@components";
 
 export type HeaderProps = {
   className?: string;
 };
 
 export const Header = ({ className }: HeaderProps) => {
-  const { setData: setIsOpenLoginDialog } = useGlobalDisclosure(
-    "login-dialog",
+  const [isShowAvatar, setShowAvatar] = useBoolean(false);
+  const isTablet = useBreakpointSmaller("tablet");
+  const { toggle: toggleOpenDrawer } = useGlobalDisclosure("drawer", false);
+  const { toggle: toggleMinifiedDrawer } = useGlobalDisclosure(
+    "drawer-minified",
     false
   );
-  const { setData: setIsOpenLeftDrawer } = useGlobalDisclosure("drawer", false);
-  const { data: isDrawerMinified, setData: setIsDrawerMinified } =
-    useGlobalDisclosure("drawer-minified", false);
-  const { setData: setIsOpenSearchSpotlight } = useGlobalDisclosure(
+  const toggleDrawer = isTablet ? toggleOpenDrawer : toggleMinifiedDrawer;
+  const { on: showSearchSpotlight } = useGlobalDisclosure(
     "search-spotlight",
     false
   );
+  const { on: showLoginDialog } = useGlobalDisclosure("login-dialog", false);
 
-  const isTablet = useBreakpointSmaller("tablet");
-
-  const handleClickHamburger = () => {
-    if (isTablet) {
-      setIsOpenLeftDrawer(true);
-    } else {
-      setIsDrawerMinified(!isDrawerMinified);
-    }
-  };
+  const { data: user } = useGetUserMe();
 
   return (
     <div
       className={classNames(
-        "relative flex h-[56px] items-stretch justify-between border-b-1 border-gray-200 bg-white px-10 dark:border-gray-800 dark:bg-gray-700",
+        "z-20 box-border flex h-[56px] w-full items-stretch justify-between bg-white px-12 duration-200 dark:bg-gray-700",
         className
       )}
     >
-      <div className="flex items-center justify-start gap-8">
-        <IconButton
+      <div className="flex items-center justify-start h-full gap-8">
+        <Button
           variant="ghost"
-          icon={<MenuIcon />}
-          aria-label="메뉴"
-          onClick={handleClickHamburger}
+          color="secondary"
+          size="md"
+          leftIcon={<Menu sx={{ fontSize: "100%" }} />}
+          className="box-border !w-[40px]"
+          onClick={toggleDrawer}
         />
         <Link href="/">
-          <div className="tablet:hidden">
-            <Logo height={30} />
-          </div>
-          <div className="hidden tablet:block">
-            <Logo isShowLogo={false} height={30} />
-          </div>
+          <Logo size="xs" className="flex semi-tablet:hidden" />
+          <Logo
+            size="xs"
+            className="hidden semi-tablet:flex"
+            isShowIcon={false}
+          />
         </Link>
       </div>
-      <div className="flex items-center justify-end w-full gap-2">
-        <IconButton
+      <div className="flex items-center justify-end h-full">
+        <Button
           variant="ghost"
-          icon={<Search />}
-          aria-label="검색"
-          onClick={() => setIsOpenSearchSpotlight(true)}
+          color="secondary"
+          size="md"
+          leftIcon={<Search sx={{ fontSize: "100%" }} />}
+          className="box-border !w-[40px]"
+          onClick={showSearchSpotlight}
         />
-        <Menu placement="bottom-end">
-          <MenuButton
-            as={IconButton}
-            variant="ghost"
-            icon={<MoreVert />}
-            aria-label="기타메뉴"
+        {user ? (
+          <PopMenuButton
+            btn={
+              <Avatar
+                isShow={isShowAvatar}
+                src={user.profileImgURL}
+                className="ml-8 w-[40px]"
+                onLoad={setShowAvatar.on}
+                onError={setShowAvatar.on}
+              />
+            }
+            menuItems={<AvatarPopMenuItems />}
+            menuDirection="bottom-left"
+            popMenuClassName="!w-[200px]"
+            popMenuWrapperClassName="h-max max-h-[calc(100vh-84px-10px)]"
           />
-          <MenuList>
-            <DarkModeMenuItem />
-            <LogInOutMenuItem />
-            <Divider />
-            <SettingsMenuItem />
-            <Divider />
-            <CSMenuItem />
-            <FeedbackMenuItem />
-          </MenuList>
-        </Menu>
-        <Button colorScheme="teal" onClick={() => setIsOpenLoginDialog(true)}>
-          로그인
-        </Button>
+        ) : (
+          <>
+            <PopMenuButton
+              btn={
+                <Button
+                  variant="ghost"
+                  color="secondary"
+                  size="md"
+                  leftIcon={<MoreVert sx={{ fontSize: "100%" }} />}
+                  className="box-border !w-[40px] mobile:hidden"
+                />
+              }
+              menuItems={<EtcPopMenuItems />}
+              menuDirection="bottom-left"
+              popMenuClassName="!w-[200px]"
+            />
+            <Button
+              variant="solid"
+              color="primary"
+              size="md"
+              className="ml-8 mobile:hidden"
+              onClick={showLoginDialog}
+            >
+              로그인
+            </Button>
+          </>
+        )}
       </div>
     </div>
   );

@@ -1,75 +1,68 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Drawer, DrawerButton, DrawerMinifedHidden } from ".";
-import { Divider } from "..";
-import {
-  BookmarkBorderOutlined,
-  BookmarkOutlined,
-  Home,
-  HomeOutlined,
-} from "@mui/icons-material";
+import { Drawer } from "./Drawer";
+import { Button } from "../Button";
 import { useGlobalDisclosure } from "@/hooks";
-import { Button } from "@chakra-ui/react";
+import { DrawerItem } from "./DrawerItem";
+import { Home, HomeOutlined } from "@mui/icons-material";
+import { DrawerMinifiedHidden } from "./DrawerMinifiedHidden";
+import { Divider } from "../Divider";
+import { useState } from "react";
+import { DrawerSubtitle } from "./DrawerSubtitle";
+import { DrawerTitle } from "./DrawerTitle";
 
 const meta: Meta<typeof Drawer> = {
-  title: "Common/Drawer",
+  title: "Common/Drawer/Drawer",
   component: Drawer,
   tags: ["autodocs"],
-  argTypes: {
-    className: {
-      control: { type: "text" },
-    },
-  },
 };
 
 export default meta;
-
 type Story = StoryObj<typeof Drawer>;
 
 export const Default: Story = {
   args: {
     className: "",
-    isShowMinified: false,
   },
-  render: ({ ...args }) => {
+  render(args) {
     const { data, setData } = useGlobalDisclosure("drawer-minified", false);
+    const [isShow, setIsShow] = useState(false);
 
-    const handleClickToggle = () => {
+    const handleToggleMinified = () => {
       setData(!data);
     };
 
     return (
       <>
-        <Button onClick={handleClickToggle}>
-          toggle "drawer-minified" global disclosure
-        </Button>
+        <div className="flex items-center justify-start gap-10 mb-20">
+          <Button onClick={handleToggleMinified}>Toggle Minified</Button>
+        </div>
+
         <Drawer {...args}>
-          <DrawerButton icon={<HomeOutlined />} hoveredIcon={<Home />}>
-            홈
-          </DrawerButton>
-          <DrawerMinifedHidden>
+          <DrawerMinifiedHidden>
+            <DrawerTitle>메인타이틀</DrawerTitle>
             <Divider />
-          </DrawerMinifedHidden>
-          <DrawerButton
-            icon={<BookmarkBorderOutlined />}
-            hoveredIcon={<BookmarkOutlined />}
-          >
-            내 좋아요
-          </DrawerButton>
-          <DrawerMinifedHidden>
-            <DrawerButton
-              icon={<BookmarkBorderOutlined />}
-              hoveredIcon={<BookmarkOutlined />}
-            >
-              내 좋아요
-            </DrawerButton>
-            <DrawerButton
-              icon={<BookmarkBorderOutlined />}
-              hoveredIcon={<BookmarkOutlined />}
-            >
-              내 좋아요
-            </DrawerButton>
-          </DrawerMinifedHidden>
+          </DrawerMinifiedHidden>
+          <DrawerItem icon={<HomeOutlined />} hoveredIcon={<Home />}>
+            hello world1
+          </DrawerItem>
+          <DrawerMinifiedHidden>
+            <Divider />
+            <DrawerSubtitle>서브타이틀</DrawerSubtitle>
+            <DrawerItem icon={<HomeOutlined />} hoveredIcon={<Home />}>
+              hello world2
+            </DrawerItem>
+            <DrawerItem icon={<HomeOutlined />} hoveredIcon={<Home />}>
+              hello world3
+            </DrawerItem>
+            <Divider />
+          </DrawerMinifiedHidden>
+          <DrawerItem icon={<HomeOutlined />} hoveredIcon={<Home />}>
+            hello world4
+          </DrawerItem>
+          <DrawerItem icon={<HomeOutlined />} hoveredIcon={<Home />}>
+            hello world5
+          </DrawerItem>
         </Drawer>
       </>
     );

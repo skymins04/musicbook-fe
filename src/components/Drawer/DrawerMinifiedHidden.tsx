@@ -1,21 +1,34 @@
-import { ReactNode } from "react";
-import { DrawerCommonProps } from "./Drawer";
-import { useGlobalDisclosure } from "@/hooks";
+import { Children, ReactNode, cloneElement, isValidElement } from "react";
+import { DrawerBaseProps } from ".";
+import { useBreakpointSmaller, useGlobalDisclosure } from "@/hooks";
+import { SkeletonBaseProps } from "..";
 
-export type DrawerMinifedHiddenProps = {
+export type DrawerMinifiedHiddenProps = {
   children: ReactNode;
-} & DrawerCommonProps;
+} & SkeletonBaseProps &
+  DrawerBaseProps;
 
-export const DrawerMinifedHidden = ({
+export const DrawerMinifiedHidden = ({
   children,
-  isShowMinified,
-}: DrawerMinifedHiddenProps) => {
-  const { data: isDrawerMinified } = useGlobalDisclosure(
+  isAllowMinified,
+  isShow,
+}: DrawerMinifiedHiddenProps) => {
+  const childrenWithProps = Children.map(children, (child) => {
+    if (isValidElement(child)) {
+      return cloneElement<any>(child, { isAllowMinified, isShow });
+    }
+    return child;
+  });
+
+  const isTablet = useBreakpointSmaller("tablet");
+  const { data: isMinifiedDrawer } = useGlobalDisclosure(
     "drawer-minified",
     false
   );
 
-  const isHidden = isDrawerMinified && isShowMinified;
+  const isMinified = isTablet
+    ? isAllowMinified
+    : isAllowMinified && isMinifiedDrawer;
 
-  return <>{!isHidden && children}</>;
+  return isMinified ? undefined : childrenWithProps;
 };

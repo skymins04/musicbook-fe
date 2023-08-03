@@ -1,5 +1,7 @@
 export * from "./Drawer";
-export * from "./DrawerButton";
-export * from "./DrawerTitle";
+export * from "./DrawerItem";
 export * from "./DrawerMinifiedHidden";
-export * from "./CommonDrawer";
+export * from "./DrawerSubtitle";
+export * from "./DrawerTitle";
+
+export * from "./MainDrawer";

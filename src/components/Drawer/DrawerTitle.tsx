@@ -1,33 +1,25 @@
 import classNames from "classnames";
 import { ReactNode } from "react";
-
-export type DrawerTitleVariant = "primary" | "secondary";
+import { Skeleton, SkeletonBaseProps } from "../Skeleton";
 
 export type DrawerTitleProps = {
-  children: ReactNode;
-  variant?: DrawerTitleVariant;
   className?: string;
-};
-
-const drawerTitleFontStyle: Record<DrawerTitleVariant, string> = {
-  primary: "text-16 font-bold h-[17px]",
-  secondary: "text-16 font-bold h-[23px]",
-};
+  children: ReactNode;
+} & SkeletonBaseProps;
 
 export const DrawerTitle = ({
-  children,
-  variant = "primary",
   className,
+  children,
+  isShow,
 }: DrawerTitleProps) => {
   return (
-    <div
+    <h1
       className={classNames(
-        "ml-8 w-full text-left",
-        drawerTitleFontStyle[variant],
+        "pl-8 text-20 font-bold text-gray-700 duration-200 dark:text-white",
         className
       )}
     >
-      {children}
-    </div>
+      <Skeleton isShow={isShow}>{children}</Skeleton>
+    </h1>
   );
 };

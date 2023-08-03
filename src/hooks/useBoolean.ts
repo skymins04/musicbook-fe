@@ -1,6 +1,11 @@
 import { useState } from "react";
 
-export const useBoolean = (initValue: boolean) => {
+export const useBoolean = (
+  initValue: boolean
+): readonly [
+  boolean,
+  { on: () => void; off: () => void; toggle: () => void }
+] => {
   const [booleanValue, setBooleanValue] = useState<boolean>(initValue);
 
   const on = () => {

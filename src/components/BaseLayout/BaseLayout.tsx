@@ -1,54 +1,48 @@
-import { ReactNode, useEffect, useState } from "react";
-import {
-  BaseLayoutSlideDrawer,
-  CommonDrawer,
-  Header,
-  Logo,
-  Spotlight,
-} from "..";
-import { TopNotice } from "../TopNotice/TopNotice";
 import classNames from "classnames";
-import { useBreakpointSmaller, useGlobalDisclosure } from "@/hooks";
-import { ScreenGuard } from "../ScreenGuard/ScreenGuard";
-import { IconButton } from "@chakra-ui/react";
-import { Close } from "@mui/icons-material";
-import Link from "next/link";
+import { Dimmer, Header, MainDrawer, TopNotice } from "..";
+import { useGlobalDisclosure } from "@hooks/useGlobalDisclosure";
+import { useBoolean } from "@hooks/useBoolean";
 
-export type BaseLayoutProps = {
-  children: ReactNode;
-};
-
-export const BaseLayout = ({ children }: BaseLayoutProps) => {
-  const [notice, setNotice] = useState("");
-
-  const { setData: setIsOpenDrawer } = useGlobalDisclosure("drawer", false);
-  const { setData: setIsDrawerMinified } = useGlobalDisclosure(
-    "drawer-minified",
+export const BaseLayout = () => {
+  const [isOpenNotice, setIsOpenNotice] = useBoolean(false);
+  const { data: isOpenDrawer, setData: setIsOpenDrawer } = useGlobalDisclosure(
+    "drawer",
     false
   );
-  const isTablet = useBreakpointSmaller("tablet");
-
-  useEffect(() => {
-    setIsOpenDrawer(false);
-    setIsDrawerMinified(isTablet);
-  }, [isTablet]);
+  const isShowDimmer = isOpenDrawer;
 
   return (
-    <>
-      <div className="relative h-[100vh] w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
-        <TopNotice onClickClose={() => setNotice("")}>{notice}</TopNotice>
-        <Header />
+    <div
+      className={classNames(
+        "relative flex h-full w-full flex-col items-stretch justify-stretch bg-gray-100 duration-200 dark:bg-gray-800"
+      )}
+    >
+      <TopNotice onOpen={setIsOpenNotice.on} onClose={setIsOpenNotice.off} />
+      <Header className="max-h-[56px] min-h-[56px] shadow-sm" />
+      <div
+        className={classNames(
+          "relative flex items-stretch justify-stretch",
+          isOpenNotice ? "h-[calc(100vh-56px-28px)]" : "h-[calc(100vh-56px)]"
+        )}
+      >
+        <div className="relative block h-full overflow-x-hidden overflow-y-auto duration-200 bg-white border-gray-200 min-w-max border-r-1 dark:border-gray-800 dark:bg-gray-700 mobile:hidden">
+          <MainDrawer isAllowMinified isShow />
+        </div>
+        <div className="box-border relative w-full h-full p-20"></div>
+        <Dimmer
+          className="absolute"
+          isOpen={isShowDimmer}
+          onClick={() => setIsOpenDrawer(false)}
+        />
         <div
           className={classNames(
-            "flex w-full items-stretch justify-between",
-            notice ? "h-[calc(100vh-56px-32px)]" : "h-[calc(100vh-56px)]"
+            "absolute left-0 top-0 z-10 block h-full min-w-max overflow-y-auto overflow-x-hidden bg-white duration-200 dark:bg-gray-700",
+            isOpenDrawer ? "translate-x-0" : "translate-x-[-100%]"
           )}
         >
-          {children}
+          <MainDrawer isShow />
         </div>
       </div>
-      <BaseLayoutSlideDrawer />
-      <Spotlight />
-    </>
+    </div>
   );
 };

@@ -6,11 +6,6 @@ const meta: Meta<typeof Header> = {
   title: "Common/Header",
   component: Header,
   tags: ["autodocs"],
-  argTypes: {
-    className: {
-      control: { type: "text" },
-    },
-  },
 };
 
 export default meta;
@@ -19,5 +14,12 @@ type Story = StoryObj<typeof Header>;
 export const Default: Story = {
   args: {
     className: "",
+  },
+  render(args) {
+    return (
+      <div className="h-[300px] w-full">
+        <Header {...args} />
+      </div>
+    );
   },
 };

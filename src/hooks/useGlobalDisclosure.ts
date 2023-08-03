@@ -19,9 +19,16 @@ export const useGlobalDisclosure = (
     }
   );
 
+  const on = () => mutate(true);
+  const off = () => mutate(false);
+  const toggle = () => mutate(!data);
+
   return {
     data: data || false,
     setData: mutate,
+    on,
+    off,
+    toggle,
     isLoading,
     error,
   };

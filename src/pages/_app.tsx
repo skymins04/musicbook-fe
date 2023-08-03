@@ -1,20 +1,35 @@
+import { ProviderRoot } from "@providers";
 import "@/themes/base.css";
-import type { AppProps } from "next/app";
-import { ChakraProvider } from "@chakra-ui/react";
-import { ColorModeProvider } from "@/providers";
-import { createEmotionCache } from "@/utils";
-import { CacheProvider } from "@emotion/react";
+import type { AppContext, AppProps } from "next/app";
+import { getCookie } from "@utils";
+import { ThemeType } from "@hooks";
 
-const clientSideEmotionCache = createEmotionCache();
+type MusicBookAppProps = {
+  theme: ThemeType;
+};
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+  Component,
+  pageProps,
+}: AppProps<MusicBookAppProps>) {
   return (
-    <CacheProvider value={clientSideEmotionCache}>
-      <ChakraProvider>
-        <ColorModeProvider>
-          <Component {...pageProps} />
-        </ColorModeProvider>
-      </ChakraProvider>
-    </CacheProvider>
+    <ProviderRoot {...pageProps}>
+      <Component />
+    </ProviderRoot>
   );
 }
+
+App.getInitialProps = async ({ Component, ctx }: AppContext) => {
+  let pageProps = {};
+  if (Component.getInitialProps) {
+    pageProps = await Component.getInitialProps(ctx);
+  }
+
+  const cookieString = ctx.req?.headers.cookie || "";
+  const theme = getCookie(cookieString, "theme") as ThemeType | undefined;
+  pageProps = { ...pageProps, theme: theme || "light" };
+
+  return {
+    pageProps,
+  };
+};

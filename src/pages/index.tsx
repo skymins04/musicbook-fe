@@ -1,17 +1,5 @@
-import {
-  BaseLayout,
-  BaseLayoutContents,
-  BaseLayoutDrawer,
-  CommonDrawer,
-} from "@/components";
+import { BaseLayout } from "@components/BaseLayout";
 
 export default function Index() {
-  return (
-    <BaseLayout>
-      <BaseLayoutDrawer>
-        <CommonDrawer isShowMinified />
-      </BaseLayoutDrawer>
-      <BaseLayoutContents>ㅁㄴㅇㄹ</BaseLayoutContents>
-    </BaseLayout>
-  );
+  return <BaseLayout />;
 }
