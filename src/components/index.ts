@@ -14,3 +14,4 @@ export * from "./Header";
 export * from "./TopNotice";
 export * from "./Form";
 export * from "./Search";
+export * from "./ErrorPage";

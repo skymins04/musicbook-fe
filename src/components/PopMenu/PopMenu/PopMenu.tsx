@@ -15,13 +15,13 @@ export const PopMenu = ({
   return (
     <div
       className={classNames(
-        "overflow-y-auto overflow-x-hidden rounded-12 bg-white dark:bg-gray-700",
+        "overflow-y-auto overflow-x-hidden rounded-12 bg-white shadow-md dark:bg-gray-700",
         wrapperClassName
       )}
     >
       <div
         className={classNames(
-          "flex h-max flex-col items-stretch justify-center gap-4 py-10 shadow-md duration-200",
+          "flex h-max flex-col items-stretch justify-center gap-2 py-10 duration-200",
           className
         )}
       >

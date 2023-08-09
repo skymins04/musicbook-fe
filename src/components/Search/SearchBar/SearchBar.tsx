@@ -8,11 +8,13 @@ import {
   searchBarValidationSchema,
 } from "./validationSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { clickStopPropagation } from "@utils/clickStopPropagation";
 
 export type SearchBarSize = "md" | "lg";
 
 export type SearchBarProps = {
   className?: string;
+  wrapperClassName?: string;
   isShowSubmitButton?: boolean;
   size?: SearchBarSize;
   onSubmit?: (value: string) => void;
@@ -33,6 +35,7 @@ const searchBarHeightMap: Record<SearchBarSize, string> = {
 
 export const SearchBar = ({
   className,
+  wrapperClassName,
   isShowSubmitButton,
   size = "md",
   onSubmit,
@@ -52,8 +55,10 @@ export const SearchBar = ({
   return (
     <div
       className={classNames(
-        "flex h-max w-full items-center justify-between gap-6"
+        "flex h-max w-full items-center justify-between gap-6",
+        wrapperClassName
       )}
+      onClick={clickStopPropagation}
     >
       <Controller
         control={control}
@@ -72,9 +77,9 @@ export const SearchBar = ({
             <>
               <div
                 className={classNames(
-                  "flex w-full items-center justify-between gap-10 rounded-6 bg-gray-200 duration-200",
+                  "flex w-full items-center justify-between gap-10 rounded-6 bg-gray-200 duration-200 dark:bg-gray-700",
                   searchBarSizeMap[size],
-                  isActive ? "text-gray-800" : "text-gray-400",
+                  isActive ? "text-gray-800 dark:text-white" : "text-gray-400",
                   className
                 )}
               >
@@ -85,10 +90,15 @@ export const SearchBar = ({
                   className={classNames(
                     "w-full bg-[transparent] font-normal placeholder:duration-200 focus:outline-none",
                     searchBarHeightMap[size],
-                    isActive ? "placeholder-gray-800" : "placeholder-gray-400"
+                    isActive
+                      ? "placeholder-gray-800 dark:placeholder-white"
+                      : "placeholder-gray-400"
                   )}
-                  type="text"
+                  type="search"
                   placeholder="수록곡, 노래책, 스트리머 검색어 입력"
+                  autoComplete="off"
+                  autoCorrect="off"
+                  autoCapitalize="off"
                   onChange={(e) => {
                     onFieldChange(e);
                     onChange && onChange(e.target.value);

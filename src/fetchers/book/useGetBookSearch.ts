@@ -1,4 +1,4 @@
-import { GETBookSearch, GETBookSearchSort } from "@/apis";
+import { GETBookSearch, GETBookSearchOption, GETBookSearchSort } from "@/apis";
 import useSWR from "swr";
 
 type FetcherKey = readonly [
@@ -12,5 +12,7 @@ type FetcherKey = readonly [
 const fetcher = async ([, q, page, perPage, sort]: FetcherKey) =>
   GETBookSearch({ q, page, perPage, sort });
 
-export const useGetBookSearch = () =>
-  useSWR([["GET", "/book/${bookId}/like/me"]], fetcher);
+export const useGetBookSearch = (options?: GETBookSearchOption) => {
+  const { q, page, perPage, sort } = options || {};
+  return useSWR([["GET", "/book"], q, page, perPage, sort], fetcher);
+};

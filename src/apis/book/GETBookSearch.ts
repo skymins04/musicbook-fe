@@ -8,12 +8,16 @@ export type GETBookSearchResponse = PagenationResponse<
   Book
 >;
 
-export const GETBookSearch = async (options?: {
+export type GETBookSearchOption = {
   q?: string;
   page?: number;
   perPage?: number;
   sort?: GETBookSearchSort;
-}): Promise<GETBookSearchResponse> => {
+};
+
+export const GETBookSearch = async (
+  options?: GETBookSearchOption
+): Promise<GETBookSearchResponse> => {
   const { q, page = 1, perPage = 30, sort = "NEWEST" } = options || {};
   const result = await musicbookAxios.get("/book", {
     params: {

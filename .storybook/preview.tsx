@@ -31,7 +31,7 @@ export const decorators = [
     }, [colorMode]);
 
     return (
-      <ProviderRoot theme={colorMode}>
+      <ProviderRoot>
         <Story />
       </ProviderRoot>
     );

@@ -25,10 +25,10 @@ export const BaseLayout = () => {
           isOpenNotice ? "h-[calc(100vh-56px-28px)]" : "h-[calc(100vh-56px)]"
         )}
       >
-        <div className="relative block h-full overflow-x-hidden overflow-y-auto duration-200 bg-white border-gray-200 min-w-max border-r-1 dark:border-gray-800 dark:bg-gray-700 mobile:hidden">
+        <div className="relative block h-full min-w-max overflow-y-auto overflow-x-hidden border-r-1 border-gray-200 bg-white duration-200 dark:border-gray-800 dark:bg-gray-700 mobile:hidden">
           <MainDrawer isAllowMinified isShow />
         </div>
-        <div className="box-border relative w-full h-full p-20"></div>
+        <div className="relative box-border h-full w-full p-20"></div>
         <Dimmer
           className="absolute"
           isOpen={isShowDimmer}

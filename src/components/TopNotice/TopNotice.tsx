@@ -24,6 +24,12 @@ export const TopNotice = ({ onClose, onOpen }: TopNoticeProps) => {
     onClose && onClose();
   };
 
+  const handleResize = () => {
+    const wrapperWidth = wrapperRef.current?.offsetWidth || 0;
+    const contentsWidth = contentsRef.current?.offsetWidth || 0;
+    setIsOverflow(wrapperWidth < contentsWidth);
+  };
+
   useEffect(() => {
     if (data) {
       setIsOpen.on();
@@ -32,32 +38,25 @@ export const TopNotice = ({ onClose, onOpen }: TopNoticeProps) => {
   }, [data]);
 
   useEffect(() => {
-    if (window && wrapperRef.current && contentsRef.current) {
-      const handleResize = () => {
-        const wrapperWidth = wrapperRef.current?.offsetWidth || 0;
-        const contentsWidth = contentsRef.current?.offsetWidth || 0;
-        setIsOverflow(wrapperWidth < contentsWidth);
-      };
+    window.addEventListener("resize", handleResize);
+    setTimeout(() => handleResize(), 100);
 
-      handleResize();
-      window.addEventListener("resize", handleResize);
-
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
-    }
-  }, [wrapperRef.current, contentsRef.current]);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <>
       {isOpen && (
         <div
           className={classNames(
-            "duration:200 relative box-border h-max w-full bg-teal-500 px-[72px] py-6 font-normal text-white dark:bg-teal-200 dark:text-gray-800 tablet:px-48"
+            "relative box-border h-max w-full bg-teal-500 px-[72px] py-6 font-normal text-white duration-200 dark:bg-teal-200 dark:text-gray-800 tablet:px-48"
           )}
         >
           <a
             href={data?.link}
+            target="_blank"
             referrerPolicy="no-referrer"
             className={classNames(
               "flex w-full items-center gap-48 overflow-hidden whitespace-nowrap",
@@ -83,7 +82,7 @@ export const TopNotice = ({ onClose, onOpen }: TopNoticeProps) => {
           <Button
             variant="ghost"
             size="xs"
-            className="duration:200 absolute right-12 top-[50%] !box-border !w-24 -translate-y-[50%] !text-white dark:!text-gray-800"
+            className="absolute right-12 top-[50%] !box-border !w-24 -translate-y-[50%] !text-white duration-200 dark:!text-gray-800"
             leftIcon={<Close sx={{ fontSize: "100%" }} />}
             onClick={handleCloseNotice}
           />
