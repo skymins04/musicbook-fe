@@ -1,7 +1,15 @@
 import { ReactNode } from "react";
-import { GlobalDialogProvider } from "./GlobalDialogProvider";
-import { SearchSpotlight } from "@components/Search";
 import { SWRConfig } from "swr/_internal";
+import dynamic from "next/dynamic";
+
+const GlobalDialogProvider = dynamic(() =>
+  import("./GlobalDialogProvider").then((mod) => mod.GlobalDialogProvider)
+);
+const SearchSpotlight = dynamic(() =>
+  import("@components/Search/SearchSpotlight/SearchSpotlight").then(
+    (mod) => mod.SearchSpotlight
+  )
+);
 
 export type ProviderRootProps = {
   children: ReactNode;
@@ -15,10 +23,9 @@ export const ProviderRoot = ({ children }: ProviderRootProps) => {
         revalidateOnFocus: false,
       }}
     >
-      <GlobalDialogProvider>
-        {children}
-        <SearchSpotlight wrapperClassNames="z-30" />
-      </GlobalDialogProvider>
+      {children}
+      <GlobalDialogProvider />
+      <SearchSpotlight wrapperClassNames="z-30" />
     </SWRConfig>
   );
 };

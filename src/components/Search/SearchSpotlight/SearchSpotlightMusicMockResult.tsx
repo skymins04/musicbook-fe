@@ -6,26 +6,31 @@ export const SearchSpotlightMusicMockResult = () => {
       <SearchMusicResultCard
         id=""
         title="mocktextmocktextmocktextmocktextmocktext"
+        bookTitle="mocktextmocktext"
         src=""
       />
       <SearchMusicResultCard
         id=""
         title="mocktextmocktextmocktextmocktextmocktext"
+        bookTitle="mocktextmocktext"
         src=""
       />
       <SearchMusicResultCard
         id=""
         title="mocktextmocktextmocktextmocktextmocktext"
+        bookTitle="mocktextmocktext"
         src=""
       />
       <SearchMusicResultCard
         id=""
         title="mocktextmocktextmocktextmocktextmocktext"
+        bookTitle="mocktextmocktext"
         src=""
       />
       <SearchMusicResultCard
         id=""
         title="mocktextmocktextmocktextmocktextmocktext"
+        bookTitle="mocktextmocktext"
         src=""
       />
     </div>
