@@ -21,7 +21,7 @@ export const PopMenu = ({
     >
       <div
         className={classNames(
-          "flex h-max flex-col items-stretch justify-center gap-4 py-10 duration-200",
+          "flex h-max flex-col items-stretch justify-center gap-2 py-10 duration-200",
           className
         )}
       >

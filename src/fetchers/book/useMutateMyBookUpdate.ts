@@ -9,6 +9,6 @@ const fetcher = async (_: FetcherKey, { arg }: { arg: FetcherArg }) =>
 
 export const useMutateMyBookUpdate = () =>
   useSWRMutation<any, any, FetcherKey, FetcherArg>(
-    [["PATCH", "/book/me/config"]],
+    [["PATCH", "/book/me"]],
     fetcher
   );

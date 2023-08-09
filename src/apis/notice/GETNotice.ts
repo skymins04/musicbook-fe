@@ -11,7 +11,9 @@ export type Notice = {
 
 export const GETNotice = async (): Promise<Notice | null> => {
   try {
-    const result = await axios.get(`${ASSET_HOST}/assets/json/notice.json`);
+    const result = await axios.get(
+      `${ASSET_HOST}/assets/json/notice.json?v=${new Date().getTime()}`
+    );
     return result.data;
   } catch (e) {
     return null;

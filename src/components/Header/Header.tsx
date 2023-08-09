@@ -13,7 +13,7 @@ export type HeaderProps = {
 };
 
 export const Header = ({ className }: HeaderProps) => {
-  const { data: user } = useGetUserMe();
+  const { data: user, isLoading: isLoadingUser } = useGetUserMe();
 
   return (
     <div
@@ -40,7 +40,7 @@ export const Header = ({ className }: HeaderProps) => {
         ) : (
           <>
             <HeaderEtcPopMenuButton />
-            <HeaderLoginButton />
+            <HeaderLoginButton isLoading={isLoadingUser} />
           </>
         )}
       </div>

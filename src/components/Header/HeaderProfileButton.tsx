@@ -21,7 +21,7 @@ export const HeaderProfileButton = ({ user }: HeaderProfileButtonProps) => {
       }
       menuItems={<AvatarPopMenuItems />}
       menuDirection="bottom-left"
-      popMenuClassName="!w-[200px]"
+      popMenuClassName="!w-[280px]"
       popMenuWrapperClassName="h-max max-h-[calc(100vh-84px-10px)]"
     />
   );
