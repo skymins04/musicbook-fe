@@ -2,7 +2,7 @@ import { Dimmer, Divider, ProfileImage } from "@components";
 import { SearchBar } from "../SearchBar";
 import { useGlobalDisclosure } from "@hooks/useGlobalDisclosure";
 import { clickStopPropagation } from "@utils/clickStopPropagation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { isEmptyTrimedString } from "@utils/isEmptyTrimedString";
 import classNames from "classnames";
 import { SearchSpotlightEmptyResult } from "./SearchSpotlightEmptyResult";
@@ -23,6 +23,7 @@ export const SearchSpotlight = ({
   wrapperClassNames,
 }: SearchSpotlightProps) => {
   const [searchValue, setSearchValue] = useDebounceState("", 500);
+  const searchBarRef = useRef<HTMLInputElement>(null);
 
   const { data: isOpen, setData: setIsOpen } = useGlobalDisclosure(
     "search-spotlight",
@@ -33,7 +34,15 @@ export const SearchSpotlight = ({
   const { data: searchMusicResult, isLoading: isLoadingSearchMusic } =
     useGetMusicSearch({ q: searchValue, page: 1, perPage: 10 });
 
+  const handleFocusSearchBar = useCallback((isOpen: boolean) => {
+    if (isOpen && searchBarRef.current) {
+      searchBarRef.current.focus();
+    }
+  }, []);
+
   useEffect(() => {
+    handleFocusSearchBar(isOpen);
+
     const handleKeyDownEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isOpen) {
         setIsOpen(false);
@@ -66,6 +75,7 @@ export const SearchSpotlight = ({
         onChange={(value) => {
           setSearchValue(value);
         }}
+        ref={searchBarRef}
       />
       <div
         onClick={clickStopPropagation}
