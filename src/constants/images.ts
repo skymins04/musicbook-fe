@@ -1,4 +1,4 @@
-import { prependURL } from "@/utils";
+import { prependURL } from "@utils";
 import { ASSET_HOST } from ".";
 
 const COMMON_IMAGES = {

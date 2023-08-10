@@ -1,4 +1,4 @@
-import { useGlobalDisclosure } from "@hooks/useGlobalDisclosure";
+import { useGlobalDisclosure } from "@hooks";
 import dynamic from "next/dynamic";
 
 const LoginDialog = dynamic(() =>

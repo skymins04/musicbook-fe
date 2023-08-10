@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { Button } from "..";
 import { Dialog, DialogProps } from "./Dialog";
-import { IMAGES } from "@constants/images";
-import { useTheme } from "@hooks/useTheme";
+import { IMAGES } from "@constants";
+import { useTheme } from "@hooks";
 import { GETUserLoginGoogle, GETUserLoginTwitch } from "@apis";
 
 export type LoginDialogProps = Omit<DialogProps, "children" | "header">;
@@ -20,11 +20,11 @@ export const LoginDialog = (props: LoginDialogProps) => {
 
   return (
     <Dialog {...props} header="로그인" headerClassName="border-none">
-      <p className="mb-24 text-center whitespace-pre-wrap text-16">
+      <p className="mb-24 whitespace-pre-wrap text-center text-16">
         소셜로그인으로 간편하게 노래책을 시작하세요!
       </p>
       <Button
-        className="box-border w-full mb-10"
+        className="mb-10 box-border w-full"
         size="lg"
         color="twitch"
         onClick={handleClickLoginTwitch}

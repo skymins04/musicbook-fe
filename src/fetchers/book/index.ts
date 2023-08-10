@@ -8,3 +8,4 @@ export * from "./useMutateBookLikeCreateById";
 export * from "./useMutateBookLikeDelete";
 export * from "./useMutateMyBookConfigUpdate";
 export * from "./useMutateMyBookUpdate";
+export * from "./useGetBookSearch";

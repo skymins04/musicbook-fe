@@ -1,9 +1,14 @@
 import classNames from "classnames";
 import { Dimmer, Header, MainDrawer, TopNotice } from "..";
-import { useGlobalDisclosure } from "@hooks/useGlobalDisclosure";
-import { useBoolean } from "@hooks/useBoolean";
+import { useGlobalDisclosure } from "@hooks";
+import { useBoolean } from "@hooks";
+import { ReactNode } from "react";
 
-export const BaseLayout = () => {
+export type BaseLayoutProps = {
+  children: ReactNode;
+};
+
+export const BaseLayout = ({ children }: BaseLayoutProps) => {
   const [isOpenNotice, setIsOpenNotice] = useBoolean(false);
   const { data: isOpenDrawer, setData: setIsOpenDrawer } = useGlobalDisclosure(
     "drawer",
@@ -28,7 +33,9 @@ export const BaseLayout = () => {
         <div className="relative block h-full min-w-max overflow-y-auto overflow-x-hidden border-r-1 border-gray-200 bg-white duration-200 dark:border-gray-800 dark:bg-gray-700 mobile:hidden">
           <MainDrawer isAllowMinified isShow />
         </div>
-        <div className="relative box-border h-full w-full p-20"></div>
+        <div className="relative box-border h-full w-full overflow-y-auto overflow-x-hidden">
+          {children}
+        </div>
         <Dimmer
           className="absolute"
           isOpen={isShowDimmer}

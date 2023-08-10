@@ -1,14 +1,14 @@
-import { Button } from "@components/Button";
+import { Button } from "@components";
 import { Search } from "@mui/icons-material";
 import classNames from "classnames";
-import { ForwardedRef, forwardRef, useState } from "react";
+import { forwardRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import {
   SearchBarValidationSchema,
   searchBarValidationSchema,
 } from "./validationSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { clickStopPropagation } from "@utils/clickStopPropagation";
+import { clickStopPropagation } from "@utils";
 
 export type SearchBarSize = "md" | "lg";
 

@@ -5,8 +5,8 @@ import {
   ReactNode,
   cloneElement,
 } from "react";
-import { PopMenu, PopMenuItem, PopMenuItemProps } from "..";
-import { useBoolean } from "@hooks/useBoolean";
+import { PopMenu } from "..";
+import { useBoolean } from "@hooks";
 
 type PopMenuDirection =
   | "top-left"
@@ -57,7 +57,7 @@ export const PopMenuButton = ({
     <>
       {isOpen && (
         <div
-          className="fixed top-0 left-0 z-30 w-full h-full"
+          className="fixed left-0 top-0 z-30 h-full w-full"
           onClick={() => setIsOpen.off()}
         ></div>
       )}

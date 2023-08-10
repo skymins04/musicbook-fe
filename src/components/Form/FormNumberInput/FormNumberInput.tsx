@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { Controller, useFormContext } from "react-hook-form";
 import { FormInput, FormInputProps, FormInputSize } from "../FormInput";
-import { Divider } from "@components/Divider";
+import { Divider } from "@components";
 import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
 
 export type FormNumberInputProps = {

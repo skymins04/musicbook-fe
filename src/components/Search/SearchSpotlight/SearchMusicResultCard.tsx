@@ -1,6 +1,5 @@
-import { ProfileImage } from "@components/ProfileImage";
-import { Skeleton, SkeletonBaseProps } from "@components/Skeleton";
-import { IMAGES } from "@constants/images";
+import { ProfileImage, Skeleton, SkeletonBaseProps } from "@components";
+import { IMAGES } from "@constants";
 import classNames from "classnames";
 import Link from "next/link";
 import { ButtonHTMLAttributes } from "react";

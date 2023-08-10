@@ -15,3 +15,4 @@ export * from "./TopNotice";
 export * from "./Form";
 export * from "./Search";
 export * from "./ErrorPage";
+export * from "./BaseLayout";

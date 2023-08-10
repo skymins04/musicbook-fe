@@ -1,7 +1,6 @@
-import { Login, Logout } from "@mui/icons-material";
+import { Login } from "@mui/icons-material";
 import { PopMenuItem } from "..";
-import { GETUserLogout } from "@apis/user";
-import { useGlobalDisclosure } from "@hooks/useGlobalDisclosure";
+import { useGlobalDisclosure } from "@hooks";
 
 export const LoginPopMenuItem = () => {
   const { setData } = useGlobalDisclosure("login-dialog", false);

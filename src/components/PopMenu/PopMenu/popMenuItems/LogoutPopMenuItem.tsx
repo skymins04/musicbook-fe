@@ -1,6 +1,6 @@
 import { Logout } from "@mui/icons-material";
 import { PopMenuItem } from "..";
-import { GETUserLogout } from "@apis/user";
+import { GETUserLogout } from "@apis";
 
 export const LogoutPopMenuItem = () => {
   return (

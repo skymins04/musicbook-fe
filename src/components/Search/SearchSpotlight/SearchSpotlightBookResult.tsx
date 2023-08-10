@@ -1,4 +1,4 @@
-import { Book } from "@apis/book";
+import { Book } from "@apis";
 import { SearchBookResultCard } from "./SearchBookResultCard";
 
 export type SearchSpotlightBookResultProps = {

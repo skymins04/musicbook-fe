@@ -2,8 +2,8 @@ import { Close } from "@mui/icons-material";
 import { Button } from "..";
 import classNames from "classnames";
 import { useEffect, useRef, useState } from "react";
-import { useGetNotice } from "@fetchers/notice";
-import { useBoolean } from "@hooks/useBoolean";
+import { useGetNotice } from "@fetchers";
+import { useBoolean } from "@hooks";
 
 export type TopNoticeProps = {
   onClose?: () => void;

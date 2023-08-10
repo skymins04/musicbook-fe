@@ -1,19 +1,16 @@
-import { Dimmer, Divider, ProfileImage } from "@components";
-import { SearchBar } from "../SearchBar";
-import { useGlobalDisclosure } from "@hooks/useGlobalDisclosure";
-import { clickStopPropagation } from "@utils/clickStopPropagation";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { isEmptyTrimedString } from "@utils/isEmptyTrimedString";
+import { useCallback, useEffect, useRef } from "react";
 import classNames from "classnames";
+import { Dimmer, Divider } from "@components";
+import { useGlobalDisclosure, useDebounceState } from "@hooks";
+import { clickStopPropagation, isEmptyTrimedString } from "@utils";
+import { useGetBookSearch, useGetMusicSearch } from "@fetchers";
+import { SearchBar } from "../SearchBar";
 import { SearchSpotlightEmptyResult } from "./SearchSpotlightEmptyResult";
 import { SearchSpotlightSection } from "./SearchSpotlightSection";
-import { useGetBookSearch } from "@fetchers/book/useGetBookSearch";
 import { SearchSpotlightBookMockResult } from "./SearchSpotlightBookMockResult";
 import { SearchSpotlightBookResult } from "./SearchSpotlightBookResult";
 import { SearchSpotlightMusicMockResult } from "./SearchSpotlightMusicMockResult";
-import { useGetMusicSearch } from "@fetchers/music";
 import { SearchSpotlightMusicResult } from "./SearchSpotlightMusicResult";
-import { useDebounceState } from "@hooks/useDebounceState";
 
 export type SearchSpotlightProps = {
   wrapperClassNames?: string;

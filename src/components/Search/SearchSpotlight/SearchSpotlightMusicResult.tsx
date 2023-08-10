@@ -1,4 +1,4 @@
-import { Music } from "@apis/music";
+import { Music } from "@apis";
 import { SearchMusicResultCard } from "./SearchMusicResultCard";
 
 export type SearchSpotlightMusicResultProps = {
