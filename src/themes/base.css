@@ -80,7 +80,7 @@
   }
 
   *::-webkit-scrollbar-thumb {
-    @apply h-[30%] rounded-full border-[2px] border-solid border-[transparent] bg-gray-200 bg-clip-padding dark:bg-gray-800;
+    @apply h-[30%] rounded-full border-[2px] border-solid border-[transparent] bg-gray-200 bg-clip-padding dark:bg-gray-600;
   }
 
   *::-webkit-scrollbar-track {
