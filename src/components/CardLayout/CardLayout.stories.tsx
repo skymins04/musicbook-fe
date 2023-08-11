@@ -1,20 +1,20 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { AutoGrid } from "./AutoGrid";
+import { CardLayout } from "./CardLayout";
 
-const meta: Meta<typeof AutoGrid> = {
-  title: "Common/AutoGrid",
-  component: AutoGrid,
+const meta: Meta<typeof CardLayout> = {
+  title: "Common/CardLayout",
+  component: CardLayout,
   tags: ["autodocs"],
 };
 
 export default meta;
-type Story = StoryObj<typeof AutoGrid>;
+type Story = StoryObj<typeof CardLayout>;
 
 export const Default: Story = {
   render() {
     return (
-      <AutoGrid>
+      <CardLayout>
         <div className="h-[60px] w-full bg-red-500"></div>
         <div className="h-[60px] w-full bg-red-500"></div>
         <div className="h-[60px] w-full bg-red-500"></div>
@@ -28,7 +28,7 @@ export const Default: Story = {
         <div className="h-[60px] w-full bg-red-500"></div>
         <div className="h-[60px] w-full bg-red-500"></div>
         <div className="h-[60px] w-full bg-red-500"></div>
-      </AutoGrid>
+      </CardLayout>
     );
   },
 };

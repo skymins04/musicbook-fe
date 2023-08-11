@@ -50,7 +50,7 @@ export const MusicCard = ({
             "overflow-hidden !rounded-none",
             type === "grid"
               ? "!rounded-t-6"
-              : "!w-[20%] !min-w-[100px] !max-w-[150px] !rounded-l-6"
+              : "!w-[20%] !min-w-[100px] !max-w-[100px] !rounded-l-6"
           )}
           src={musicAlbumThumbnail}
           alt={`${music.title} - ${music.book?.title}`}

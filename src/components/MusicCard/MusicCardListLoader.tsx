@@ -1,18 +1,18 @@
 import { GETMusicSearchOptions, Music } from "@apis";
 import { useGetMusicSearch } from "@fetchers";
 import { useEffect, useState } from "react";
-import { MusicCard, MusicCardType } from "./MusicCard";
+import { MusicCard } from "./MusicCard";
+import { useBreakpointSmaller } from "@hooks";
 
 export type MusicCardLoaderProps = {
-  type?: MusicCardType;
   isShowBookThumbnail?: boolean;
 } & GETMusicSearchOptions;
 
 export const MusicCardListLoader = ({
-  type,
   isShowBookThumbnail,
   ...options
 }: MusicCardLoaderProps) => {
+  const isSemiTablet = useBreakpointSmaller("semi-tablet");
   const [musics, setMusics] = useState<Music[]>([]);
   const { data, isLoading, error } = useGetMusicSearch(options);
 
@@ -24,7 +24,8 @@ export const MusicCardListLoader = ({
 
   return musics.map((music) => (
     <MusicCard
-      type={type}
+      key={music.id}
+      type={isSemiTablet ? "list" : "grid"}
       isShowBookThumbnail={isShowBookThumbnail}
       music={music}
       className="!max-w-none"
