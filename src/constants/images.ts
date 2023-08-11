@@ -12,6 +12,17 @@ const COMMON_IMAGES = {
   GOOGLE_COLORED: "/common/logo/google-color.svg",
 };
 
+const FAVICON_IMAGES = {
+  ANDROID_CHROME_192: "/icon/android-chrome-192x192.png",
+  ANDROID_CHROME_512: "/icon/android-chrome-512x512.png",
+  APPLE_TOUCH_ICON: "/icon/apple-touch-icon.png",
+  WEB_16: "/icon/favicon-16x16.png",
+  WEB_32: "/icon/favicon-32x32.png",
+  WEB_ICO: "/icon/favicon.ico",
+  MSTILE_150: "/icon/mstile-150x150.png",
+  SAFARI_PINNED: "/icon/safari-pinned-tab.svg",
+};
+
 export const IMAGE_ASSET_ROOT_URL = `${ASSET_HOST}/assets/images`;
 const prependImageAssetHostURL = (urls: Record<string, string>) => {
   for (const key of Object.keys(urls)) {
@@ -23,4 +34,5 @@ const prependImageAssetHostURL = (urls: Record<string, string>) => {
 
 export const IMAGES = {
   COMMON: COMMON_IMAGES,
+  FAVICON: FAVICON_IMAGES,
 };
