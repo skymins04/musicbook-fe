@@ -1,3 +1,4 @@
+import { LoadingSpinner } from "@components/LoadingSpinner";
 import classNames from "classnames";
 import { ButtonHTMLAttributes, ReactNode } from "react";
 
@@ -168,12 +169,7 @@ export const Button = ({
           )}
         >
           {isLoading ? (
-            <div
-              className={classNames(
-                buttonIconSizeStyleMap[size],
-                "box-border animate-spin rounded-full border-[2px] border-blackAlpha-500 border-b-white"
-              )}
-            ></div>
+            <LoadingSpinner className={buttonIconSizeStyleMap[size]} />
           ) : (
             leftIcon
           )}
