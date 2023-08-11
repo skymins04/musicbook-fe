@@ -4,10 +4,11 @@ import { useGetMusicSearch } from "@fetchers";
 import { useBreakpointSmaller } from "@hooks";
 import { flattenPaginationData } from "@utils/flattenPaginationData";
 import { useEffect } from "react";
+import { MusicCardListEmpty } from "./MusicCardListEmpty";
 
 export type MusicCardListContentsLoadingHandlerProps = {
   onLoadingStart?: () => void;
-  onLoadingEnd?: (isLastPage: boolean) => void;
+  onLoadingEnd?: (isLastPage: boolean, isEmpty: boolean) => void;
 };
 
 export type MusicCardListContentsProps = {
@@ -22,26 +23,31 @@ export const MusicCardListContents = ({
   ...options
 }: MusicCardListContentsProps) => {
   const isSemiTablet = useBreakpointSmaller("semi-tablet");
-
-  const { data, isLoading } = useGetMusicSearch(options);
+  const { q, page, perPage, sort, category, bookId } = options;
+  const { data, isLoading, isValidating } = useGetMusicSearch(options);
   const musics = flattenPaginationData<Music>(data);
 
   useEffect(() => {
-    if (isLoading) {
+    if (isLoading || isValidating) {
       onLoadingStart && onLoadingStart();
     } else {
       const isLastPage = !data || data[data.length - 1].data.length < 30;
-      onLoadingEnd && onLoadingEnd(isLastPage);
+      const isEmpty = !musics || musics.length === 0;
+      onLoadingEnd && onLoadingEnd(isLastPage, isEmpty);
     }
-  }, [isLoading]);
+  }, [isLoading, isValidating, q, page, perPage, sort, category, bookId]);
 
-  return musics?.map((music) => (
-    <MusicCard
-      key={music.id}
-      type={isSemiTablet ? "list" : "grid"}
-      isShowBookThumbnail={isShowBookThumbnail}
-      music={music}
-      className="!max-w-none"
-    />
-  ));
+  return musics && musics.length !== 0 ? (
+    musics.map((music) => (
+      <MusicCard
+        key={music.id}
+        type={isSemiTablet ? "list" : "grid"}
+        isShowBookThumbnail={isShowBookThumbnail}
+        music={music}
+        className="!max-w-none"
+      />
+    ))
+  ) : (
+    <MusicCardListEmpty />
+  );
 };

@@ -6,7 +6,7 @@ const MusicCardList = dynamic(
 
 export const MainPage = () => {
   return (
-    <div className="box-border h-max w-full p-20">
+    <div className="box-border h-max w-full p-20 mobile:px-10">
       <MusicCardList />
     </div>
   );

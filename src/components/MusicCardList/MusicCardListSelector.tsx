@@ -3,12 +3,14 @@ import { Tabs, TabsProps, TabData } from "@components";
 import { SEARCH_SORT_LABEL } from "@constants";
 import { GETMusicSearchSort } from "@apis";
 import { MusicCardListSelectorSchema } from "./MusicCardList";
+import { useCallback } from "react";
 
-export type MusicCardListSelector = Omit<TabsProps, "tabs" | "onChange">;
+export type MusicCardListSelector = Omit<TabsProps, "tabs">;
 
 export const MUSIC_CARD_LIST_SELECTOR_TABS = [
   { id: "SUGGEST", label: SEARCH_SORT_LABEL["SUGGEST"] },
   { id: "category:J-POP", label: "J-POP" },
+  { id: "category:POP", label: "POP" },
   { id: "category:발라드", label: "발라드" },
   { id: "category:랩/힙합", label: "랩/힙합" },
   { id: "category:R&B/Soul", label: "R&B/Soul" },
@@ -17,20 +19,28 @@ export const MUSIC_CARD_LIST_SELECTOR_TABS = [
   { id: "POPULAR", label: SEARCH_SORT_LABEL["POPULAR"] },
 ];
 
-export const MusicCardListSelector = ({ ...props }: MusicCardListSelector) => {
+export const MusicCardListSelector = ({
+  onChange,
+  ...props
+}: MusicCardListSelector) => {
   const { setValue } = useFormContext<MusicCardListSelectorSchema>();
 
-  const handleChageTab = (tab: TabData) => {
-    const [action, category] = tab.id.split(":");
-    if (action === "category") {
-      setValue("sort", "SUGGEST");
-      setValue("category", category);
-    }
-    if ((SEARCH_SORT_LABEL as Record<string, string>)[action]) {
-      setValue("sort", action as GETMusicSearchSort);
-      setValue("category", undefined);
-    }
-  };
+  const handleChageTab = useCallback(
+    (tab: TabData) => {
+      const [action, category] = tab.id.split(":");
+      if (action === "category") {
+        setValue("sort", "SUGGEST");
+        setValue("category", category);
+      }
+      if ((SEARCH_SORT_LABEL as Record<string, string>)[action]) {
+        setValue("sort", action as GETMusicSearchSort);
+        setValue("category", undefined);
+      }
+
+      onChange && onChange(tab);
+    },
+    [setValue, onChange]
+  );
 
   return (
     <Tabs

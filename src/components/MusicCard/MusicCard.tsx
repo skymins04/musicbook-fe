@@ -29,11 +29,13 @@ export const MusicCard = ({
 
   const isShow = isLoadedBookThumbnail && isLoadedAlbumThumbnail;
 
+  // TODO: 다른 음원 프로바이더가 쉽게 추가될 수 있도록 확장성과 관련된 리펙터링이 이루어져야 함.
   const musicSourceType = music.musicSourceOriginal ? "original" : "melon";
   const musicAlbumThumbnail =
     (musicSourceType === "original"
       ? music.musicSourceOriginal?.albumThumbnail
-      : music.musicSourceMelon?.albumThumbnail500) || "";
+      : music.musicSourceMelon?.albumThumbnail500 ||
+        music.musicSourceMelon?.albumThumbnail200) || "";
   const musicPageHref = isShow ? `/music/${music.id}` : "";
   const bookPageHref = isShow ? `/book/${music.book?.customId}` : "";
 
@@ -85,7 +87,7 @@ export const MusicCard = ({
         >
           <div
             className={classNames(
-              "box-border line-clamp-2 h-[2em] break-all text-left text-18 font-normal leading-[17px] text-gray-700 duration-200 dark:text-white",
+              "box-border line-clamp-2 h-[2em] break-all text-left text-14 font-normal leading-[14px] text-gray-700 duration-200 dark:text-white",
               type === "grid" ? "w-full" : "w-[calc(100%-42px)]"
             )}
           >
