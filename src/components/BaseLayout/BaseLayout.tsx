@@ -1,8 +1,13 @@
 import classNames from "classnames";
-import { Dimmer, Header, MainDrawer, TopNotice } from "..";
-import { useGlobalDisclosure } from "@hooks";
+import { Header, MainDrawer } from "..";
 import { useBoolean } from "@hooks";
 import { ReactNode } from "react";
+import { BaseLayoutMobileDrawer } from "./BaseLayoutMobileDrawer";
+import dynamic from "next/dynamic";
+
+const TopNotice = dynamic(
+  import("../TopNotice/TopNotice").then((mod) => mod.TopNotice)
+);
 
 export type BaseLayoutProps = {
   children: ReactNode;
@@ -10,11 +15,6 @@ export type BaseLayoutProps = {
 
 export const BaseLayout = ({ children }: BaseLayoutProps) => {
   const [isOpenNotice, setIsOpenNotice] = useBoolean(false);
-  const { data: isOpenDrawer, setData: setIsOpenDrawer } = useGlobalDisclosure(
-    "drawer",
-    false
-  );
-  const isShowDimmer = isOpenDrawer;
 
   return (
     <div
@@ -36,19 +36,7 @@ export const BaseLayout = ({ children }: BaseLayoutProps) => {
         <div className="relative box-border h-full w-full overflow-y-auto overflow-x-hidden">
           {children}
         </div>
-        <Dimmer
-          className="absolute"
-          isOpen={isShowDimmer}
-          onClick={() => setIsOpenDrawer(false)}
-        />
-        <div
-          className={classNames(
-            "absolute left-0 top-0 z-10 block h-full min-w-max overflow-y-auto overflow-x-hidden bg-white duration-200 dark:bg-gray-700",
-            isOpenDrawer ? "translate-x-0" : "translate-x-[-100%]"
-          )}
-        >
-          <MainDrawer isShow />
-        </div>
+        <BaseLayoutMobileDrawer />
       </div>
     </div>
   );
