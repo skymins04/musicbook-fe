@@ -3,19 +3,19 @@ import axios from "axios";
 
 export type Notice = {
   type: "normal" | "incident";
-  startAt: string;
-  endAt: string;
+  startAt: string | null;
+  endAt: string | null;
   message: string;
   link: string;
 };
 
-export const GETNotice = async (): Promise<Notice | null> => {
+export const GETNotice = async (): Promise<Notice | undefined> => {
   try {
     const result = await axios.get(
       `${ASSET_HOST}/assets/json/notice.json?v=${new Date().getTime()}`
     );
     return result.data;
   } catch (e) {
-    return null;
+    return undefined;
   }
 };
