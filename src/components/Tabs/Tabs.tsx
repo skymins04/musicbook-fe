@@ -34,7 +34,7 @@ export const Tabs = ({ className, tabs, onChange }: TabsProps) => {
             key={tab.id}
             {...tab}
             isSelected={tab.id === selectedTab}
-            onClick={handleClickTab(tab)}
+            onClick={tab.id !== selectedTab ? handleClickTab(tab) : undefined}
           />
         ))}
       </div>
