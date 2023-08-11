@@ -12,10 +12,7 @@ export default meta;
 type Story = StoryObj<typeof BaseLayout>;
 
 export const Default: Story = {
-  args: {
-    // className: "",
-  },
   render() {
-    return <BaseLayout />;
+    return <BaseLayout>hello world</BaseLayout>;
   },
 };
