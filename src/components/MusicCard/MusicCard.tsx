@@ -48,7 +48,7 @@ export const MusicCard = ({
       <Link
         href={musicPageHref}
         className={classNames(
-          "relative flex w-full items-stretch justify-center",
+          "relative flex w-full items-stretch justify-between",
           type === "grid" && "flex-col"
         )}
       >
@@ -57,7 +57,7 @@ export const MusicCard = ({
             "overflow-hidden !rounded-none",
             type === "grid"
               ? "!rounded-t-6"
-              : "!w-[20%] !min-w-[100px] !max-w-[100px] !rounded-l-6"
+              : "!w-[20%] !min-w-[120px] !max-w-[120px] !rounded-l-6"
           )}
           src={musicAlbumThumbnail}
           alt={`${music.title} - ${music.book?.title}`}
@@ -77,19 +77,21 @@ export const MusicCard = ({
         </Thumbnail>
         <div
           className={classNames(
-            "box-border flex w-full flex-col items-start gap-8 bg-white duration-200 dark:bg-gray-700",
+            "box-border flex flex-col items-start gap-8 bg-white duration-200 dark:bg-gray-700",
             type === "grid"
-              ? "justify-start rounded-b-6 px-10 pb-10 pt-8"
-              : "justify-between rounded-r-6 p-20"
+              ? "w-full justify-start rounded-b-6 px-10 pb-10 pt-8"
+              : "w-[calc(100%-120px)] justify-between rounded-r-6 p-20"
           )}
         >
           <div
             className={classNames(
-              "box-border line-clamp-2 h-max break-all text-left text-18 font-bold leading-[17px] text-gray-700 duration-200 dark:text-white",
+              "box-border line-clamp-2 h-[2em] break-all text-left text-18 font-normal leading-[17px] text-gray-700 duration-200 dark:text-white",
               type === "grid" ? "w-full" : "w-[calc(100%-42px)]"
             )}
           >
-            <Skeleton isShow={isShow}>{music.title}</Skeleton>
+            <Skeleton className="max-h-[2em]" isShow={isShow}>
+              {music.title}
+            </Skeleton>
           </div>
           <div className="box-border flex w-full items-stretch justify-between gap-8">
             {isShowBookThumbnail && (
@@ -109,20 +111,20 @@ export const MusicCard = ({
                 />
               </Link>
             )}
-            <div className="flex w-full flex-col items-start justify-center gap-4 text-12 font-normal text-gray-500 duration-200 dark:text-gray-400">
+            <div className="flex w-[calc(100%-44px)] flex-col items-start justify-center gap-4 text-12 font-normal text-gray-500 duration-200 dark:text-gray-400">
               <Skeleton isShow={isShow}>
                 <Link
                   href={bookPageHref}
-                  className="hover:underline"
+                  className="block w-full overflow-hidden text-ellipsis whitespace-nowrap text-left hover:underline"
                   onClick={clickStopPropagation}
                 >
                   {music.book?.title}
                 </Link>
               </Skeleton>
               <Skeleton isShow={isShow}>
-                <div>{`좋아요 ${music.likeCount.toLocaleString(
+                <span className="block w-full overflow-hidden text-ellipsis whitespace-nowrap text-left">{`좋아요 ${music.likeCount.toLocaleString(
                   "ko-KR"
-                )}개`}</div>
+                )}개`}</span>
               </Skeleton>
             </div>
           </div>
