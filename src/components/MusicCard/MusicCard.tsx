@@ -66,10 +66,10 @@ export const MusicCard = ({
         >
           <div
             className={classNames(
-              "absolute bottom-8 left-8 bg-green-100 font-bold text-green-800",
+              "absolute bottom-8 left-8 bg-green-100 text-12 font-bold text-green-800",
               type === "grid"
-                ? "rounded-3 px-[5px] py-2 text-16"
-                : "rounded-3 px-3 py-1 text-12"
+                ? "rounded-3 px-[5px] py-2"
+                : "rounded-3 px-3 py-1"
             )}
           >
             {music.category}
