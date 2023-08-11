@@ -1,4 +1,4 @@
-import { MusicConfig, PATCHMusicConfigById } from "@/apis";
+import { MusicConfig, PATCHMusicConfigById } from "@apis";
 import useSWRMutation from "swr/mutation";
 
 type FetcherKey = [[string, string]];

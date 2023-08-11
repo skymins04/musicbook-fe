@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { GETMelonAlbumResponse, GETMelonAlbumById } from "@/apis";
+import { GETMelonAlbumResponse, GETMelonAlbumById } from "@apis";
 
 type FetcherArgs = readonly [[string, string], number];
 

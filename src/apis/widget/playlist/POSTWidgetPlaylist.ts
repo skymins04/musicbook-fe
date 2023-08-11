@@ -1,4 +1,4 @@
-import { musicbookAxios } from "@/apis/client";
+import { musicbookAxios } from "@apis/client";
 import { WidgetPlaylist } from "./playlist";
 
 export const POSTWidgetPlaylist = async (): Promise<WidgetPlaylist> => {

@@ -16,3 +16,5 @@ export * from "./Form";
 export * from "./Search";
 export * from "./ErrorPage";
 export * from "./BaseLayout";
+export * from "./Tabs";
+export * from "./AutoGrid";

@@ -1,5 +1,10 @@
-import { BaseLayout } from "@components/BaseLayout";
+import { BaseLayout } from "@components";
+import { MainPage } from "@containers";
 
 export default function Index() {
-  return <BaseLayout />;
+  return (
+    <BaseLayout>
+      <MainPage />
+    </BaseLayout>
+  );
 }

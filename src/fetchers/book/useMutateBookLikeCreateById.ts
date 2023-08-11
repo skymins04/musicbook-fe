@@ -1,4 +1,4 @@
-import { POSTBookLikeById } from "@/apis";
+import { POSTBookLikeById } from "@apis";
 import useSWRMutation from "swr/mutation";
 
 type FetcherKey = readonly [[string, string]];

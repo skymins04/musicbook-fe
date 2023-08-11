@@ -1,4 +1,4 @@
-import { GETUserMe } from "@/apis";
+import { GETUserMe } from "@apis";
 import useSWR from "swr";
 
 const fetcher = async () => GETUserMe();

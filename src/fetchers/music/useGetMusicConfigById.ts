@@ -1,4 +1,4 @@
-import { GETMusicConfigById } from "@/apis";
+import { GETMusicConfigById } from "@apis";
 import useSWR from "swr";
 
 type FetcherKey = readonly [[string, string], string];

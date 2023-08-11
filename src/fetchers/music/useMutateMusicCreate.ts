@@ -1,5 +1,5 @@
 import useSWRMutation from "swr/mutation";
-import { MusicFormData, POSTMusic, POSTMusicType } from "@/apis";
+import { MusicFormData, POSTMusic, POSTMusicType } from "@apis";
 
 type FetcherKey = readonly [[string, string]];
 type FetcherArg = {

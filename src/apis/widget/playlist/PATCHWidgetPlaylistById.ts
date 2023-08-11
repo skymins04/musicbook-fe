@@ -1,4 +1,4 @@
-import { musicbookAxios } from "@/apis/client";
+import { musicbookAxios } from "@apis/client";
 
 export const PATCHWidgetPlaylistById = async (
   widgetId: string,

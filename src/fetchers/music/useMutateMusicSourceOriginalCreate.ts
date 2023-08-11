@@ -1,7 +1,4 @@
-import {
-  POSTMusicSourceOriginal,
-  POSTMusicSourceOriginalOptions,
-} from "@/apis";
+import { POSTMusicSourceOriginal, POSTMusicSourceOriginalOptions } from "@apis";
 import useSWRMutation from "swr/mutation";
 
 type FetcherKey = readonly [[string, string]];

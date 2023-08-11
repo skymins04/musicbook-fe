@@ -1,4 +1,4 @@
-import { DELETEMusicById } from "@/apis";
+import { DELETEMusicById } from "@apis";
 import useSWRMutation from "swr/mutation";
 
 type FetcherKey = readonly [[string, string]];

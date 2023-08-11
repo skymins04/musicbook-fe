@@ -1,5 +1,5 @@
 import useSWRMutation from "swr/mutation";
-import { PATCHUserMe, PATCHUserMeOptions } from "@/apis";
+import { PATCHUserMe, PATCHUserMeOptions } from "@apis";
 
 type FetcherKey = readonly [[string, string]];
 

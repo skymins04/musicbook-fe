@@ -1,4 +1,4 @@
-import { GETMyBookLikeCount } from "@/apis";
+import { GETMyBookLikeCount } from "@apis";
 import useSWR from "swr";
 
 const fetcher = async () => GETMyBookLikeCount();

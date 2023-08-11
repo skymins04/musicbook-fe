@@ -1,4 +1,4 @@
-import { GETBookSearch, GETBookSearchOption, GETBookSearchSort } from "@/apis";
+import { GETBookSearch, GETBookSearchOption, GETBookSearchSort } from "@apis";
 import useSWR from "swr";
 
 type FetcherKey = readonly [

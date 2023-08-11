@@ -4,7 +4,7 @@ import {
   GETMelonSongSearchSection,
   GETMelonSongSearchSort,
   GETMelonSongSearch,
-} from "@/apis";
+} from "@apis";
 
 type FetcherArgs = readonly [
   [string, string],

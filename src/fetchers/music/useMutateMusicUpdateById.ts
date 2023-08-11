@@ -1,4 +1,4 @@
-import { MusicFormData, PATCHMusicById } from "@/apis";
+import { MusicFormData, PATCHMusicById } from "@apis";
 import useSWRMutation from "swr/mutation";
 
 type FetcherKey = readonly [[string, string]];

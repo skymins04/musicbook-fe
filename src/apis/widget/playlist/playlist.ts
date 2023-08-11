@@ -1,4 +1,4 @@
-import { Book, User } from "@/apis";
+import { Book, User } from "@apis";
 
 export type WidgetPlaylist = {
   id: string;

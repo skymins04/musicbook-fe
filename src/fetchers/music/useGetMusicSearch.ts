@@ -2,7 +2,7 @@ import {
   GETMusicSearch,
   GETMusicSearchOptions,
   GETMusicSearchSort,
-} from "@/apis";
+} from "@apis";
 import useSWR from "swr";
 
 type FetcherKey = readonly [

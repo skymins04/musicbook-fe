@@ -1,4 +1,4 @@
-import { DELETEBookLikeById } from "@/apis";
+import { DELETEBookLikeById } from "@apis";
 import useSWRMutation from "swr/mutation";
 
 type FetcherKey = readonly [[string, string]];

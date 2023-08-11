@@ -1,4 +1,4 @@
-import { POSTMusicLikeById } from "@/apis";
+import { POSTMusicLikeById } from "@apis";
 import useSWRMutation from "swr/mutation";
 
 type FetcherKey = readonly [[string, string]];
