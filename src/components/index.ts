@@ -18,3 +18,4 @@ export * from "./ErrorPage";
 export * from "./BaseLayout";
 export * from "./Tabs";
 export * from "./CardLayout";
+export * from "./MusicCardList";

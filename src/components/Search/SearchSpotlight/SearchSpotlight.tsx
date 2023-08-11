@@ -11,6 +11,8 @@ import { SearchSpotlightBookMockResult } from "./SearchSpotlightBookMockResult";
 import { SearchSpotlightBookResult } from "./SearchSpotlightBookResult";
 import { SearchSpotlightMusicMockResult } from "./SearchSpotlightMusicMockResult";
 import { SearchSpotlightMusicResult } from "./SearchSpotlightMusicResult";
+import { flattenPaginationData } from "@utils/flattenPaginationData";
+import { Book, Music } from "@apis";
 
 export type SearchSpotlightProps = {
   wrapperClassNames?: string;
@@ -26,10 +28,15 @@ export const SearchSpotlight = ({
     "search-spotlight",
     false
   );
-  const { data: searchBookResult, isLoading: isLoadingSearchBook } =
-    useGetBookSearch({ q: searchValue, sort: "POPULAR", page: 1, perPage: 10 });
-  const { data: searchMusicResult, isLoading: isLoadingSearchMusic } =
-    useGetMusicSearch({ q: searchValue, page: 1, perPage: 10 });
+  const { data: searchBookResultPages, isLoading: isLoadingSearchBook } =
+    useGetBookSearch({ q: searchValue, sort: "POPULAR", perPage: 10 });
+  const { data: searchMusicResultPages, isLoading: isLoadingSearchMusic } =
+    useGetMusicSearch({ q: searchValue, sort: "POPULAR", perPage: 10 });
+
+  const searchBookResult = flattenPaginationData<Book>(searchBookResultPages);
+  const searchMusicResult = flattenPaginationData<Music>(
+    searchMusicResultPages
+  );
 
   const handleFocusSearchBar = useCallback((isOpen: boolean) => {
     if (isOpen && searchBarRef.current) {
@@ -87,20 +94,20 @@ export const SearchSpotlight = ({
         <div className="h-max w-full overflow-x-auto overflow-y-hidden">
           {isLoadingSearchBook ? (
             <SearchSpotlightBookMockResult />
-          ) : !searchBookResult || searchBookResult.data.length === 0 ? (
+          ) : !searchBookResult || searchBookResult.length === 0 ? (
             <SearchSpotlightEmptyResult />
           ) : (
-            <SearchSpotlightBookResult books={searchBookResult.data} />
+            <SearchSpotlightBookResult books={searchBookResult} />
           )}
         </div>
         <Divider />
         <SearchSpotlightSection title="수록곡" href="#" />
         {isLoadingSearchMusic ? (
           <SearchSpotlightMusicMockResult />
-        ) : !searchMusicResult || searchMusicResult.data.length === 0 ? (
+        ) : !searchMusicResult || searchMusicResult.length === 0 ? (
           <SearchSpotlightEmptyResult />
         ) : (
-          <SearchSpotlightMusicResult musics={searchMusicResult.data} />
+          <SearchSpotlightMusicResult musics={searchMusicResult} />
         )}
       </div>
     </>

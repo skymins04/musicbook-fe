@@ -34,15 +34,22 @@ export const MusicCard = ({
     (musicSourceType === "original"
       ? music.musicSourceOriginal?.albumThumbnail
       : music.musicSourceMelon?.albumThumbnail500) || "";
+  const musicPageHref = isShow ? `/music/${music.id}` : "";
   const bookPageHref = isShow ? `/book/${music.book?.customId}` : "";
 
   return (
-    <Link href={`/music/${music.id}`}>
-      <button
+    <button
+      className={classNames(
+        "relative w-full rounded-6 shadow-md duration-200 hover:scale-[1.005] hover:shadow-lg focus:outline-none",
+        type === "grid" && "max-w-[200px]",
+        className
+      )}
+    >
+      <Link
+        href={musicPageHref}
         className={classNames(
-          "relative flex w-full items-stretch justify-center rounded-6 shadow-md duration-200 hover:scale-[1.005] hover:shadow-lg focus:outline-none",
-          type === "grid" && "max-w-[200px] flex-col",
-          className
+          "relative flex w-full items-stretch justify-center",
+          type === "grid" && "flex-col"
         )}
       >
         <Thumbnail
@@ -120,20 +127,20 @@ export const MusicCard = ({
             </div>
           </div>
         </div>
-        <button
-          className={classNames(
-            "absolute -top-14 right-0",
-            isLiked
-              ? "text-teal-400 duration-200 hover:text-teal-300 dark:text-teal-200 dark:hover:text-teal-100"
-              : "text-gray-400 duration-200 hover:text-gray-300 dark:text-gray-200 dark:hover:text-gray-100"
-          )}
-          onClick={(e) => {
-            clickStopPropagation(e);
-          }}
-        >
-          <Bookmark className="!text-[68px]" />
-        </button>
+      </Link>
+      <button
+        className={classNames(
+          "absolute -top-14 right-0",
+          isLiked
+            ? "text-teal-400 duration-200 hover:text-teal-300 dark:text-teal-200 dark:hover:text-teal-100"
+            : "text-gray-400 duration-200 hover:text-gray-300 dark:text-gray-200 dark:hover:text-gray-100"
+        )}
+        onClick={(e) => {
+          clickStopPropagation(e);
+        }}
+      >
+        <Bookmark className="!text-[68px]" />
       </button>
-    </Link>
+    </button>
   );
 };

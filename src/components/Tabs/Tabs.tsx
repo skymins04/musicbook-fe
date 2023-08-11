@@ -1,15 +1,24 @@
 import classNames from "classnames";
 import { Tab, TabData } from "./Tab";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 export type TabsProps = {
   className?: string;
   tabs: TabData[];
+  onChange?: (tab: TabData) => void;
 };
 
-export const Tabs = ({ className, tabs }: TabsProps) => {
+export const Tabs = ({ className, tabs, onChange }: TabsProps) => {
   const [selectedTab, setSelectedTab] = useState(
     tabs.length === 0 ? null : tabs[0].id
+  );
+
+  const handleClickTab = useCallback(
+    (tab: TabData) => () => {
+      setSelectedTab(tab.id);
+      onChange && onChange(tab);
+    },
+    [setSelectedTab, onChange]
   );
 
   return (
@@ -25,7 +34,7 @@ export const Tabs = ({ className, tabs }: TabsProps) => {
             key={tab.id}
             {...tab}
             isSelected={tab.id === selectedTab}
-            onClick={() => setSelectedTab(tab.id)}
+            onClick={handleClickTab(tab)}
           />
         ))}
       </div>
