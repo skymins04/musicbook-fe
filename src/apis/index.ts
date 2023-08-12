@@ -8,3 +8,4 @@ export * from "./request";
 export * from "./widget";
 export * from "./notice";
 export * from "./maintenance";
+export * from "./banner";
