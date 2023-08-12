@@ -20,3 +20,4 @@ export * from "./Tabs";
 export * from "./CardLayout";
 export * from "./MusicCardList";
 export * from "./LoadingSpinner";
+export * from "./Banner";
