@@ -3,6 +3,7 @@ import { ASSET_HOST } from "./host";
 
 const COMMON_JSON = {
   NOTICE: "/notice.json",
+  MAINTENANCE_MODE: "/maintenance-mode.json",
 };
 
 export const JSON_ASSET_ROOT_URL = `${ASSET_HOST}/assets/json`;
