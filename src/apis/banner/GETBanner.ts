@@ -13,7 +13,7 @@ export type Banner = {
 
 export type BannerJSON = Record<string, Banner[]>;
 
-export const GETBanner = async () => {
+export const GETBanner = async (): Promise<BannerJSON | undefined> => {
   try {
     const result = await axios.get(getBypassDiskCacheURL(JSONS.COMMON.BANNER));
     return result.data;

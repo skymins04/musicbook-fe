@@ -7,6 +7,8 @@ const COMMON_IMAGES = {
   LOGO_TEXT: "/common/musicbook-logo-text.svg",
   LOGO_TEXT_DARK: "/common/musicbook-logo-text-dark.svg",
   DEFAULT_THUMBNAIL: "/common/musicbook-default-thumbnail.svg",
+  DEFAULT_BANNER_DESKTOP: "/common/musicbook-default-banner-desktop.svg",
+  DEFAULT_BANNER_MOBILE: "/common/musicbook-default-banner-mobile.svg",
   TWITCH_WHTIE: "/common/logo/twitch-white.svg",
   TWITCH_DARK: "/common/logo/twitch-dark.svg",
   GOOGLE_COLORED: "/common/logo/google-color.svg",
