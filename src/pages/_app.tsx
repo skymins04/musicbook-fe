@@ -5,6 +5,7 @@ import { getCookie } from "@utils";
 import { ThemeType } from "@hooks";
 import Head from "next/head";
 import { IMAGES, JSONS } from "@constants";
+import Script from "next/script";
 
 type MusicBookAppProps = {
   theme: ThemeType;
@@ -44,6 +45,17 @@ export default function App({
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <Component />
+      {/* Google tag (gtag.js) */}
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-J72C6NHFFP" />
+      <Script id="google-analytics">
+        {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-J72C6NHFFP');
+        `}
+      </Script>
     </ProviderRoot>
   );
 }
