@@ -6,3 +6,4 @@ export * from "./prependURL";
 export * from "./cookie";
 export * from "./isEmptyTrimedString";
 export * from "./flattenPaginationData";
+export * from "./getBypassDiskCacheURL";
