@@ -20,7 +20,7 @@ const FAVICON_IMAGES = {
   APPLE_TOUCH_ICON: "/icon/apple-touch-icon.png",
   WEB_16: "/icon/favicon-16x16.png",
   WEB_32: "/icon/favicon-32x32.png",
-  WEB_ICO: "/icon/favicon.ico",
+  WEB_ICO: "/favicon.ico",
   MSTILE_150: "/icon/mstile-150x150.png",
   SAFARI_PINNED: "/icon/safari-pinned-tab.svg",
 };
