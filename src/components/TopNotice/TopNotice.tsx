@@ -4,6 +4,8 @@ import classNames from "classnames";
 import { useEffect, useRef, useState } from "react";
 import { useGetNotice } from "@fetchers";
 import { useBoolean } from "@hooks";
+import { isValidStartEndAt } from "@utils";
+import dayjs from "dayjs";
 
 export type TopNoticeProps = {
   onClose?: () => void;
@@ -31,7 +33,7 @@ export const TopNotice = ({ onClose, onOpen }: TopNoticeProps) => {
   };
 
   useEffect(() => {
-    if (data) {
+    if (data && isValidStartEndAt(dayjs(), data.startAt, data.endAt)) {
       setIsOpen.on();
       onOpen && onOpen();
     }
