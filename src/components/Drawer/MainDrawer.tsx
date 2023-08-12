@@ -17,6 +17,7 @@ import {
 import { Divider, DrawerItem, DrawerLinkItem, DrawerSubtitle } from "..";
 import { Drawer, DrawerProps } from "./Drawer";
 import { DrawerMinifiedHidden } from "./DrawerMinifiedHidden";
+import { SuggestedBooksItem } from "./SuggestedBooksItem";
 
 export type MainDrawerProps = Omit<DrawerProps, "children">;
 
@@ -43,7 +44,7 @@ export const MainDrawer = (props: MainDrawerProps) => {
       </DrawerItem>
       <DrawerMinifiedHidden>
         <Divider />
-        <DrawerSubtitle>추천 노래책</DrawerSubtitle>
+        <SuggestedBooksItem />
         <Divider />
       </DrawerMinifiedHidden>
       <DrawerItem icon={<SettingsOutlined />} hoveredIcon={<Settings />}>
