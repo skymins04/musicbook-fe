@@ -1,18 +1,17 @@
-import { Book } from "@apis";
-import { useGetBookSearch } from "@fetchers";
-import { flattenPaginationData } from "@utils";
-import { DrawerItem, DrawerLinkItem } from "./DrawerItem";
-import { ProfileImage } from "@components/ProfileImage";
-import { useBoolean } from "@hooks";
 import {
   AddCircle,
   AddCircleOutline,
   KeyboardArrowDown,
   KeyboardArrowUp,
 } from "@mui/icons-material";
-import { DrawerSubtitle } from "./DrawerSubtitle";
+import { Book } from "@apis";
+import { useGetBookSearch } from "@fetchers";
+import { flattenPaginationData } from "@utils";
+import { DrawerItem, DrawerLinkItem, DrawerSubtitle } from "..";
+import { ProfileImage } from "@components";
+import { useBoolean } from "@hooks";
 
-export const SuggestedBooksItemMock = () => {
+export const SuggestedBooksDrawerItemMock = () => {
   return (
     <>
       <DrawerItem isShow={false} />
@@ -24,7 +23,7 @@ export const SuggestedBooksItemMock = () => {
   );
 };
 
-export const SuggestedBooksItem = () => {
+export const SuggestedBooksDrawerItem = () => {
   const [isOpen, setIsOpen] = useBoolean(false);
   const { data, isLoading } = useGetBookSearch({
     sort: "SUGGEST",
@@ -36,7 +35,7 @@ export const SuggestedBooksItem = () => {
     <>
       <DrawerSubtitle isShow>추천 노래책</DrawerSubtitle>
       {isLoading ? (
-        <SuggestedBooksItemMock />
+        <SuggestedBooksDrawerItemMock />
       ) : (
         <>
           {books.slice(0, isOpen ? books.length : 5).map((book) => (

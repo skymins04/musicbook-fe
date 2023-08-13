@@ -52,10 +52,10 @@ export const DrawerItem = ({
       )}
     >
       <Skeleton isShow={isShow} isKeepWidth>
-        <div className="relative flex items-center justify-center w-24 h-24 min-w-24 text-24 group-hover:hidden">
+        <div className="min-w-24 relative flex h-24 w-24 items-center justify-center text-24 group-hover:hidden">
           {icon}
         </div>
-        <div className="relative items-center justify-center hidden w-24 h-24 min-w-24 text-24 group-hover:flex">
+        <div className="min-w-24 relative hidden h-24 w-24 items-center justify-center text-24 group-hover:flex">
           {hoveredIcon || icon}
         </div>
       </Skeleton>
@@ -75,7 +75,7 @@ export const DrawerItem = ({
 
 export const DrawerLinkItem = ({ href, ...props }: DrawerLinkItemProps) => {
   return (
-    <Link href={href} className="w-full h-max">
+    <Link href={href} className="h-max w-full">
       <DrawerItem {...props} />
     </Link>
   );

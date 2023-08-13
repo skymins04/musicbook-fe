@@ -26,7 +26,7 @@ export const Default: Story = {
 
     return (
       <>
-        <div className="flex items-center justify-start gap-10 mb-20">
+        <div className="mb-20 flex items-center justify-start gap-10">
           <Button onClick={handleToggleMinified}>Toggle Minified</Button>
         </div>
 

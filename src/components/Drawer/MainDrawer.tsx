@@ -14,10 +14,10 @@ import {
   Settings,
   SettingsOutlined,
 } from "@mui/icons-material";
-import { Divider, DrawerItem, DrawerLinkItem, DrawerSubtitle } from "..";
+import { Divider, DrawerItem, DrawerLinkItem } from "..";
 import { Drawer, DrawerProps } from "./Drawer";
 import { DrawerMinifiedHidden } from "./DrawerMinifiedHidden";
-import { SuggestedBooksItem } from "./SuggestedBooksItem";
+import { MyBookDrawerItem, SuggestedBooksDrawerItem } from "./drawerItems";
 
 export type MainDrawerProps = Omit<DrawerProps, "children">;
 
@@ -39,12 +39,10 @@ export const MainDrawer = (props: MainDrawerProps) => {
       >
         내 신청곡
       </DrawerItem>
-      <DrawerItem icon={<BookOutlined />} hoveredIcon={<Book />}>
-        내 노래책
-      </DrawerItem>
+      <MyBookDrawerItem />
       <DrawerMinifiedHidden>
         <Divider />
-        <SuggestedBooksItem />
+        <SuggestedBooksDrawerItem />
         <Divider />
       </DrawerMinifiedHidden>
       <DrawerItem icon={<SettingsOutlined />} hoveredIcon={<Settings />}>

@@ -7,7 +7,6 @@ import { DrawerItem } from "./DrawerItem";
 import { Home, HomeOutlined } from "@mui/icons-material";
 import { DrawerMinifiedHidden } from "./DrawerMinifiedHidden";
 import { Divider } from "../Divider";
-import { useState } from "react";
 import { DrawerSubtitle } from "./DrawerSubtitle";
 import { DrawerTitle } from "./DrawerTitle";
 
@@ -26,7 +25,6 @@ export const Default: Story = {
   },
   render(args) {
     const { data, setData } = useGlobalDisclosure("drawer-minified", false);
-    const [isShow, setIsShow] = useState(false);
 
     const handleToggleMinified = () => {
       setData(!data);
@@ -34,7 +32,7 @@ export const Default: Story = {
 
     return (
       <>
-        <div className="flex items-center justify-start gap-10 mb-20">
+        <div className="mb-20 flex items-center justify-start gap-10">
           <Button onClick={handleToggleMinified}>Toggle Minified</Button>
         </div>
 
