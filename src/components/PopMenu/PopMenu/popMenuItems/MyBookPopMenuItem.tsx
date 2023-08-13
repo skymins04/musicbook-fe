@@ -1,13 +1,19 @@
-import Link from "next/link";
-import { PopMenuItem } from "../PopMenuItem";
 import { Book, BookOutlined } from "@mui/icons-material";
+import { useGetMyBook } from "@fetchers";
+import { PopMenuLinkItem } from "../PopMenuLinkItem";
 
 export const MyBookPopMenuItem = () => {
+  const { data: book } = useGetMyBook();
+
+  const href = book ? `/book/${book.customId}` : "";
+
   return (
-    <Link href="#" className="h-max w-full">
-      <PopMenuItem leftIcon={<BookOutlined />} hoveredLeftIcon={<Book />}>
-        내 노래책
-      </PopMenuItem>
-    </Link>
+    <PopMenuLinkItem
+      href={href}
+      leftIcon={<BookOutlined />}
+      hoveredLeftIcon={<Book />}
+    >
+      내 노래책
+    </PopMenuLinkItem>
   );
 };
