@@ -21,3 +21,4 @@ export * from "./CardLayout";
 export * from "./MusicCardList";
 export * from "./LoadingSpinner";
 export * from "./Banner";
+export * from "./Book";
