@@ -29,11 +29,7 @@ export const SearchBookResultCard = ({
         )}
         onClick={isShow ? onClick : undefined}
       >
-        <ProfileImage
-          isShow={isShow}
-          className="max-h-[57px] max-w-[57px]"
-          src={src}
-        />
+        <ProfileImage className="max-h-[57px] max-w-[57px]" src={src} />
         <Skeleton isShow={isShow}>
           <div className="line-clamp-2 w-full break-all text-center text-[8px]">
             {title}

@@ -2,6 +2,8 @@ import classNames from "classnames";
 import { AspectRatio } from "../AspectRatio";
 import { ReactNode, useState } from "react";
 import { Skeleton, SkeletonBaseProps } from "../Skeleton";
+import { useBoolean } from "@hooks";
+import Image from "next/image";
 
 export type ProfileImageProps = {
   className?: string;
@@ -19,11 +21,15 @@ export const ProfileImage = ({
   isShow,
   fallbackImage,
 }: ProfileImageProps) => {
-  const [isError, setIsError] = useState(false);
+  const [isError, { on: setOnIsError }] = useBoolean(false);
+  const [isLoaded, { on: setOnIsLoaded }] = useBoolean(false);
 
   return (
-    <AspectRatio className={classNames("w-full", className)} ratio={1}>
-      <Skeleton isShow={isShow} className="rounded-full">
+    <AspectRatio className={classNames("relative w-full", className)} ratio={1}>
+      <Skeleton
+        isShow={isShow === undefined ? isLoaded : isShow}
+        className="!h-full !w-full rounded-full"
+      >
         {isError && (
           <div className="relative h-full w-full overflow-hidden rounded-full bg-gray-200 duration-200 group-hover:bg-gray-300 group-active:bg-gray-400">
             {fallbackImage || (
@@ -60,13 +66,17 @@ export const ProfileImage = ({
           </div>
         )}
         {!isError && (
-          <img
-            className="h-full w-full overflow-hidden rounded-full"
+          <Image
+            className="overflow-hidden rounded-full"
+            fill
             src={src}
             alt="프로필 이미지"
-            onLoad={onLoad}
+            onLoadingComplete={() => {
+              setOnIsLoaded();
+              onLoad && onLoad();
+            }}
             onError={() => {
-              setIsError(true);
+              setOnIsError();
               onError && onError();
             }}
           />

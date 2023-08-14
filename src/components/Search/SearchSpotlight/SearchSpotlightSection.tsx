@@ -11,7 +11,7 @@ export const SearchSpotlightSection = ({
 }: SearchSpotlightSectionProps) => {
   return (
     <div className="box-border flex w-full items-end justify-between px-6">
-      <h1 className="text-18 font-bold leading-[1em] text-gray-700 dark:text-white">
+      <h1 className="text-18 font-bold leading-1 text-gray-700 dark:text-white">
         {title}
       </h1>
       <Link

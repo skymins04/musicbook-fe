@@ -1,8 +1,9 @@
+import { Music } from "@apis";
 import { User } from "../user";
 
 export type Book = {
   id: string;
-  customId: string;
+  customId: string | null;
   title: string;
   description: string;
   requestCommandPrefix: string;
@@ -19,6 +20,7 @@ export type Book = {
   updatedAt: string | null;
   deletedAt: string | null;
   broadcaster?: User;
+  musics?: Music[];
 };
 
 export type BookConfig = {

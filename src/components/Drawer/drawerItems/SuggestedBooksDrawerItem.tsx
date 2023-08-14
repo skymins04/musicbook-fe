@@ -6,7 +6,7 @@ import {
 } from "@mui/icons-material";
 import { Book } from "@apis";
 import { useGetBookSearch } from "@fetchers";
-import { flattenPaginationData } from "@utils";
+import { flattenPaginationData, getBookId } from "@utils";
 import { DrawerItem, DrawerLinkItem, DrawerSubtitle } from "..";
 import { ProfileImage } from "@components";
 import { useBoolean } from "@hooks";
@@ -41,11 +41,10 @@ export const SuggestedBooksDrawerItem = () => {
           {books.slice(0, isOpen ? books.length : 5).map((book) => (
             <DrawerLinkItem
               key={book.id}
-              href={`/book/${book.customId}`}
+              href={`/book/${getBookId(book)}`}
               icon={
                 <ProfileImage
                   className="h-24 w-24"
-                  isShow
                   src={
                     book.thumbnailURL || book.broadcaster?.profileImgURL || ""
                   }

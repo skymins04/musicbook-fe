@@ -34,6 +34,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.44.3",
+    "react-hot-toast": "^2.4.1",
     "resize-observer-polyfill": "^1.5.1",
     "swr": "^2.1.5",
     "tailwind-scrollbar": "^3.0.4",

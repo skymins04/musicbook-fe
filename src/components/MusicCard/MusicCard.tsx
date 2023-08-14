@@ -4,7 +4,7 @@ import { useBoolean } from "@/hooks";
 import { Avatar } from "../Avatar";
 import { Thumbnail } from "../Thumbnail";
 import Link from "next/link";
-import { clickStopPropagation } from "@/utils";
+import { clickStopPropagation, getBookId } from "@/utils";
 import { Skeleton } from "../Skeleton";
 import { Bookmark } from "@mui/icons-material";
 
@@ -37,7 +37,7 @@ export const MusicCard = ({
       : music.musicSourceMelon?.albumThumbnail500 ||
         music.musicSourceMelon?.albumThumbnail200) || "";
   const musicPageHref = isShow ? `/music/${music.id}` : "";
-  const bookPageHref = isShow ? `/book/${music.book?.customId}` : "";
+  const bookPageHref = isShow ? `/book/${getBookId(music.book!)}` : "";
 
   return (
     <button

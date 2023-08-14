@@ -37,7 +37,7 @@ export const SearchMusicResultCard = ({
             isShow={isShow}
             src={src}
             fallbackImage={
-              <img src={IMAGES.COMMON.DEFAULT_THUMBNAIL} alt="asdf" />
+              <img src={IMAGES.COMMON.DEFAULT_THUMBNAIL} alt={title} />
             }
           />
         </div>

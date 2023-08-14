@@ -16,7 +16,7 @@ export default function App({
   pageProps,
 }: AppProps<MusicBookAppProps>) {
   return (
-    <ProviderRoot {...pageProps}>
+    <ProviderRoot>
       <Head>
         <link
           rel="apple-touch-icon"
@@ -44,7 +44,7 @@ export default function App({
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      <Component />
+      <Component {...pageProps} />
       {/* Google tag (gtag.js) */}
       <Script src="https://www.googletagmanager.com/gtag/js?id=G-J72C6NHFFP" />
       <Script id="google-analytics">

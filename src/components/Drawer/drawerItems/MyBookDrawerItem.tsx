@@ -3,6 +3,7 @@ import { DrawerBaseProps } from "../Drawer";
 import { Book, BookOutlined } from "@mui/icons-material";
 import { useGetMyBook } from "@fetchers";
 import { useGlobalDisclosure } from "@hooks";
+import { getBookId } from "@utils";
 
 export type MyBookDrawerItem = SkeletonBaseProps & DrawerBaseProps;
 
@@ -12,8 +13,8 @@ export const MyBookDrawerItem = (props: MyBookDrawerItem) => {
   const { on: showLoginDialog } = useGlobalDisclosure("login-dialog", false);
   const { data: book } = useGetMyBook();
 
-  const href = book && `/book/${book.customId}`;
-  console.log("asdf", book, href);
+  const bookId = book && getBookId(book);
+  const href = book && `/book/${bookId}`;
 
   return href ? (
     <DrawerLinkItem

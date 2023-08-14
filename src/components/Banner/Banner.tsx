@@ -1,4 +1,5 @@
 import { Banner as BannerType, BannerJSON } from "@apis";
+import { AspectRatio } from "@components/AspectRatio";
 import { IMAGES } from "@constants";
 import { useGetBanner } from "@fetchers";
 import { useCaroucel } from "@hooks";
@@ -17,17 +18,21 @@ export type BannerProps = {
 };
 
 const bannerBaseStyle = classNames(
-  "bg-gray-200 dark:bg-gray-700 relative overflow-hidden"
+  "bg-gray-200 dark:bg-gray-700 relative overflow-hidden w-full h-full"
 );
 const bannerDefaultImageMap: Record<BannerVariant, string> = {
   "mobile-1": IMAGES.COMMON.DEFAULT_BANNER_MOBILE,
   "desktop-1": IMAGES.COMMON.DEFAULT_BANNER_DESKTOP,
 };
 const bannerVariantStyleMap: Record<BannerVariant, string> = {
-  "mobile-1": classNames(
-    "aspect-[300/72] max-h-[72px] w-full !max-w-[300px] rounded-6"
+  "mobile-1": classNames("max-h-[72px] max-w-[300px] rounded-6"),
+  "desktop-1": classNames(
+    "max-w-[150px] max-h-[500px] min-w-[150px] rounded-6"
   ),
-  "desktop-1": classNames("w-[150px] h-[500px] min-w-[150px] rounded-6"),
+};
+const bannerAspectRatioMap: Record<BannerVariant, number> = {
+  "mobile-1": 300 / 72,
+  "desktop-1": 150 / 500,
 };
 const bannerImageWrapperBaseStyle = classNames(
   "flex justify-start items-center w-full h-full duration-300"
@@ -78,7 +83,8 @@ export const Banner = ({ className, bannerId, variant }: BannerProps) => {
   );
 
   return (
-    <div
+    <AspectRatio
+      ratio={bannerAspectRatioMap[variant]}
       className={classNames(
         bannerBaseStyle,
         bannerVariantStyleMap[variant],
@@ -117,6 +123,6 @@ export const Banner = ({ className, bannerId, variant }: BannerProps) => {
           ></button>
         ))}
       </div>
-    </div>
+    </AspectRatio>
   );
 };
