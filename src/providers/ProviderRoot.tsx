@@ -1,9 +1,7 @@
 import { ReactNode } from "react";
 import dynamic from "next/dynamic";
+import { SWRConfig } from "swr/_internal";
 
-const SWRConfig = dynamic(() =>
-  import("swr/_internal").then((mod) => mod.SWRConfig)
-);
 const GlobalDialogProvider = dynamic(() =>
   import("./globalProviders/DialogProvider").then((mod) => mod.DialogProvider)
 );
