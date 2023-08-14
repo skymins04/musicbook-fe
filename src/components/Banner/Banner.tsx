@@ -112,15 +112,16 @@ export const Banner = ({ className, bannerId, variant }: BannerProps) => {
         ))}
       </div>
       <div className="absolute bottom-10 left-0 flex w-full items-center justify-center gap-3">
-        {filteredBanners.map(({ id }, idx) => (
+        {filteredBanners.map(({ id, title }, idx) => (
           <button
             key={id}
+            title={title}
             className={classNames(
               "h-6 w-6 rounded-full",
               bannerIndex === idx ? "bg-blackAlpha-600" : "bg-blackAlpha-400"
             )}
             onClick={() => setBannerIndex(idx)}
-          ></button>
+          />
         ))}
       </div>
     </AspectRatio>
