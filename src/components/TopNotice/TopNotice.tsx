@@ -82,6 +82,7 @@ export const TopNotice = ({ onClose, onOpen }: TopNoticeProps) => {
             )}
           </a>
           <Button
+            id="top-notice-close-btn"
             variant="ghost"
             size="xs"
             className="absolute right-12 top-[50%] !box-border !w-24 -translate-y-[50%] !text-white duration-200 dark:!text-gray-800"
