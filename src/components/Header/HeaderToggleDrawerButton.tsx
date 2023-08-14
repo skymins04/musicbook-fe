@@ -14,7 +14,6 @@ export const HeaderToggleDrawerButton = () => {
 
   return (
     <Button
-      id="toggle-drawer-btn"
       variant="ghost"
       color="secondary"
       size="md"

@@ -16,7 +16,6 @@ export const HeaderLoginButton = ({
   return (
     <Button
       {...props}
-      id="open-login-dialog-btn"
       variant="solid"
       color="primary"
       size="md"

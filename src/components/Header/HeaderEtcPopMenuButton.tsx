@@ -6,7 +6,6 @@ export const HeaderEtcPopMenuButton = () => {
     <PopMenuButton
       btn={
         <Button
-          id="etc-btn"
           variant="ghost"
           color="secondary"
           size="md"

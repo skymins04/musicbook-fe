@@ -8,13 +8,7 @@ export type HeaderProfileButtonProps = {
 export const HeaderProfileButton = ({ user }: HeaderProfileButtonProps) => {
   return (
     <PopMenuButton
-      btn={
-        <Avatar
-          id="profile-btn"
-          src={user.profileImgURL}
-          className="ml-8 w-[40px]"
-        />
-      }
+      btn={<Avatar src={user.profileImgURL} className="ml-8 w-[40px]" />}
       menuItems={<AvatarPopMenuItems />}
       menuDirection="bottom-left"
       popMenuClassName="!w-[280px]"
