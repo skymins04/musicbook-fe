@@ -4,6 +4,7 @@ import {
   ReactElement,
   ReactNode,
   cloneElement,
+  useEffect,
 } from "react";
 import { PopMenu } from "..";
 import { useBoolean } from "@hooks";
@@ -52,6 +53,20 @@ export const PopMenuButton = ({
   const button = cloneElement(btn, {
     onClick: () => setIsOpen.toggle(),
   } as DetailsHTMLAttributes<HTMLButtonElement>);
+
+  useEffect(() => {
+    const handleClose = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsOpen.off();
+      }
+    };
+
+    document.addEventListener("keydown", handleClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleClose);
+    };
+  }, []);
 
   return (
     <>
