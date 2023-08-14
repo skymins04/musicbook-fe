@@ -71,7 +71,7 @@ export const Drawer = ({
               </Skeleton>
             </div>
             <Skeleton isShow={isShow}>
-              <span className="w-full break-all text-gray-500 duration-200 dark:text-gray-400">
+              <span className="w-full break-all text-gray-600 duration-200 dark:text-gray-400">
                 © 2023. 노래책 MUSICBOOK. All Rights Reserved.
               </span>
             </Skeleton>

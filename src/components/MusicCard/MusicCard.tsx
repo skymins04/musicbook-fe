@@ -130,7 +130,7 @@ export const MusicCard = ({
                 />
               </Link>
             )}
-            <div className="flex w-[calc(100%-44px)] flex-col items-start justify-center gap-4 text-12 font-normal text-gray-500 duration-200 dark:text-gray-400">
+            <div className="flex w-[calc(100%-44px)] flex-col items-start justify-center gap-4 text-12 font-normal text-gray-600 duration-200 dark:text-gray-400">
               {isShowBookTitle && (
                 <Skeleton isShow={isShow}>
                   <Link

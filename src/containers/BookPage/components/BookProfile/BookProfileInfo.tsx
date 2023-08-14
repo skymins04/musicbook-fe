@@ -25,7 +25,7 @@ export const BookProfileInfo = () => {
             </h1>
             <h2 className="w-full overflow-hidden text-ellipsis whitespace-nowrap text-14 font-normal leading-1">{`(${book.broadcaster?.displayName})`}</h2>
           </div>
-          <div className="flex w-full flex-col items-start justify-center gap-4 overflow-hidden text-14 font-normal text-gray-500">
+          <div className="flex w-full flex-col items-start justify-center gap-4 overflow-hidden text-14 font-normal text-gray-600">
             <BookIdViewer />
             <BookFollwerMusicCountViewer />
           </div>

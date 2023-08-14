@@ -16,7 +16,7 @@ const popMenuLeftIconBaseStyle =
   "relative h-[24px] w-[24px] min-w-[24px] items-center justify-center";
 
 const popMenuRightIconBaseStyle =
-  "relative h-[16px] w-[16px] min-w-[16px] items-center justify-center text-gray-500 dark:text-gray-300 duration-200";
+  "relative h-[16px] w-[16px] min-w-[16px] items-center justify-center text-gray-600 dark:text-gray-300 duration-200";
 
 export const PopMenuItem = ({
   className,
