@@ -41,7 +41,6 @@ export const MainDrawer = (props: MainDrawerProps) => {
       </DrawerItem>
       <MyBookDrawerItem />
       <DrawerMinifiedHidden>
-        <Divider />
         <SuggestedBooksDrawerItem />
         <Divider />
       </DrawerMinifiedHidden>
