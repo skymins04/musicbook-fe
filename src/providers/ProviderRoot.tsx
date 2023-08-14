@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
-import { SWRConfig } from "swr/_internal";
 import dynamic from "next/dynamic";
-import { ToastProvider } from "./globalProviders";
+import { SWRConfig } from "swr/_internal";
+import { RouterProgressProvider, ToastProvider } from "./globalProviders";
 
 const GlobalDialogProvider = dynamic(() =>
   import("./globalProviders/DialogProvider").then((mod) => mod.DialogProvider)
@@ -27,6 +27,7 @@ export const ProviderRoot = ({ children }: ProviderRootProps) => {
       {children}
       <GlobalDialogProvider />
       <SearchSpotlight wrapperClassNames="z-30" />
+      <RouterProgressProvider />
       <ToastProvider />
     </SWRConfig>
   );

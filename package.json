@@ -27,6 +27,7 @@
     "dayjs": "^1.11.8",
     "js-cookie": "^3.0.5",
     "next": "13.4.4",
+    "nextjs-progressbar": "^0.0.16",
     "postcss": "8.4.24",
     "postcss-import": "^15.1.0",
     "postcss-preset-env": "^8.4.2",
