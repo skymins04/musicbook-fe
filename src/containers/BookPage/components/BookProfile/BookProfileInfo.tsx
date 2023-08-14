@@ -1,6 +1,6 @@
 import { Button, ProfileImage } from "@components";
 import { BookProfileBaseProps } from "./BookProfile";
-import { getBookId } from "@utils";
+import { BookProfileIdButton } from "./BookProfileIdButton";
 
 export type BookProfileInfoProps = BookProfileBaseProps;
 
@@ -22,9 +22,7 @@ export const BookProfileInfo = ({ book }: BookProfileInfoProps) => {
             <h2 className="w-full overflow-hidden text-ellipsis whitespace-nowrap text-14 font-normal leading-1">{`(${book.broadcaster?.displayName})`}</h2>
           </div>
           <div className="flex w-full flex-col items-start justify-center gap-4 overflow-hidden text-14 font-normal text-gray-500">
-            <button className="w-full max-w-max overflow-hidden text-ellipsis whitespace-nowrap text-left hover:underline">
-              {getBookId(book)}
-            </button>
+            <BookProfileIdButton book={book} />
             <div className="w-full overflow-hidden text-ellipsis whitespace-nowrap">{`팔로워 ${
               book.likeCount
             }명 · 수록곡 ${book.musics?.length ?? 0}개`}</div>
