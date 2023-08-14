@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
 import { SWRConfig } from "swr/_internal";
 import dynamic from "next/dynamic";
-import { ToastProvider } from "./ToastProvider";
+import { ToastProvider } from "./globalProviders";
 
 const GlobalDialogProvider = dynamic(() =>
-  import("./GlobalDialogProvider").then((mod) => mod.GlobalDialogProvider)
+  import("./globalProviders/DialogProvider").then((mod) => mod.DialogProvider)
 );
 const SearchSpotlight = dynamic(() =>
   import("@components/Search/SearchSpotlight/SearchSpotlight").then(

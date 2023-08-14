@@ -1,6 +1,6 @@
 import { LoginDialogProvider } from "./LoginDialogProvider";
 
-export const GlobalDialogProvider = () => {
+export const DialogProvider = () => {
   return (
     <>
       <LoginDialogProvider />
