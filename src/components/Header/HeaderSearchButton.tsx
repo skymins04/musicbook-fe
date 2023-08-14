@@ -10,6 +10,7 @@ export const HeaderSearchButton = () => {
 
   return (
     <Button
+      title="검색"
       variant="ghost"
       color="secondary"
       size="md"

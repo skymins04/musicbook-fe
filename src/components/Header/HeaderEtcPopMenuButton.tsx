@@ -6,6 +6,7 @@ export const HeaderEtcPopMenuButton = () => {
     <PopMenuButton
       btn={
         <Button
+          title="기타"
           variant="ghost"
           color="secondary"
           size="md"

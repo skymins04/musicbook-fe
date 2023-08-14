@@ -16,6 +16,7 @@ export const HeaderLoginButton = ({
   return (
     <Button
       {...props}
+      title="로그인"
       variant="solid"
       color="primary"
       size="md"

@@ -14,6 +14,7 @@ export const HeaderToggleDrawerButton = () => {
 
   return (
     <Button
+      title="메뉴 열기/닫기"
       variant="ghost"
       color="secondary"
       size="md"
