@@ -1,14 +1,11 @@
+import Image from "next/image";
 import { IMAGES } from "@constants";
 import { useBoolean } from "@hooks";
-import Image from "next/image";
-import { BookProfileBaseProps } from "./BookProfile";
+import { useBookContext } from "@providers";
 
-export type BookProfileBackgroundImageProps = BookProfileBaseProps;
-
-export const BookProfileBackgroundImage = ({
-  book,
-}: BookProfileBackgroundImageProps) => {
+export const BookProfileBackgroundImage = () => {
   const [isError, setIsError] = useBoolean(false);
+  const book = useBookContext();
 
   return (
     <div className="relative aspect-[1800/292] w-full bg-[#D9D9D9] mobile:aspect-[1000/292]">

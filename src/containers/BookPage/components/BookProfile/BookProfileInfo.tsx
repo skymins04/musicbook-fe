@@ -1,10 +1,14 @@
-import { Button, ProfileImage } from "@components";
-import { BookProfileBaseProps } from "./BookProfile";
-import { BookProfileIdButton } from "./BookProfileIdButton";
+import {
+  ProfileImage,
+  BookIdViewer,
+  BookFollwerMusicCountViewer,
+} from "@components";
+import { useBookContext } from "@providers";
+import { BookProfileButtons } from "./BookProfileButtons";
 
-export type BookProfileInfoProps = BookProfileBaseProps;
+export const BookProfileInfo = () => {
+  const book = useBookContext();
 
-export const BookProfileInfo = ({ book }: BookProfileInfoProps) => {
   return (
     <div className="box-border flex h-[130px] w-full justify-between gap-20 bg-white px-20 py-10 duration-200 dark:bg-gray-700 tablet:h-[160px] mobile:h-[220px] mobile:pt-[70px]">
       <div className="relative flex h-[130px] w-[130px] items-center justify-center tablet:h-[160px] tablet:w-[90px] mobile:absolute">
@@ -22,17 +26,12 @@ export const BookProfileInfo = ({ book }: BookProfileInfoProps) => {
             <h2 className="w-full overflow-hidden text-ellipsis whitespace-nowrap text-14 font-normal leading-1">{`(${book.broadcaster?.displayName})`}</h2>
           </div>
           <div className="flex w-full flex-col items-start justify-center gap-4 overflow-hidden text-14 font-normal text-gray-500">
-            <BookProfileIdButton book={book} />
-            <div className="w-full overflow-hidden text-ellipsis whitespace-nowrap">{`팔로워 ${
-              book.likeCount
-            }명 · 수록곡 ${book.musics?.length ?? 0}개`}</div>
+            <BookIdViewer />
+            <BookFollwerMusicCountViewer />
           </div>
         </div>
         <div className="flex w-max items-center justify-end gap-6">
-          <Button size="sm">수록곡 추가</Button>
-          <Button size="sm" color="secondary">
-            노래책 관리
-          </Button>
+          <BookProfileButtons />
         </div>
       </div>
     </div>

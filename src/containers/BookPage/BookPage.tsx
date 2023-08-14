@@ -2,6 +2,7 @@ import { Book } from "@apis";
 import { Banner } from "@components";
 import dynamic from "next/dynamic";
 import { BookProfile } from "./components";
+import { BookContextProvider } from "@providers";
 
 const MusicCardList = dynamic(
   import("@components/MusicCardList").then((mod) => mod.MusicCardList)
@@ -13,8 +14,8 @@ export type BookPageProps = {
 
 export const BookPage = ({ book }: BookPageProps) => {
   return (
-    <>
-      <BookProfile book={book} />
+    <BookContextProvider book={book}>
+      <BookProfile />
       <div className="box-border h-max w-full p-20 semi-tablet:w-full mobile:px-10">
         <MusicCardList
           bookId={book.id}
@@ -27,6 +28,6 @@ export const BookPage = ({ book }: BookPageProps) => {
           }
         />
       </div>
-    </>
+    </BookContextProvider>
   );
 };
