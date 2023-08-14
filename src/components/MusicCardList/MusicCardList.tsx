@@ -13,6 +13,8 @@ export type MusicCardListSelectorSchema = {
 
 export type MusicCardListProps = {
   bookId?: string;
+  isShowBookThumbnail?: boolean;
+  isShowBookTitle?: boolean;
   leftArea?: ReactNode;
   rightArea?: ReactNode;
 } & MusicCardListContentsLoadingHandlerProps;

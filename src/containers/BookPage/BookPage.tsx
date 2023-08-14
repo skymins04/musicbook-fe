@@ -19,6 +19,8 @@ export const BookPage = ({ book }: BookPageProps) => {
       <div className="box-border h-max w-full p-20 semi-tablet:w-full mobile:px-10">
         <MusicCardList
           bookId={book.id}
+          isShowBookThumbnail={false}
+          isShowBookTitle={false}
           rightArea={
             <Banner
               bannerId="desktop-1"

@@ -13,11 +13,13 @@ export type MusicCardListContentsLoadingHandlerProps = {
 
 export type MusicCardListContentsProps = {
   isShowBookThumbnail?: boolean;
+  isShowBookTitle?: boolean;
 } & MusicCardListContentsLoadingHandlerProps &
   GETMusicSearchOptions;
 
 export const MusicCardListContents = ({
   isShowBookThumbnail = true,
+  isShowBookTitle = true,
   onLoadingStart,
   onLoadingEnd,
   ...options
@@ -43,6 +45,7 @@ export const MusicCardListContents = ({
         key={music.id}
         type={isSemiTablet ? "list" : "grid"}
         isShowBookThumbnail={isShowBookThumbnail}
+        isShowBookTitle={isShowBookTitle}
         music={music}
         className="!max-w-none"
       />
