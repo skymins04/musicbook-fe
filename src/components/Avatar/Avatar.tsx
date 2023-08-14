@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { ProfileImage } from "../ProfileImage";
 import { AspectRatio } from "../AspectRatio";
 import { SkeletonBaseProps } from "../Skeleton";
+import { isEmptyTrimedString } from "@utils";
 
 export type AvatarProps = {
   src: string;
@@ -16,7 +17,7 @@ export const Avatar = ({
   isShow,
   ...props
 }: AvatarProps) => {
-  const [isError, setIsError] = useState(false);
+  const [isError, setIsError] = useState(isEmptyTrimedString(src));
 
   return (
     <button

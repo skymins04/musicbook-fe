@@ -1,9 +1,10 @@
 import classNames from "classnames";
 import { AspectRatio } from "../AspectRatio";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect } from "react";
 import { Skeleton, SkeletonBaseProps } from "../Skeleton";
 import { useBoolean } from "@hooks";
 import Image from "next/image";
+import { isEmptyTrimedString } from "@utils";
 
 export type ProfileImageProps = {
   className?: string;
@@ -21,7 +22,7 @@ export const ProfileImage = ({
   isShow,
   fallbackImage,
 }: ProfileImageProps) => {
-  const [isError, { on: setOnIsError }] = useBoolean(false);
+  const [isError, { on: setOnIsError }] = useBoolean(isEmptyTrimedString(src));
   const [isLoaded, { on: setOnIsLoaded }] = useBoolean(false);
 
   return (
@@ -40,8 +41,8 @@ export const ProfileImage = ({
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <g clip-path="url(#clip0_851_22580)">
-                  <g clip-path="url(#clip1_851_22580)">
+                <g clipPath="url(#clip0_851_22580)">
+                  <g clipPath="url(#clip1_851_22580)">
                     <path
                       d="M16 18.5C20.1031 18.5 23.4286 15.2545 23.4286 11.25C23.4286 7.24551 20.1031 4 16 4C11.8969 4 8.57143 7.24551 8.57143 11.25C8.57143 15.2545 11.8969 18.5 16 18.5ZM21.2 20.3125H20.2308C18.9424 20.8902 17.5089 21.2188 16 21.2188C14.4911 21.2188 13.0634 20.8902 11.7692 20.3125H10.8C6.49375 20.3125 3 23.7223 3 27.925V30.2812C3 31.7822 4.24777 33 5.78571 33H26.2143C27.7522 33 29 31.7822 29 30.2812V27.925C29 23.7223 25.5062 20.3125 21.2 20.3125Z"
                       fill="white"
