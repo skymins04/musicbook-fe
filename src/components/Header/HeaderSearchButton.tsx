@@ -10,6 +10,7 @@ export const HeaderSearchButton = () => {
 
   return (
     <Button
+      id="toggle-search-spotlight-btn"
       variant="ghost"
       color="secondary"
       size="md"
