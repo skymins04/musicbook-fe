@@ -22,3 +22,4 @@ export * from "./MusicCardList";
 export * from "./LoadingSpinner";
 export * from "./Banner";
 export * from "./Book";
+export * from "./BaseSEO";
