@@ -9,3 +9,4 @@ export * from "./flattenPaginationData";
 export * from "./getBypassDiskCacheURL";
 export * from "./isValidStartEndAt";
 export * from "./getBookId";
+export * from "./getBookThumbnail";

@@ -1,6 +1,6 @@
 import { Book } from "@apis";
 import { SearchBookResultCard } from "./SearchBookResultCard";
-import { getBookId } from "@utils";
+import { getBookId, getBookThumbnail } from "@utils";
 
 export type SearchSpotlightBookResultProps = {
   books: Book[];
@@ -17,7 +17,7 @@ export const SearchSpotlightBookResult = ({
           key={book.id}
           id={getBookId(book)}
           title={book.title}
-          src={book.thumbnailURL || book.broadcaster?.profileImgURL || ""}
+          src={getBookThumbnail(book)}
         />
       ))}
     </div>

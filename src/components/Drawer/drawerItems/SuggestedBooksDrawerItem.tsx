@@ -6,7 +6,7 @@ import {
 } from "@mui/icons-material";
 import { Book } from "@apis";
 import { useGetBookSearch } from "@fetchers";
-import { flattenPaginationData, getBookId } from "@utils";
+import { flattenPaginationData, getBookId, getBookThumbnail } from "@utils";
 import { DrawerItem, DrawerLinkItem, DrawerSubtitle } from "..";
 import { Divider, ProfileImage } from "@components";
 import { useBoolean } from "@hooks";
@@ -47,9 +47,7 @@ export const SuggestedBooksDrawerItem = () => {
                 icon={
                   <ProfileImage
                     className="h-24 w-24"
-                    src={
-                      book.thumbnailURL || book.broadcaster?.profileImgURL || ""
-                    }
+                    src={getBookThumbnail(book)}
                   />
                 }
               >

@@ -5,6 +5,7 @@ import {
 } from "@components";
 import { useBookContext } from "@providers";
 import { BookProfileButtons } from "./BookProfileButtons";
+import { getBookThumbnail } from "@utils";
 
 export const BookProfileInfo = () => {
   const book = useBookContext();
@@ -14,7 +15,7 @@ export const BookProfileInfo = () => {
       <div className="relative flex h-[130px] w-[130px] items-center justify-center tablet:h-[160px] tablet:w-[90px] mobile:absolute">
         <ProfileImage
           className="relative bottom-20 h-[130px] w-[130px] rounded-full bg-white ring-8 ring-white duration-200 dark:bg-gray-700 dark:ring-gray-700 tablet:bottom-10 tablet:h-[90px] tablet:w-[90px] mobile:bottom-[120px]"
-          src={book.thumbnailURL || book.broadcaster?.profileImgURL || ""}
+          src={getBookThumbnail(book)}
         />
       </div>
       <div className="flex h-full w-[calc(100%-130px-20px)] items-center justify-between gap-20 tablet:w-[calc(100%-90px-20px)] tablet:flex-col tablet:items-start tablet:justify-center tablet:gap-10 mobile:w-full">
