@@ -7,6 +7,7 @@ const COMMON_IMAGES = {
   LOGO_TEXT: "/common/musicbook-logo-text.svg",
   LOGO_TEXT_DARK: "/common/musicbook-logo-text-dark.svg",
   DEFAULT_THUMBNAIL: "/common/musicbook-default-thumbnail.svg",
+  DEFAULT_THUMBNAIL_COLORED: "/common/musicbook-default-thumbnail-colored.svg",
   DEFAULT_BOOK_BACKGROUND: "/common/musicbook-default-book-background.svg",
   DEFAULT_BANNER_DESKTOP: "/common/musicbook-default-banner-desktop.svg",
   DEFAULT_BANNER_MOBILE: "/common/musicbook-default-banner-mobile.svg",
