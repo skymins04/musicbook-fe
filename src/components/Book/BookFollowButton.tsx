@@ -9,6 +9,7 @@ import { useGlobalDisclosure } from "@hooks";
 import { useBookContext } from "@providers";
 import { getBookId } from "@utils";
 import { MouseEvent } from "react";
+import toast from "react-hot-toast";
 
 export type BookFollowButtonProps = { book?: Book } & ButtonProps;
 
@@ -43,7 +44,21 @@ export const BookFollowButton = ({
       setOpenLoginDialog();
     } else {
       const fetcher = isFollow ? unfollowBook : followBook;
-      fetcher({ bookId }).then(updateIsFollow);
+      toast.promise(
+        fetcher({ bookId }).then(updateIsFollow),
+        {
+          loading: isFollow ? "팔로우 해제 처리중..." : "팔로우 처리중...",
+          success: isFollow ? "팔로우 해제되었습니다." : "팔로우되었습니다!",
+          error: `팔로우${
+            isFollow ? " 해제" : ""
+          } 처리 중 오류가 발생했습니다.`,
+        },
+        {
+          success: {
+            icon: isFollow ? "😭" : undefined,
+          },
+        }
+      );
     }
 
     onClick && onClick(e);
