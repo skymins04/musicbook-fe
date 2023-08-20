@@ -1,6 +1,13 @@
 import { Music } from "@apis";
 import { User } from "../user";
 
+export type BookLike = {
+  id: number;
+  createdAt: string;
+  viewer?: User;
+  book?: Book;
+};
+
 export type Book = {
   id: string;
   customId: string | null;
@@ -21,6 +28,7 @@ export type Book = {
   deletedAt: string | null;
   broadcaster?: User;
   musics?: Music[];
+  bookLikes?: BookLike[];
 };
 
 export type BookConfig = {

@@ -74,8 +74,9 @@ export type MusicSourceMelon = {
 export type MusicLike = {
   id: number;
   createdAt: string;
-  viewer: User;
-  book: Book;
+  viewer?: User;
+  book?: Book;
+  music?: Music;
 };
 
 export type Music = {
