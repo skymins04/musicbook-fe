@@ -6,6 +6,7 @@ import { ThemeType } from "@hooks";
 import Head from "next/head";
 import { IMAGES, JSONS } from "@constants";
 import Script from "next/script";
+import { GETUserMe } from "@apis";
 
 type MusicBookAppProps = {
   theme: ThemeType;
@@ -69,6 +70,11 @@ App.getInitialProps = async ({ Component, ctx }: AppContext) => {
   const cookieString = ctx.req?.headers.cookie || "";
   const theme = getCookie(cookieString, "theme") as ThemeType | undefined;
   pageProps = { ...pageProps, theme: theme || "light" };
+
+  const user = await GETUserMe({ headers: { cookie: cookieString } }).catch(
+    () => undefined
+  );
+  pageProps = { ...pageProps, user };
 
   return {
     pageProps,
