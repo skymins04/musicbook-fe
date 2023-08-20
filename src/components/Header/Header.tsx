@@ -1,19 +1,19 @@
 import classNames from "classnames";
 import Link from "next/link";
 import { Logo } from "..";
-import { useGetUserMe } from "@fetchers";
 import { HeaderSearchButton } from "./HeaderSearchButton";
 import { HeaderLoginButton } from "./HeaderLoginButton";
 import { HeaderEtcPopMenuButton } from "./HeaderEtcPopMenuButton";
 import { HeaderProfileButton } from "./HeaderProfileButton";
 import { HeaderToggleDrawerButton } from "./HeaderToggleDrawerButton";
+import { useUserContext } from "@providers";
 
 export type HeaderProps = {
   className?: string;
 };
 
 export const Header = ({ className }: HeaderProps) => {
-  const { data: user, isLoading: isLoadingUser } = useGetUserMe();
+  const user = useUserContext();
 
   return (
     <div
@@ -40,7 +40,7 @@ export const Header = ({ className }: HeaderProps) => {
         ) : (
           <>
             <HeaderEtcPopMenuButton />
-            <HeaderLoginButton isLoading={isLoadingUser} />
+            <HeaderLoginButton />
           </>
         )}
       </div>
