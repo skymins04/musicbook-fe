@@ -1,14 +1,19 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import classNames from "classnames";
 import { Bookmark } from "@mui/icons-material";
 import { ProfileImage } from "@components";
-import { Music } from "@apis";
+import { GETMusicLikeCountById, Music } from "@apis";
 import { useBoolean } from "@/hooks";
 import { clickStopPropagation, getBookId } from "@/utils";
 import { Thumbnail } from "../Thumbnail";
 import { Skeleton } from "../Skeleton";
+import {
+  useMutateMusicLikeCrateById,
+  useMutateMusicLikeDeleteById,
+} from "@fetchers";
+import toast from "react-hot-toast";
 
 export type MusicCardType = "list" | "grid";
 
@@ -29,7 +34,18 @@ export const MusicCard = ({
 }: MusicCardProps) => {
   const [isLoadedBookThumbnail, setIsLoadedBookThumbnail] = useBoolean(false);
   const [isLoadedAlbumThumbnail, setIsLoadedAlbumThumbnail] = useBoolean(false);
-  const [isLiked, setIsLiked] = useBoolean(false);
+  const [isLiked, { toggle: toggleLike }] = useBoolean(
+    music.musicLikes?.length !== 0 ?? false
+  );
+  const [likeCount, setLikeCount] = useState(music.likeCount);
+
+  const { trigger: createMusicLikeById, isMutating: isLoadingCreateMusicLike } =
+    useMutateMusicLikeCrateById();
+  const { trigger: deleteMusicLikeById, isMutating: isLoadingDeleteMusicLike } =
+    useMutateMusicLikeDeleteById();
+
+  const isLoadingBookMark =
+    isLoadingCreateMusicLike || isLoadingDeleteMusicLike;
 
   const router = useRouter();
 
@@ -51,6 +67,22 @@ export const MusicCard = ({
       router.push(musicPageHref);
     }
   }, [isShow, router, musicPageHref]);
+
+  const handleClickBookMark = () => {
+    if (isLoadingBookMark) return;
+    const fetcher = isLiked ? deleteMusicLikeById : createMusicLikeById;
+    toast.promise(
+      fetcher({ musicId: music.id })
+        .then(() => GETMusicLikeCountById(music.id))
+        .then((likeCount) => setLikeCount(likeCount))
+        .then(toggleLike),
+      {
+        loading: isLiked ? "좋아요 해제 처리중..." : "좋아요 처리중...",
+        success: isLiked ? "좋아요가 해제되었습니다." : "좋아요했습니다!",
+        error: "처리과정에서 문제가 발생했습니다.",
+      }
+    );
+  };
 
   return (
     <button
@@ -125,8 +157,8 @@ export const MusicCard = ({
                     music.book?.thumbnailURL || music.broadcaster.profileImgURL
                   }
                   isShow={isShow}
-                  onLoad={() => setIsLoadedBookThumbnail.on()}
-                  onError={() => setIsLoadedBookThumbnail.on()}
+                  onLoad={setIsLoadedBookThumbnail.on}
+                  onError={setIsLoadedBookThumbnail.on}
                 />
               </Link>
             )}
@@ -143,7 +175,7 @@ export const MusicCard = ({
                 </Skeleton>
               )}
               <Skeleton isShow={isShow}>
-                <span className="block w-full overflow-hidden text-ellipsis whitespace-nowrap text-left">{`좋아요 ${music.likeCount.toLocaleString(
+                <span className="block w-full overflow-hidden text-ellipsis whitespace-nowrap text-left">{`좋아요 ${likeCount.toLocaleString(
                   "ko-KR"
                 )}개`}</span>
               </Skeleton>
@@ -160,6 +192,7 @@ export const MusicCard = ({
         )}
         onClick={(e) => {
           clickStopPropagation(e);
+          handleClickBookMark();
         }}
       >
         <Bookmark className="!text-[68px]" />
