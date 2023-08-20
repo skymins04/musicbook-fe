@@ -1,4 +1,4 @@
-import { Book } from "@apis";
+import { Book, User } from "@apis";
 import { Banner } from "@components";
 import dynamic from "next/dynamic";
 import { BookProfile } from "./components";
@@ -10,6 +10,7 @@ const MusicCardList = dynamic(
 );
 
 export type BookPageProps = {
+  user?: User;
   book: Book;
 };
 

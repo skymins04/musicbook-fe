@@ -13,6 +13,7 @@ export type MusicCardListSelectorSchema = {
 
 export type MusicCardListProps = {
   bookId?: string;
+  isLiked?: boolean;
   isShowBookThumbnail?: boolean;
   isShowBookTitle?: boolean;
   leftArea?: ReactNode;

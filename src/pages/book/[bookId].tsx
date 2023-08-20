@@ -6,7 +6,7 @@ export const getServerSideProps = getServerSideBookPageProps;
 
 export default function BookPageRouter(props: BookPageProps) {
   return (
-    <BaseLayout>
+    <BaseLayout user={props.user}>
       <BookPage {...props} />
     </BaseLayout>
   );

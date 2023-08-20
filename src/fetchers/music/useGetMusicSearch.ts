@@ -14,17 +14,27 @@ type FetcherKey = readonly [
   number?,
   GETMusicSearchSort?,
   string?,
-  string?
+  string?,
+  boolean?
 ];
 
-const fetcher = ([, q, page, perPage, sort, category, bookId]: FetcherKey) => {
-  return GETMusicSearch({ q, page, perPage, sort, category, bookId });
+const fetcher = ([
+  ,
+  q,
+  page,
+  perPage,
+  sort,
+  category,
+  bookId,
+  isLiked,
+]: FetcherKey) => {
+  return GETMusicSearch({ q, page, perPage, sort, category, bookId, isLiked });
 };
 
 export const useGetMusicSearch = (
   options?: Omit<GETMusicSearchOptions, "page">
 ) => {
-  const { q, perPage, sort, category, bookId } = options || {};
+  const { q, perPage, sort, category, bookId, isLiked } = options || {};
 
   const getKey: SWRInfiniteKeyLoader<
     GETMusicSearchResponse,
@@ -44,6 +54,7 @@ export const useGetMusicSearch = (
       sort,
       category,
       bookId,
+      isLiked,
     ];
   };
 
