@@ -10,7 +10,7 @@
     "lint": "next lint",
     "storybook": "storybook dev -p 6006 --host local.musicbook.dev --https --ssl-cert localhost.pem --ssl-key localhost-key.pem",
     "build-storybook": "storybook build",
-    "devs": "yarn dlx local-ssl-proxy@1.3.0 --config proxy.config.json --key localhost-key.pem --cert localhost.pem -n local.musicbook.dev"
+    "devs": "pnpm dlx local-ssl-proxy@1.3.0 --config proxy.config.json --key localhost-key.pem --cert localhost.pem -n local.musicbook.dev"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
