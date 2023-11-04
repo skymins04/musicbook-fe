@@ -1,6 +1,6 @@
 export * from "./useGetBookById";
 export * from "./useGetBookLikeCountById";
-export * from "./useGetBookMyLikeById";
+export * from "./useMutateGetBookMyLikeById";
 export * from "./useGetMyBook";
 export * from "./useGetMyBookConfig";
 export * from "./useGetMyBookLikeCount";

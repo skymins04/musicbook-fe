@@ -24,3 +24,4 @@ export * from "./Banner";
 export * from "./Book";
 export * from "./BaseSEO";
 export * from "./PageTitle";
+export * from "./BookCard";

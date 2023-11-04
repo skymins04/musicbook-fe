@@ -3,8 +3,30 @@ const nextConfig = {
   productionBrowserSourceMaps: true,
   swcMinify: true,
   output: "standalone",
+  // images: {
+  //   unoptimized: true,
+  // },
   images: {
-    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'static-cdn.jtvnw.net',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'proxy.musicbook.dev',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'proxy.musicbook.kr',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
   reactStrictMode: true,
   env: {

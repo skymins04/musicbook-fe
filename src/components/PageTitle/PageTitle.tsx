@@ -3,15 +3,20 @@ import { ReactNode } from "react";
 
 export type PageTitleProps = {
   children?: ReactNode;
+  rightArea?: ReactNode;
+  isShowDivider?: boolean;
 };
 
-export const PageTitle = ({ children }: PageTitleProps) => {
+export const PageTitle = ({ children,rightArea,isShowDivider = true }: PageTitleProps) => {
   return (
     <>
-      <h1 className="mb-10 text-[32px] text-gray-700 duration-200 dark:text-white">
-        {children}
-      </h1>
-      <Divider className="mb-20 dark:border-gray-700" />
+      <div className="w-full flex justify-between items-center">
+        <h1 className="mb-10 text-[24px] text-gray-700 duration-200 dark:text-white font-bold">
+          {children}
+        </h1>
+        {rightArea}
+      </div>
+      {isShowDivider && <Divider className="mb-20 dark:border-gray-700" />}
     </>
   );
 };

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import { Dimmer, Divider } from "@components";
 import { useGlobalDisclosure, useDebounceState } from "@hooks";
@@ -13,6 +13,7 @@ import { SearchSpotlightMusicMockResult } from "./SearchSpotlightMusicMockResult
 import { SearchSpotlightMusicResult } from "./SearchSpotlightMusicResult";
 import { flattenPaginationData } from "@utils/flattenPaginationData";
 import { Book, Music } from "@apis";
+import { useRouter } from "next/router";
 
 export type SearchSpotlightProps = {
   wrapperClassNames?: string;
@@ -21,7 +22,9 @@ export type SearchSpotlightProps = {
 export const SearchSpotlight = ({
   wrapperClassNames,
 }: SearchSpotlightProps) => {
-  const [searchValue, setSearchValue] = useDebounceState("", 500);
+  const router = useRouter();
+  const [searchValue, setSearchValue] = useState('');
+  const [debouncedSearchValue, setDebouncedSearchValue] = useDebounceState("", 500);
   const searchBarRef = useRef<HTMLInputElement>(null);
 
   const { data: isOpen, setData: setIsOpen } = useGlobalDisclosure(
@@ -29,20 +32,25 @@ export const SearchSpotlight = ({
     false
   );
   const { data: searchBookResultPages, isLoading: isLoadingSearchBook } =
-    useGetBookSearch({ q: searchValue, sort: "POPULAR", perPage: 10 });
+    useGetBookSearch({ q: debouncedSearchValue, sort: "POPULAR", perPage: 10 });
   const { data: searchMusicResultPages, isLoading: isLoadingSearchMusic } =
-    useGetMusicSearch({ q: searchValue, sort: "POPULAR", perPage: 10 });
+    useGetMusicSearch({ q: debouncedSearchValue, sort: "POPULAR", perPage: 10 });
 
   const searchBookResult = flattenPaginationData<Book>(searchBookResultPages);
   const searchMusicResult = flattenPaginationData<Music>(
     searchMusicResultPages
   );
+  const searchURL = `/search?q=${searchValue}`;
 
   const handleFocusSearchBar = useCallback((isOpen: boolean) => {
     if (isOpen && searchBarRef.current) {
       searchBarRef.current.focus();
     }
   }, []);
+
+  const handleCloseSearchSpotlight = useCallback(() => {
+    setIsOpen(false);
+  }, [])
 
   useEffect(() => {
     handleFocusSearchBar(isOpen);
@@ -77,7 +85,12 @@ export const SearchSpotlight = ({
             : "opacity-0 scale-90 pointer-events-none"
         )}
         onChange={(value) => {
+          setDebouncedSearchValue(value);
           setSearchValue(value);
+        }}
+        onSubmit={(value) => {
+          router.push(`/search?q=${value}`);
+          setIsOpen(false);
         }}
         ref={searchBarRef}
       />
@@ -85,29 +98,29 @@ export const SearchSpotlight = ({
         onClick={clickStopPropagation}
         className={classNames(
           "absolute left-[50%] top-[calc(30%+34px)] z-30 box-border flex w-[calc(100%-40px)] max-w-[500px] translate-x-[-50%] flex-col items-stretch justify-center gap-14 rounded-6 bg-white px-10 py-14 duration-200 dark:bg-gray-700",
-          isOpen && !isEmptyTrimedString(searchValue)
+          isOpen && !isEmptyTrimedString(debouncedSearchValue)
             ? "opacity-1 scale-100"
             : "pointer-events-none scale-90 opacity-0"
         )}
       >
-        <SearchSpotlightSection title="노래책" href="#" />
+        <SearchSpotlightSection title="노래책" href={searchURL} onClick={handleCloseSearchSpotlight} />
         <div className="h-max w-full overflow-x-auto overflow-y-hidden">
           {isLoadingSearchBook ? (
             <SearchSpotlightBookMockResult />
           ) : !searchBookResult || searchBookResult.length === 0 ? (
             <SearchSpotlightEmptyResult />
           ) : (
-            <SearchSpotlightBookResult books={searchBookResult} />
+            <SearchSpotlightBookResult onClick={handleCloseSearchSpotlight} books={searchBookResult} />
           )}
         </div>
         <Divider />
-        <SearchSpotlightSection title="수록곡" href="#" />
+        <SearchSpotlightSection title="수록곡" href={searchURL} onClick={handleCloseSearchSpotlight} />
         {isLoadingSearchMusic ? (
           <SearchSpotlightMusicMockResult />
         ) : !searchMusicResult || searchMusicResult.length === 0 ? (
           <SearchSpotlightEmptyResult />
         ) : (
-          <SearchSpotlightMusicResult musics={searchMusicResult} />
+          <SearchSpotlightMusicResult onClick={handleCloseSearchSpotlight} musics={searchMusicResult} />
         )}
       </div>
     </>

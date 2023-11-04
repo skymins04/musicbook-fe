@@ -7,18 +7,19 @@ import { MusicCardListContentsLoadingHandlerProps } from "./MusicCardListContent
 import { ReactNode } from "react";
 
 export type MusicCardListSelectorSchema = {
-  sort: GETMusicSearchSort;
+  sort?: GETMusicSearchSort;
   category?: string;
 };
 
 export type MusicCardListProps = {
+  q?: string;
   bookId?: string;
   isLiked?: boolean;
   isShowBookThumbnail?: boolean;
   isShowBookTitle?: boolean;
   leftArea?: ReactNode;
   rightArea?: ReactNode;
-} & MusicCardListContentsLoadingHandlerProps;
+} & MusicCardListContentsLoadingHandlerProps & MusicCardListSelectorSchema;
 
 export const MusicCardList = ({
   leftArea,

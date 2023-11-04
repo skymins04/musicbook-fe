@@ -25,7 +25,6 @@ export const MusicCardListContents = ({
   ...options
 }: MusicCardListContentsProps) => {
   const isSemiTablet = useBreakpointSmaller("semi-tablet");
-  const { q, page, perPage, sort, category, bookId, isLiked } = options;
   const { data, isLoading, isValidating } = useGetMusicSearch(options);
   const musics = flattenPaginationData<Music>(data);
 
@@ -40,13 +39,7 @@ export const MusicCardListContents = ({
   }, [
     isLoading,
     isValidating,
-    q,
-    page,
-    perPage,
-    sort,
-    category,
-    bookId,
-    isLiked,
+    options,
   ]);
 
   return musics && musics.length !== 0 ? (

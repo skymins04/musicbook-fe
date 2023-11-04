@@ -9,10 +9,11 @@ export const getServerSideBookPageProps: GetServerSideProps<
 > = async (ctx) => {
   try {
     const params = ctx.params as { bookId: string } | undefined;
+    const cookie = ctx.req.headers.cookie || '';
     if (!params) throw NotFoundBookError;
     const { bookId } = params;
 
-    const book = await GETBookById(bookId);
+    const book = await GETBookById(bookId, {headers: {cookie}});
     if (book) {
       return {
         props: {

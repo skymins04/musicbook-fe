@@ -1,15 +1,9 @@
 import { Book } from "@apis";
 import { Button, ButtonProps } from "@components";
-import {
-  useGetBookMyLikeById,
-  useMutateBookLikeCreateById,
-  useMutateBookLikeDelete,
-} from "@fetchers";
-import { useGlobalDisclosure } from "@hooks";
-import { useBookContext } from "@providers";
+import { useBookFollow, useGlobalDisclosure } from "@hooks";
+import { useBookContext, useUserContext } from "@providers";
 import { getBookId } from "@utils";
-import { MouseEvent } from "react";
-import toast from "react-hot-toast";
+import { MouseEvent, useState } from "react";
 
 export type BookFollowButtonProps = { book?: Book } & ButtonProps;
 
@@ -19,46 +13,22 @@ export const BookFollowButton = ({
   book: _book,
   ...props
 }: BookFollowButtonProps) => {
+  const user = useUserContext();
   const book = _book ?? useBookContext();
   const bookId = getBookId(book);
 
   const { on: setOpenLoginDialog } = useGlobalDisclosure("login-dialog", false);
 
-  const {
-    data: isFollow,
-    mutate: updateIsFollow,
-    isLoading: isLoadingUpdateFollow,
-  } = useGetBookMyLikeById(bookId);
-  const { trigger: followBook, isMutating: isLoadingFollowBook } =
-    useMutateBookLikeCreateById();
-  const { trigger: unfollowBook, isMutating: isLoadingUnfollowBook } =
-    useMutateBookLikeDelete();
-
-  const isLoading =
-    isLoadingUpdateFollow || isLoadingFollowBook || isLoadingUnfollowBook;
+  const [isFollow, setIsFollow] = useState(!!book.bookLikes && book.bookLikes.length !== 0);
+  const { toggleBookFollow, isLoading } = useBookFollow(bookId, isFollow, setIsFollow);
 
   const handleClick = (
     e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
   ) => {
-    if (isFollow === undefined) {
+    if (user === undefined) {
       setOpenLoginDialog();
     } else {
-      const fetcher = isFollow ? unfollowBook : followBook;
-      toast.promise(
-        fetcher({ bookId }).then(updateIsFollow),
-        {
-          loading: isFollow ? "팔로우 해제 처리중..." : "팔로우 처리중...",
-          success: isFollow ? "팔로우 해제되었습니다." : "팔로우되었습니다!",
-          error: `팔로우${
-            isFollow ? " 해제" : ""
-          } 처리 중 오류가 발생했습니다.`,
-        },
-        {
-          success: {
-            icon: isFollow ? "😭" : undefined,
-          },
-        }
-      );
+      toggleBookFollow();
     }
 
     onClick && onClick(e);

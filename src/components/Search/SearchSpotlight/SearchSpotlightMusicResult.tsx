@@ -3,10 +3,12 @@ import { SearchMusicResultCard } from "./SearchMusicResultCard";
 
 export type SearchSpotlightMusicResultProps = {
   musics: Music[];
+  onClick?: () => void;
 };
 
 export const SearchSpotlightMusicResult = ({
   musics,
+  onClick,
 }: SearchSpotlightMusicResultProps) => {
   return (
     <div className="relative h-max max-h-[256px] w-full overflow-y-auto overflow-x-hidden">
@@ -23,6 +25,7 @@ export const SearchSpotlightMusicResult = ({
               music.musicSourceOriginal?.albumThumbnail ||
               ""
             }
+            onClick={onClick}
           />
         ))}
       </div>
